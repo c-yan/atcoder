@@ -6,30 +6,46 @@ import (
 	"strconv"
 )
 
+type task struct {
+	Current int
+	Parent  int
+}
+
 func main() {
 	n := readInt()
 	q := readInt()
 
-	results := make([]int, n+1)
-	parents := make([]int, n+1)
+	results := make([]int, n)
+	links := make([][]int, n)
 
 	for i := 0; i < n-1; i++ {
-		a := readInt()
-		b := readInt()
-		parents[b] = a
+		a := readInt() - 1
+		b := readInt() - 1
+		links[a] = append(links[a], b)
+		links[b] = append(links[b], a)
 	}
 
 	for i := 0; i < q; i++ {
-		p := readInt()
+		p := readInt() - 1
 		x := readInt()
 		results[p] += x
 	}
 
-	for i := 1; i <= n; i++ {
-		results[i] += results[parents[i]]
+	queue := make([]task, 0)
+	queue = append(queue, task{0, -1})
+	for len(queue) != 0 {
+		t := queue[0]
+		queue = queue[1:]
+		for _, j := range links[t.Current] {
+			if t.Parent == j {
+				continue
+			}
+			results[j] += results[t.Current]
+			queue = append(queue, task{j, t.Current})
+		}
 	}
 
-	for i := 1; i <= n; i++ {
+	for i := 0; i < n; i++ {
 		writeInt(results[i])
 		if i != n {
 			writeString(" ")
