@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"os"
 	"strconv"
 )
@@ -31,12 +30,12 @@ func main() {
 	}
 
 	for i := 1; i <= n; i++ {
-		fmt.Print(results[i])
+		writeInt(results[i])
 		if i != n {
-			fmt.Print(" ")
+			writeString(" ")
 		}
 	}
-	fmt.Println()
+	writeNewLineAndFlush()
 }
 
 const (
@@ -50,6 +49,8 @@ var stdinScanner = func() *bufio.Scanner {
 	return result
 }()
 
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
 func readString() string {
 	stdinScanner.Scan()
 	return stdinScanner.Text()
@@ -58,4 +59,17 @@ func readString() string {
 func readInt() int {
 	result, _ := strconv.Atoi(readString())
 	return result
+}
+
+func writeString(s string) {
+	stdoutWriter.WriteString(s)
+}
+
+func writeInt(i int) {
+	writeString(strconv.Itoa(i))
+}
+
+func writeNewLineAndFlush() {
+	stdoutWriter.WriteString("\n")
+	stdoutWriter.Flush()
 }
