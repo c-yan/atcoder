@@ -2,14 +2,10 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"os"
 	"strconv"
 )
-
-type task struct {
-	Current int
-	Parent  int
-}
 
 func main() {
 	n := readInt()
@@ -31,27 +27,24 @@ func main() {
 		results[p] += x
 	}
 
-	queue := make([]task, 0)
-	queue = append(queue, task{0, -1})
+	processed := make([]bool, n)
+	processed[0] = true
+	queue := make([]int, 0)
+	queue = append(queue, 0)
 	for len(queue) != 0 {
-		t := queue[0]
+		i := queue[0]
 		queue = queue[1:]
-		for _, j := range links[t.Current] {
-			if t.Parent == j {
+		for _, j := range links[i] {
+			if processed[j] {
 				continue
 			}
-			results[j] += results[t.Current]
-			queue = append(queue, task{j, t.Current})
+			results[j] += results[i]
+			processed[j] = true
+			queue = append(queue, j)
 		}
 	}
 
-	for i := 0; i < n; i++ {
-		writeInt(results[i])
-		if i != n {
-			writeString(" ")
-		}
-	}
-	writeNewLineAndFlush()
+	writeIntln(results...)
 }
 
 const (
@@ -65,8 +58,6 @@ var stdinScanner = func() *bufio.Scanner {
 	return result
 }()
 
-var stdoutWriter = bufio.NewWriter(os.Stdout)
-
 func readString() string {
 	stdinScanner.Scan()
 	return stdinScanner.Text()
@@ -77,15 +68,12 @@ func readInt() int {
 	return result
 }
 
-func writeString(s string) {
-	stdoutWriter.WriteString(s)
-}
-
-func writeInt(i int) {
-	writeString(strconv.Itoa(i))
-}
-
-func writeNewLineAndFlush() {
-	stdoutWriter.WriteString("\n")
-	stdoutWriter.Flush()
+func writeIntln(v ...int) {
+	b := make([]byte, 0, 4096)
+	for i := 0; i < len(v)-1; i++ {
+		b = append(b, strconv.Itoa(v[i])...)
+		b = append(b, " "...)
+	}
+	b = append(b, strconv.Itoa(v[len(v)-1])...)
+	fmt.Println(string(b))
 }
