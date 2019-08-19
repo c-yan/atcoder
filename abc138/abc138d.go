@@ -44,7 +44,7 @@ func main() {
 		}
 	}
 
-	writeIntln(results...)
+	printIntln(results...)
 }
 
 const (
@@ -68,7 +68,7 @@ func readInt() int {
 	return result
 }
 
-func writeIntln(v ...int) {
+func printIntln(v ...int) {
 	b := make([]byte, 0, 4096)
 	for i := 0; i < len(v)-1; i++ {
 		b = append(b, strconv.Itoa(v[i])...)
