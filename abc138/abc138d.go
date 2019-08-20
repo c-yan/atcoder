@@ -7,6 +7,18 @@ import (
 	"strconv"
 )
 
+type intQueue []int
+
+func (queue *intQueue) enqueue(i int) {
+	*queue = append(*queue, i)
+}
+
+func (queue *intQueue) dequeue() int {
+	result := (*queue)[0]
+	*queue = (*queue)[1:]
+	return result
+}
+
 func main() {
 	n := readInt()
 	q := readInt()
@@ -29,18 +41,17 @@ func main() {
 
 	processed := make([]bool, n)
 	processed[0] = true
-	queue := make([]int, 0)
-	queue = append(queue, 0)
+	var queue intQueue = make([]int, 0)
+	queue.enqueue(0)
 	for len(queue) != 0 {
-		i := queue[0]
-		queue = queue[1:]
+		i := queue.dequeue()
 		for _, j := range links[i] {
 			if processed[j] {
 				continue
 			}
 			results[j] += results[i]
 			processed[j] = true
-			queue = append(queue, j)
+			queue.enqueue(j)
 		}
 	}
 
