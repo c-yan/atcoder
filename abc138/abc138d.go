@@ -64,7 +64,10 @@ func readString() string {
 }
 
 func readInt() int {
-	result, _ := strconv.Atoi(readString())
+	result, err := strconv.Atoi(readString())
+	if err != nil {
+		panic(err)
+	}
 	return result
 }
 
