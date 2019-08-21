@@ -1,46 +1,54 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 )
 
-func StartsWith(s, prefix []rune) bool {
-	if len(s) < len(prefix) {
-		return false
+var words = []string{"maerd", "remaerd", "esare", "resare"}
+
+func reverseString(s string) string {
+	t := make([]byte, len(s))
+	for i, b := range []byte(s) {
+		t[len(s)-1-i] = b
 	}
-	for i := range prefix {
-		if s[i] != prefix[i] {
-			return false
-		}
-	}
-	return true
+	return string(t)
 }
 
 func main() {
-	var s string
-	fmt.Scanln(&s)
-	r := []rune(s)
-	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
-		r[i], r[j] = r[j], r[i]
-	}
-	words := [][]rune{[]rune("maerd"), []rune("remaerd"), []rune("esare"), []rune("resare")}
+	s := reverseString(readString())
+
 	for {
-		if len(r) == 0 {
+	next:
+		if s == "" {
 			fmt.Println("YES")
 			return
 		}
-		fail := 0
 		for _, w := range words {
-			if StartsWith(r, w) {
-				r = r[len(w):]
-				break
-			} else {
-				fail++
+			if strings.HasPrefix(s, w) {
+				s = s[len(w):]
+				goto next
 			}
 		}
-		if fail == len(words) {
-			fmt.Println("NO")
-			return
-		}
+		fmt.Println("NO")
+		return
 	}
+}
+
+const (
+	ioBufferSize = 1 * 1024 * 1024 // 1 MB
+)
+
+var stdinScanner = func() *bufio.Scanner {
+	result := bufio.NewScanner(os.Stdin)
+	result.Buffer(make([]byte, ioBufferSize), ioBufferSize)
+	result.Split(bufio.ScanWords)
+	return result
+}()
+
+func readString() string {
+	stdinScanner.Scan()
+	return stdinScanner.Text()
 }
