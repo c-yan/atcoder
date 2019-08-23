@@ -1,0 +1,8 @@
+n = int(input())
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+e = int(input())
+t = min(a, b, c, d, e)
+print(4 + (n + (t - 1)) // t)
