@@ -5,6 +5,7 @@ def main():
   h, w = map(int, readline().split())
   s = [readline().rstrip('\r\n') + '#' for _ in range(h)]
   s.append('#' * w)
+  ft = [[i] * i for i in range(100)]
   yoko = [[0] * w for _ in range(h)]
   for i in range(h):
     start = -1
@@ -14,8 +15,10 @@ def main():
       if si[j] == '#':
         if start != -1:
           t = j - start
-          for k in range(start, j):
-            yokoi[k] = t
+          if t < 100:
+            yokoi[start:j] = ft[t]
+          else:
+            yokoi[start:j] = [t] * t
           start = -1
       else:
         if start == -1:
