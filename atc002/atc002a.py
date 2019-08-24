@@ -11,8 +11,7 @@ distance = [[-1] * c for _ in range(r)]
 distance[sy][sx] = 0
 q = [(sy, sx)]
 while True:
-  y, x = q[0]
-  q = q[1:]
+  y, x = q.pop(0)
   if y == gy and x == gx:
     print(distance[y][x])
     exit()
