@@ -1,3 +1,4 @@
+// Union Find 版
 package main
 
 import (
