@@ -50,20 +50,14 @@ func main() {
 	}
 
 	d := map[int]int{}
-	result := make([]int, n)
 	for i := 0; i < n; i++ {
-		t := 2000001*find(roads, i) + find(rails, i)
-		if _, ok := d[t]; ok {
-			d[t] += 1
-		} else {
-			d[t] = 1
-		}
+		d[2000001*find(roads, i)+find(rails, i)]++
 	}
 
+	result := make([]int, n)
 	for i := 0; i < n; i++ {
 		result[i] = d[2000001*find(roads, i)+find(rails, i)]
 	}
-
 	printIntln(result...)
 }
 
