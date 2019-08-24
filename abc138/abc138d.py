@@ -1,24 +1,24 @@
-from collections import deque
+from sys import stdin
 def main():
-  _map, _input, _int = map, input, int
-  n, q = _map(_int, _input().split())
+  from builtins import int, map, range
+  readline = stdin.readline
+  n, q = map(int, readline().split())
   values = [0] * n
   links = [[] for _ in range(n)]
   for _ in range(n - 1):
-    a, b = _map(_int, _input().split())
+    a, b = map(int, readline().split())
     links[a - 1].append(b - 1)
     links[b - 1].append(a - 1)
   for _ in range(q):
-    p, x = _map(_int, _input().split())
+    p, x = map(int, readline().split())
     values[p - 1] += x
-  d = deque()
-  d.append((0, -1))
-  while len(d) != 0:
-    i, p = d.popleft()
+  s = [(0, -1)]
+  while s:
+    i, p = s.pop()
     for j in links[i]:
       if j == p:
         continue
       values[j] += values[i]
-      d.append((j, i))
+      s.append((j, i))
   print(*values)
 main()
