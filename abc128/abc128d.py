@@ -9,7 +9,7 @@ for i in range(m + 1):
     t.sort()
     l = k - i
     while len(t) > 0 and l > 0 and t[0] < 0:
-      t = t[1:]
+      t.pop(0)
       l -= 1
     m = sum(t)
     if m > result:
