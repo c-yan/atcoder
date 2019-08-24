@@ -1,3 +1,4 @@
+# Union Find 版
 from sys import stdin
 
 def main():
