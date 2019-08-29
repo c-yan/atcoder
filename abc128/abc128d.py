@@ -1,17 +1,15 @@
 n, k = map(int, input().split())
-v = [int(e) for e in input().split()]
+v = list(map(int, input().split()))
 m = min(n, k)
 result = 0
 for i in range(m + 1):
   for j in range(i + 1):
     t = v[:j]
     t.extend(v[n - (i - j):])
-    t.sort()
+    t.sort(reverse = True)
     l = k - i
-    while len(t) > 0 and l > 0 and t[0] < 0:
-      t.pop(0)
+    while len(t) > 0 and l > 0 and t[-1] < 0:
+      t.pop()
       l -= 1
-    m = sum(t)
-    if m > result:
-      result = m
+    result = max(result, sum(t))
 print(result)
