@@ -1,23 +1,20 @@
-import sys
-inf = float('inf')
+INF = float('inf')
 n, ma, mb = map(int, input().split())
-t = [[inf] * 401 for _ in range(401)]
+cmax = n * 10
+t = [[INF] * (cmax + 1) for _ in range(cmax + 1)]
 for _ in range(n):
   a, b, c = map(int, input().split())
-  for aa in range(400, 0, -1):
-    for bb in range(400, 0, -1):
-      if t[aa][bb] == inf:
+  for aa in range(cmax, 0, -1):
+    for bb in range(cmax, 0, -1):
+      if t[aa][bb] == INF:
         continue
-      if t[a + aa][b + bb] > c + t[aa][bb]:
-        t[a + aa][b + bb] = c + t[aa][bb]
-  if t[a][b] > c:
-    t[a][b] = c
-result = inf
-for a in range(400, 0, -1):
-  for b in range(400, 0, -1):
-    if a * mb == b * ma and t[a][b] < result:
-      result = t[a][b]
-if result == inf:
-  print(-1)
-else:
-  print(result)
+      t[aa + a][bb + b] = min(t[aa + a][bb + b], t[aa][bb] + c)
+  t[a][b] = min(t[a][b], c)
+result = INF
+for a in range(1, cmax):
+  for b in range(1, cmax):
+    if a * mb == b * ma:
+      result = min(result, t[a][b])
+if result == INF:
+  result = -1
+print(result)
