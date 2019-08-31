@@ -1,7 +1,7 @@
-a = int(raw_input())
-b = int(raw_input())
-c = int(raw_input())
-x = int(raw_input())
+a = int(input())
+b = int(input())
+c = int(input())
+x = int(input())
 
 result = 0
 for i in range(a + 1):
@@ -10,4 +10,4 @@ for i in range(a + 1):
       if i * 500 + j * 100 + k * 50 == x:
         result += 1
 
-print result
+print(result)

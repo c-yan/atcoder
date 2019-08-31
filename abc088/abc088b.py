@@ -1,5 +1,5 @@
-n = int(raw_input())
-a = [int(e) for e in raw_input().split()]
+n = int(input())
+a = list(map(int, input().split()))
 a.sort()
 a.reverse()
-print sum(a[::2]) - sum(a[1::2])
+print(sum(a[::2]) - sum(a[1::2]))
