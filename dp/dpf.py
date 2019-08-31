@@ -19,4 +19,4 @@ while i > 0 and j > 0:
     u.append(s[i - 1])
     i -= 1
     j -= 1
-print(''.join(reversed(u)))
+print(''.join(u[::-1]))

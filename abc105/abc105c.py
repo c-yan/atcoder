@@ -8,4 +8,4 @@ while n != 0:
   r = n % 2
   t.append(str(r))
   n = (n - r) // -2
-print(''.join(reversed(t)))
+print(''.join(t[::-1]))

@@ -1,5 +1,5 @@
 def main():
-  s = ''.join(reversed(input()))
+  s = input()[::-1]
   multiplier = 1
   divisor = 10 ** 9 + 7
   list10 = list(range(10))
