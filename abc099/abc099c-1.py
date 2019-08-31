@@ -9,7 +9,7 @@ i = 9
 while i <= n:
   a.append(i)
   i *= 9
-t = [float("inf")] * (n + 1)
+t = [float('inf')] * (n + 1)
 t[0] = 0
 for i in range(n):
   for j in a:

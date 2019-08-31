@@ -1,7 +1,7 @@
 # 配るDP
 n = int(input())
 a = list(map(int, input().split()))
-t = [float("inf")] * n
+t = [float('inf')] * n
 t[0] = 0
 for i in range(n - 2):
   t[i + 1] = min(t[i + 1], t[i] + abs(a[i + 1] - a[i]))

@@ -11,5 +11,5 @@ def main():
     t[i].sort()
   for p, y in data:
     nth = bisect_left(t[p - 1], y) + 1
-    print("%06d%06d" % (p, nth))
+    print('%06d%06d' % (p, nth))
 main()

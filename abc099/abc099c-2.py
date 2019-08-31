@@ -11,7 +11,7 @@ while i <= n:
   i *= 9
 t = [0] * (n + 1)
 for i in range(1, n + 1):
-  k = float("inf")
+  k = float('inf')
   for j in a:
     if i - j >= 0 and k > t[i - j] + 1:
       k = t[i - j] + 1
