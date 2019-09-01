@@ -1,5 +1,5 @@
 n = int(input())
-h = [int(e) for e in input().split()]
+h = list(map(int, input().split()))
 cost = [0] * n
 cost[1] = abs(h[1] - h[0])
 for i in range(2, n):
