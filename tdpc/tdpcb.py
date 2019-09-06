@@ -4,14 +4,14 @@ setrecursionlimit(10000)
 A, B = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
-dp = [[[None] * (B + 1) for _ in range(A + 1)] for _ in range(2)]
+dp = [[None] * (B + 1) for _ in range(A + 1)]
 
 def f(u, i, j):
+  if dp[i][j] is not None:
+    return dp[i][j]
   if i == A and j == B:
-    return (0, 0)
-  t = dp[u][i][j]
-  if t is not None:
-    return t
+    dp[i][j] = (0, 0)
+    return dp[i][j]
   t0 = None
   t1 = None
   if i < A:
@@ -40,7 +40,7 @@ def f(u, i, j):
         result = t1
       else:
         result = t0
-  dp[u][i][j] = result
+  dp[i][j] = result
   return result
 
 print(f(0, 0, 0)[0])
