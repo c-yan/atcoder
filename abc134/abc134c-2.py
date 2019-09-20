@@ -1,13 +1,12 @@
 # 累積和(max)
 N = int(input())
 a = [int(input()) for _ in range(N)]
-lam = [0] * N
-ram = [0] * N
-lam[0] = a[0]
-ram[N - 1] = a[N - 1]
+lam = a[:]
+ram = a[:]
 for i in range(1, N):
-  lam[i] = max(lam[i - 1], a[i])
-  ram[N - 1 - i] = max(ram[N - 1 - i + 1], a[N - 1 - i])
+  lam[i] = max(lam[i], lam[i - 1])
+for i in range(N - 2, -1, -1):
+  ram[i] = max(ram[i], ram[i + 1])
 print(ram[1])
 for i in range(1, N - 1):
   print(max(lam[i - 1], ram[i + 1]))
