@@ -1,9 +1,8 @@
 def main():
-    import sys
-    _int = int
-    n = _int(input())
-    a = [_int(e) for e in input().split()]
-    b = [_int(e) for e in input().split()]
+    from sys import exit
+    n = int(input())
+    a = [int(e) for e in input().split()]
+    b = [int(e) for e in input().split()]
     result = 0
     q = [i for i in range(n) if b[i] != a[i]]
     while len(q) != 0:
@@ -25,7 +24,7 @@ def main():
                 nq.append(i)
         if c == 0 and len(nq) != 0:
             print(-1)
-            sys.exit()
+            exit()
         q = nq
     print(result)
 
