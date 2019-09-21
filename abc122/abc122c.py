@@ -1,18 +1,17 @@
-from sys import stdin
-def main():
-  readline = stdin.readline
-  n, q = map(int, readline().split())
-  s = input()
-  c = [0] * (n + 1)
-  for i in range(2, n + 1):
-    if s[i - 1] == 'C' and s[i - 2] == 'A':
-      c[i] = c[i - 1] + 1
-    else:
-      c[i] = c[i - 1]
-  for _ in range(q):
-    l, r = map(int, readline().split())
-    t = c[r] - c[l - 1]
-    if l >= 2 and s[l - 2: l] == 'AC':
+# 累積和
+N, Q = map(int, input().split())
+S = input()
+cs = [0] * N
+for i in range(1, N):
+  if S[i - 1:i + 1] == 'AC':
+    cs[i] = 1
+for i in range(1, N):
+  cs[i] += cs[i - 1]
+for _ in range(Q):
+  l, r = map(int, input().split())
+  t = cs[r - 1]
+  if l != 1:
+    t -= cs[l - 2]
+    if S[l - 2:l] == 'AC':
       t -= 1
-    print(t)
-main()
+  print(t)
