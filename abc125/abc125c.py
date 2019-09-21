@@ -1,9 +1,19 @@
+# 累積和(gcd)
 from fractions import gcd
-n = int(input())
-a = list(map(int, input().split()))
-c1 = [0] * (n + 1)
-c2 = [0] * (n + 1)
-for i in range(1, n + 1):
-  c1[i] = gcd(c1[i - 1], a[i - 1])
-  c2[n - i] = gcd(c2[n - i + 1], a[n - i])
-print(max(gcd(c1[i], c2[i + 1]) for i in range(n)))
+N = int(input())
+A = list(map(int, input().split()))
+
+lcg = A[:]
+rcg = A[:]
+for i in range(1, N):
+  lcg[i] = gcd(lcg[i], lcg[i - 1])
+for i in range(N - 2, -1, -1):
+  rcg[i] = gcd(rcg[i], rcg[i + 1])
+
+t = [0] * N
+t[0] = rcg[1]
+for i in range(1, N - 1):
+  t[i] = gcd(lcg[i - 1], rcg[i + 1])
+t[N - 1] = lcg[N - 2]
+
+print(max(t))
