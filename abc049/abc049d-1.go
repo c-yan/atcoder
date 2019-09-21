@@ -1,4 +1,4 @@
-// Union Find 版
+// Union Find 木
 package main
 
 import (

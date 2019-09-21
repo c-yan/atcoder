@@ -1,4 +1,4 @@
-// 幅優先探索版
+// BFS(幅優先探索)
 package main
 
 import (

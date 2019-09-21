@@ -1,4 +1,4 @@
-# 深さ優先探索版
+# DFS(深さ優先探索)
 from sys import stdin
 
 def create_links(n, k):

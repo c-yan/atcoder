@@ -1,4 +1,4 @@
-# Union Find 版
+# Union Find 木
 from sys import stdin
 
 def main():

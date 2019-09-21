@@ -1,3 +1,4 @@
+# 優先度付きキュー
 from sys import stdin
 def main():
   from builtins import int, map, range

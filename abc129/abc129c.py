@@ -1,3 +1,4 @@
+# DP(動的計画法)
 n, m = [int(e) for e in input().split()]
 a = set(int(input()) for i in range(m))
 t = [0] * (n + 2)
