@@ -1,5 +1,5 @@
 S = input()
 if ('N' in S) ^ ('S' in S) or ('W' in S) ^ ('E' in S):
-  print('No')
+    print('No')
 else:
-  print('Yes')
+    print('Yes')

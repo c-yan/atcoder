@@ -1,5 +1,5 @@
 N = int(input())
 if N % 3 == 0:
-  print('YES')
+    print('YES')
 else:
-  print('NO')
+    print('NO')

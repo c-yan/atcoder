@@ -1,5 +1,5 @@
 a = input()
 if a == 'a':
-  print(-1)
+    print(-1)
 else:
-  print('a')
+    print('a')

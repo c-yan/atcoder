@@ -1,8 +1,8 @@
 from sys import exit
 N, M = map(int, input().split())
 if M > 4 * N or M < 2 * N:
-  print("-1 -1 -1")
-  exit()
+    print("-1 -1 -1")
+    exit()
 t = (M - 2 * N) // 2
 a = N - t
 c = t

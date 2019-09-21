@@ -7,14 +7,14 @@ h = [all(c == '.' for c in a[i]) for i in range(H)]
 
 w = [True] * W
 for i in range(H):
-  for j in range(W):
-    w[j] = w[j] and a[i][j] == '.'
+    for j in range(W):
+        w[j] = w[j] and a[i][j] == '.'
 
 for i in range(H):
-  if h[i]:
-    continue
-  for j in range(W):
-    if w[j]:
-      continue
-    stdout.write(a[i][j])
-  stdout.write('\n')
+    if h[i]:
+        continue
+    for j in range(W):
+        if w[j]:
+            continue
+        stdout.write(a[i][j])
+    stdout.write('\n')

@@ -5,7 +5,7 @@ b.sort()
 b.reverse()
 b = b[:2]
 for i in range(n):
-  if a[i] != b[0]:
-    print(b[0])
-  else:
-    print(b[1])
+    if a[i] != b[0]:
+        print(b[0])
+    else:
+        print(b[1])

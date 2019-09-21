@@ -1,13 +1,13 @@
 a, b = map(int, input().split())
 result = 0
-if a  > b:
-  result += a
-  a -= 1
+if a > b:
+    result += a
+    a -= 1
 else:
-  result += b
-  b -= 1
-if a  > b:
-  result += a
+    result += b
+    b -= 1
+if a > b:
+    result += a
 else:
-  result += b
+    result += b
 print(result)

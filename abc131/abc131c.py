@@ -2,8 +2,10 @@ from fractions import gcd
 
 a, b, c, d = [int(e) for e in input().split()]
 
+
 def f(a, b, n):
-  return b // n - (a - 1) // n
+    return b // n - (a - 1) // n
+
 
 acc = 0
 acc += f(a, b, c)
