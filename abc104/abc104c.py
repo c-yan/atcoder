@@ -10,7 +10,7 @@ def f(data, total, targets):
     return 0
   result = INF
   for i in range(len(targets)):
-    p, c, score, subtotal = data[targets[i]]
+    p, _, score, subtotal = data[targets[i]]
     t = (total + score - 1) // score
     if t < p and t < result:
       result = t
