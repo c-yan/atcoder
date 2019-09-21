@@ -3,7 +3,7 @@ from sys import stdin
 
 def create_links(n, k):
   links = [[] for _ in range(n)]
-  for i in range(k):
+  for _ in range(k):
     p, q = map(int, stdin.readline().split())
     links[p - 1].append(q - 1)
     links[q - 1].append(p - 1)
