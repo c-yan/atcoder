@@ -1,3 +1,4 @@
+// DP(貰うDP)
 package main
 
 import (
@@ -30,21 +31,14 @@ func main() {
 		dp[i] = make([]int, N+1)
 	}
 
+	result := 0
 	for i := N - 1; i > -1; i-- {
 		for j := N - 1; j > -1; j-- {
-			if S[i] != S[j] {
-				dp[i][j] = 0
-			} else {
+			if S[i] == S[j] {
 				dp[i][j] = dp[i+1][j+1] + 1
+				t := min(dp[i][j], j-i)
+				result = max(result, t)
 			}
-		}
-	}
-
-	result := 0
-	for i := 0; i < N; i++ {
-		for j := i + 1; j < N; j++ {
-			t := min(dp[i][j], j-i)
-			result = max(result, t)
 		}
 	}
 	fmt.Println(result)
