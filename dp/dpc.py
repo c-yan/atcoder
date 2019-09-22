@@ -1,8 +1,10 @@
-n = int(input())
-d = [[int(e) for e in input().split()] for i in range(n)]
-f = [None for i in range(n)]
-f[0] = d[0]
-for i in range(1, n):
-    f[i] = [max(f[i - 1][1] + d[i][0], f[i - 1][2] + d[i][0]), max(f[i - 1][0] + d[i]
-                                                                   [1], f[i - 1][2] + d[i][1]), max(f[i - 1][0] + d[i][2], f[i - 1][1] + d[i][2])]
-print(max(f[n - 1]))
+# DP(貰うDP)
+N = int(input())
+
+dp = [[0] * 3 for _ in range(N + 1)]
+for i in range(N):
+    a, b, c = map(int, input().split())
+    dp[i + 1][0] = max(dp[i][1] + b, dp[i][2] + c)
+    dp[i + 1][1] = max(dp[i][0] + a, dp[i][2] + c)
+    dp[i + 1][2] = max(dp[i][0] + a, dp[i][1] + b)
+print(max(dp[N]))
