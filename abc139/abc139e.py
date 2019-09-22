@@ -49,7 +49,7 @@ def main():
             edges[from_id].append(to_id)
             from_id = to_id
 
-    dp = [-1 for _ in range(N * (N - 1) // 2)]
+    dp = [-1] * (N * (N - 1) // 2)
     print(max(dfs(n, edges, dp) for n in start_nodes))
 
 
