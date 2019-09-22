@@ -1,10 +1,11 @@
 # DP(配るDP)
-n = int(input())
+N = int(input())
 h = list(map(int, input().split()))
-cost = [float('inf')] * n
-cost[0] = 0
-for i in range(n - 2):
-    cost[i + 1] = min(cost[i + 1], cost[i] + abs(h[i + 1] - h[i]))
-    cost[i + 2] = min(cost[i + 2], cost[i] + abs(h[i + 2] - h[i]))
-cost[n - 1] = min(cost[n - 1], cost[n - 2] + abs(h[n - 1] - h[n - 2]))
-print(cost[n - 1])
+
+dp = [float('inf')] * N
+dp[0] = 0
+for i in range(N - 2):
+    dp[i + 1] = min(dp[i + 1], dp[i] + abs(h[i + 1] - h[i]))
+    dp[i + 2] = min(dp[i + 2], dp[i] + abs(h[i + 2] - h[i]))
+dp[N - 1] = min(dp[N - 1], dp[N - 2] + abs(h[N - 1] - h[N - 2]))
+print(dp[N - 1])
