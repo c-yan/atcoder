@@ -1,3 +1,4 @@
+# PyPy なら通る
 s = input()
 t = input()
 dp = [[0] * (len(t) + 1) for _ in range(len(s) + 1)]
