@@ -30,7 +30,7 @@ def main():
     N = int(input())
     A = [[int(e) - 1 for e in input().split()] for _ in range(N)]
 
-    node_id_db = [[0] * (N+1) for _ in range(N + 1)]
+    node_id_db = [[0] * N for _ in range(N)]
     v = 0
     for i in range(N):
         for j in range(i + 1, N):
