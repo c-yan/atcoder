@@ -7,27 +7,36 @@ import (
 	"strconv"
 )
 
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
 func main() {
 	N := readInt()
 	S := readString()
-	ms := 0
-	for i := 1; i < N; i++ {
-		ts := 0
+
+	result := 0
+	for i := N - 1; i > 0; i-- {
+		if i <= result {
+			break
+		}
+		t := 0
 		for j := 0; j < N-i; j++ {
 			if S[j] == S[j+i] {
-				ts++
-				if ts > ms {
-					ms = ts
-				}
-				if ts == i {
+				t++
+				result = max(result, t)
+				if result == i {
 					break
 				}
 			} else {
-				ts = 0
+				t = 0
 			}
 		}
 	}
-	fmt.Println(ms)
+	fmt.Println(result)
 }
 
 const (
