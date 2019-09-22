@@ -1,3 +1,4 @@
+# DP(貰うDP)
 n = int(input())
 h = list(map(int, input().split()))
 cost = [0] * n

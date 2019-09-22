@@ -1,3 +1,4 @@
+# DP(貰うDP)
 n, k = [int(e) for e in input().split()]
 h = [int(e) for e in input().split()]
 cost = [0] * n

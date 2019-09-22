@@ -1,3 +1,4 @@
+# DP(配るDP)
 n = int(input())
 h = list(map(int, input().split()))
 cost = [float('inf')] * n
