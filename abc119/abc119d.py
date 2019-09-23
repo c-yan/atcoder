@@ -1,3 +1,4 @@
+# 二分探索
 from bisect import bisect_left
 INF = float('inf')
 a, b, q = map(int, input().split())

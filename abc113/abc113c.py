@@ -1,3 +1,4 @@
+# 二分探索
 def main():
     from sys import stdin
     from bisect import bisect_left
