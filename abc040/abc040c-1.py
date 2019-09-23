@@ -1,4 +1,4 @@
-# 貰うDP
+# DP(貰うDP)
 n = int(input())
 a = list(map(int, input().split()))
 t = [0] * n

@@ -1,4 +1,4 @@
-# メモ化再帰(貰う)
+# DP(貰うメモ化再帰)
 import sys
 sys.setrecursionlimit(1000000)
 n = int(input())

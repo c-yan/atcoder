@@ -1,4 +1,4 @@
-# 配るDP
+# DP(配るDP)
 n = int(input())
 a = list(map(int, input().split()))
 t = [float('inf')] * n
