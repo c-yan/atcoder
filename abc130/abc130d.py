@@ -1,3 +1,4 @@
+# しゃくとり法
 n, k = [int(e) for e in input().split()]
 data = [int(e) for e in input().split()]
 result = 0
