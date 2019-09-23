@@ -1,18 +1,22 @@
-# 配るDP
-n = int(input())
-a = [1]
-i = 6
-while i <= n:
-    a.append(i)
-    i *= 6
-i = 9
-while i <= n:
-    a.append(i)
-    i *= 9
-t = [float('inf')] * (n + 1)
-t[0] = 0
-for i in range(n):
-    for j in a:
-        if i + j <= n and t[i + j] > t[i] + 1:
-            t[i + j] = t[i] + 1
-print(t[n])
+# DP(配るDP)
+INF = float('inf')
+
+N = int(input())
+
+c = [1]
+t = 6
+while t <= N:
+    c.append(t)
+    t *= 6
+t = 9
+while t <= N:
+    c.append(t)
+    t *= 9
+
+dp = [INF] * (N + 1)
+dp[0] = 0
+for i in range(N):
+    for j in c:
+        if i + j <= N and dp[i + j] > dp[i] + 1:
+            dp[i + j] = dp[i] + 1
+print(dp[N])
