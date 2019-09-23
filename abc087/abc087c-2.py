@@ -1,3 +1,4 @@
+# DP
 n = int(input())
 a = [list(map(int, input().split())) for _ in range(2)]
 b = [[0] * n for _ in range(2)]
