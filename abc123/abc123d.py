@@ -5,30 +5,20 @@ A = list(map(int, input().split()))
 B = list(map(int, input().split()))
 C = list(map(int, input().split()))
 
-A.sort(reverse=True)
-B.sort(reverse=True)
-C.sort(reverse=True)
+for l in [A, B, C]:
+    l.sort()
 
 exists = set()
-q = [(-(A[0] + B[0] + C[0]), (0, 0, 0))]
+q = [(-(A[X - 1] + B[Y - 1] + C[Z - 1]), (X - 1, Y - 1, Z - 1))]
 for _ in range(K):
-    v, i = heappop(q)
+    v, n = heappop(q)
     print(-v)
-    if i[0] < X - 1:
-        ni = (i[0] + 1, i[1], i[2])
-        if ni not in exists:
-            exists.add(ni)
-            nv = A[i[0] + 1] + B[i[1]] + C[i[2]]
-            heappush(q, (-nv, ni))
-    if i[1] < Y - 1:
-        ni = (i[0], i[1] + 1, i[2])
-        if ni not in exists:
-            exists.add(ni)
-            nv = A[i[0]] + B[i[1] + 1] + C[i[2]]
-            heappush(q, (-nv, ni))
-    if i[2] < Z - 1:
-        ni = (i[0], i[1], i[2] + 1)
-        if ni not in exists:
-            exists.add(ni)
-            nv = A[i[0]] + B[i[1]] + C[i[2] + 1]
-            heappush(q, (-nv, ni))
+    for i in range(3):
+        if n[i] > 0:
+            t = [n[j] for j in range(3)]
+            t[i] -= 1
+            nn = tuple(t)
+            if nn not in exists:
+                exists.add(nn)
+                nv = A[nn[0]] + B[nn[1]] + C[nn[2]]
+                heappush(q, (-nv, nn))
