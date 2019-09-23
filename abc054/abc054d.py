@@ -1,3 +1,4 @@
+# DP
 INF = float('inf')
 n, ma, mb = map(int, input().split())
 cmax = n * 10
