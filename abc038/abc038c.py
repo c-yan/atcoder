@@ -1,14 +1,12 @@
 N = int(input())
 a = list(map(int, input().split()))
 result = 0
-i = 0
-while i < N:
-    j = i + 1
-    while j < N:
-        if a[j - 1] >= a[j]:
-            break
-        j += 1
-    t = j - i
-    result += t * (t + 1) // 2
-    i = j
+start = 0
+for i in range(N - 1):
+  if a[i] >= a[i + 1]:
+    t = i - start + 1
+    result += (t + 1) * t // 2
+    start = i + 1
+t = (N - 1) - start + 1
+result += (t + 1) * t // 2
 print(result)
