@@ -1,10 +1,7 @@
 # 二分探索
 from bisect import bisect_left
-INF = float('inf')
-a, b, q = map(int, input().split())
-s = [int(input()) for _ in range(a)]
-t = [int(input()) for _ in range(b)]
 
+INF = float('inf')
 
 def f(x, s, t):
     result = INF
@@ -24,6 +21,10 @@ def f(x, s, t):
     return result
 
 
-for i in range(q):
+A, B, Q = map(int, input().split())
+s = [int(input()) for _ in range(A)]
+t = [int(input()) for _ in range(B)]
+
+for i in range(Q):
     x = int(input())
     print(min(f(x, s, t), f(x, t, s)))
