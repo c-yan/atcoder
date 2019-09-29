@@ -16,7 +16,7 @@ dp = [INF] * (1 << N)
 dp[0] = 0
 for i in range(M):
     a, m = keys[i]
-    for j in range((1 << N)-1, -1, -1):
+    for j in range((1 << N) - 1, -1, -1):
         if dp[j] == INF:
             continue
         if dp[j] + a < dp[j | m]:
