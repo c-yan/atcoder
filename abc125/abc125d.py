@@ -1,14 +1,9 @@
-n = int(input())
-a = list(map(int, input().split()))
-mc = 0
-s = 0
-m = float('inf')
-for i in a:
-    if i < 0:
-        mc += 1
-    s += abs(i)
-    m = min(m, abs(i))
-if mc % 2 == 0:
-    print(s)
+N = int(input())
+A = list(map(int, input().split()))
+
+negatives = len([a for a in A if a < 0])
+if negatives % 2 == 0:
+    m = 0
 else:
-    print(s - 2 * m)
+    m = min(abs(a) for a in A)
+print(sum(abs(a) for a in A) - 2 * m)
