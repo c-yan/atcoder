@@ -1,6 +1,5 @@
 # Union Find 木
-import sys
-sys.setrecursionlimit(10 ** 5)
+from sys import setrecursionlimit
 
 
 def find(parent, i):
@@ -21,15 +20,18 @@ def unite(parent, i, j):
     parent[i] = j
 
 
-n, m = map(int, input().split())
-parent = [-1] * n
-inconvenience = n * (n - 1) // 2
+setrecursionlimit(10 ** 5)
+
+N, M = map(int, input().split())
+AB = [[int(c) - 1 for c in input().split()] for _ in range(M)]
+
+parent = [-1] * N
+inconvenience = N * (N - 1) // 2
 result = []
-for a, b in reversed([[int(c) - 1 for c in input().split()] for _ in range(m)]):
+for a, b in AB[::-1]:
     result.append(inconvenience)
     pa, pb = find(parent, a), find(parent, b)
     if pa != pb:
         inconvenience -= parent[pa] * parent[pb]
     unite(parent, a, b)
-for i in reversed(result):
-    print(i)
+print(*result[::-1])
