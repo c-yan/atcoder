@@ -1,10 +1,12 @@
-n, k = map(int, input().split())
-s = list(map(int, input()))
+# しゃくとり法
+N, K = map(int, input().split())
+S = list(map(int, input()))
+
 j = 1
 r = 0
 t = []
-for i in range(n):
-    if s[i] == j:
+for i in range(N):
+    if S[i] == j:
         r += 1
     else:
         t.append(r)
@@ -13,14 +15,15 @@ for i in range(n):
 t.append(r)
 if j == 0:
     t.append(0)
-if k >= (len(t) - 1) // 2:
+
+if K >= (len(t) - 1) // 2:
     print(sum(t))
 else:
-    result = sum(t[:2 * k + 1])
-    j = sum(t[:2 * k + 1])
+    result = sum(t[:2 * K + 1])
+    j = result
     i = 2
-    while i + 2 * k < len(t):
-        j += t[i + 2 * k - 1] + t[i + 2 * k] - (t[i - 2] + t[i - 1])
+    while i + 2 * K < len(t):
+        j += t[i + 2 * K - 1] + t[i + 2 * K] - (t[i - 2] + t[i - 1])
         result = max(result, j)
         i += 2
     print(result)
