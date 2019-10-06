@@ -1,4 +1,5 @@
 N, M = map(int, input().split())
+
 from1 = set()
 toN = set()
 for _ in range(M):
