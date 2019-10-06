@@ -1,4 +1,5 @@
 N = int(input())
+
 d = {}
 for _ in range(N):
     t = int(input())

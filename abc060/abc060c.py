@@ -1,4 +1,5 @@
 N, T = map(int, input().split())
+
 X = 0
 start = 0
 stop = 0

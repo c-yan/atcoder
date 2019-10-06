@@ -1,5 +1,6 @@
 N = int(input())
 a = list(map(int, input().split()))
+
 t = [0] * N
 t[0] = a[0]
 for i in range(1, N):

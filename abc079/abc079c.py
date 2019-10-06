@@ -1,4 +1,5 @@
 A, B, C, D = list(map(int, input()))
+
 for i in range(8):
     if i & 1 == 0:
         tb = B

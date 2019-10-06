@@ -1,6 +1,8 @@
 from sys import exit
+
 N = int(input())
 s = [int(input()) for _ in range(N)]
+
 result = sum(s)
 if result % 10 != 0:
     print(result)

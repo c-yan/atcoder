@@ -8,6 +8,7 @@ for _ in range(M):
         from1.add(b)
     elif b == N:
         toN.add(a)
+
 if from1 & toN:
     print('POSSIBLE')
 else:
