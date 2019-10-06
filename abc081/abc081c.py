@@ -1,9 +1,10 @@
-n, k = map(int, input().split())
-alist = list(map(int, input().split()))
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+
 d = {}
-for a in alist:
+for a in A:
     if a in d:
         d[a] += 1
     else:
         d[a] = 1
-print(sum(list(sorted(d[k] for k in d))[:-k]))
+print(sum(list(sorted(d[k] for k in d))[:-K]))

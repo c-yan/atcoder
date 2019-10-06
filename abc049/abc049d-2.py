@@ -26,18 +26,19 @@ def create_groups(n, links):
     return groups
 
 
-n, k, l = map(int, input().split())
-road_links = create_links(n, k)
-rail_links = create_links(n, l)
-road_groups = create_groups(n, road_links)
-rail_groups = create_groups(n, rail_links)
+N, K, L = map(int, input().split())
+
+road_links = create_links(N, K)
+rail_links = create_links(N, L)
+road_groups = create_groups(N, road_links)
+rail_groups = create_groups(N, rail_links)
 
 d = {}
-for i in range(n):
+for i in range(N):
     t = (road_groups[i], rail_groups[i])
     if t in d:
         d[t] += 1
     else:
         d[t] = 1
 
-print(*[d[(road_groups[i], rail_groups[i])] for i in range(n)])
+print(*[d[(road_groups[i], rail_groups[i])] for i in range(N)])

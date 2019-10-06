@@ -1,15 +1,17 @@
 from sys import exit
-a, b = map(int, input().split())
-s = input()
-for i in range(a):
-    if s[i] not in '0123456789':
+
+A, B = map(int, input().split())
+S = input()
+
+for i in range(A):
+    if S[i] not in '0123456789':
         print('No')
         exit()
-if s[a] != '-':
+if S[A] != '-':
     print('No')
     exit()
-for i in range(a + 1, a + b + 1):
-    if s[i] not in '0123456789':
+for i in range(A + 1, A + B + 1):
+    if A[i] not in '0123456789':
         print('No')
         exit()
 print('Yes')

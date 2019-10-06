@@ -1,12 +1,14 @@
 from sys import exit
-s = input()[::-1]
+
+S = input()[::-1]
+
 while True:
-    if s == '':
+    if S == '':
         print('YES')
         exit()
     for w in ['maerd', 'remaerd', 'esare', 'resare']:
-        if s.startswith(w):
-            s = s[len(w):]
+        if S.startswith(w):
+            S = S[len(w):]
             break
     else:
         print('NO')

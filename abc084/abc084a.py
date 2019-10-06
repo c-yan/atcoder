@@ -1,2 +1,3 @@
-m = int(input())
-print(48 - m)
+M = int(input())
+
+print(48 - M)

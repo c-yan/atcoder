@@ -1,6 +1,7 @@
-n, a, b = map(int, input().split())
+N, A, B = map(int, input().split())
+
 result = 0
-for i in range(1, n + 1):
-    if a <= sum(map(int, str(i))) <= b:
+for i in range(1, N + 1):
+    if A <= sum(map(int, str(i))) <= B:
         result += i
 print(result)

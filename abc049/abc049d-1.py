@@ -21,28 +21,28 @@ def main():
     from builtins import int, map, range
     readline = stdin.readline
 
-    n, k, l = map(int, readline().split())
+    N, K, L = map(int, readline().split())
 
-    roads = [-1] * n
-    rails = [-1] * n
+    roads = [-1] * N
+    rails = [-1] * N
 
-    for i in range(k):
+    for i in range(K):
         p, q = map(int, readline().split())
         unite(roads, p - 1, q - 1)
 
-    for i in range(l):
-        p, q = map(int, readline().split())
-        unite(rails, p - 1, q - 1)
+    for i in range(L):
+        r, s = map(int, readline().split())
+        unite(rails, r - 1, s - 1)
 
     d = {}
-    for i in range(n):
+    for i in range(N):
         t = (find(roads, i), find(rails, i))
         if t in d:
             d[t] += 1
         else:
             d[t] = 1
 
-    print(*[d[(find(roads, i), find(rails, i))] for i in range(n)])
+    print(*[d[(find(roads, i), find(rails, i))] for i in range(N)])
 
 
 main()

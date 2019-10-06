@@ -1,12 +1,13 @@
-n = int(input())
-data = [list(map(int, input().split())) for _ in range(n - 1)]
-for i in range(n - 1):
+N = int(input())
+data = [list(map(int, input().split())) for _ in range(N - 1)]
+
+for i in range(N - 1):
     t = 0
-    for j in range(i, n - 1):
-        c, s, f = data[j]
-        if t < s:
-            t = s + c
+    for j in range(i, N - 1):
+        C, S, F = data[j]
+        if t < S:
+            t = S + C
         else:
-            t += (t % f) + c
+            t += (t % F) + C
     print(t)
 print(0)

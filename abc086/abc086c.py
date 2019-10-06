@@ -1,6 +1,8 @@
 from sys import exit
-n = int(input())
-data = [list(map(int, input().split())) for _ in range(n)]
+
+N = int(input())
+data = [list(map(int, input().split())) for _ in range(N)]
+
 t = 0
 x = 0
 y = 0
