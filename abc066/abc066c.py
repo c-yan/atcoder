@@ -1,5 +1,6 @@
 n = int(input())
 a = list(map(int, input().split()))
+
 result = []
 i = n - 1
 while i >= 0:

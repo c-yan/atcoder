@@ -1,5 +1,7 @@
 from sys import exit
+
 c = [list(map(int, input().split())) for _ in range(3)]
+
 a = [None] * 3
 b = [None] * 3
 a[0] = 0
