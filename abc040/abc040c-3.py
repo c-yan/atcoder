@@ -1,9 +1,5 @@
 # DP(貰うメモ化再帰)
-import sys
-sys.setrecursionlimit(1000000)
-n = int(input())
-a = list(map(int, input().split()))
-t = [-1] * n
+from sys import setrecursionlimit
 
 
 def cost(i):
@@ -20,4 +16,10 @@ def cost(i):
     return result
 
 
-print(cost(n - 1))
+setrecursionlimit(1000000)
+
+N = int(input())
+a = list(map(int, input().split()))
+
+t = [-1] * N
+print(cost(N - 1))
