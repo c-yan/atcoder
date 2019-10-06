@@ -1,2 +1,3 @@
-n, k = map(int, input().split())
-print(((n - 1) + (k - 2)) // (k - 1))
+N, K = map(int, input().split())
+
+print(((N - 1) + (K - 2)) // (K - 1))

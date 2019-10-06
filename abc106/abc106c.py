@@ -1,11 +1,12 @@
-s = input()
-k = int(input())
-for i in range(len(s)):
-    if s[i] == '1':
-        k -= 1
-        if k == 0:
-            print(s[i])
+S = input()
+K = int(input())
+
+for i in range(len(S)):
+    if S[i] == '1':
+        K -= 1
+        if K == 0:
+            print(S[i])
             break
     else:
-        print(s[i])
+        print(S[i])
         break

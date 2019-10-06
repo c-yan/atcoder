@@ -1,14 +1,16 @@
-n, m = map(int, input().split())
-if n > m:
-    n, m = m, n
-if n == 1:
-    if m == 1:
+N, M = map(int, input().split())
+
+if N > M:
+    N, M = M, N
+
+if N == 1:
+    if M == 1:
         print(1)
-    elif m == 2:
+    elif M == 2:
         print(0)
     else:
-        print(m - 2)
-elif n == 2:
+        print(M - 2)
+elif N == 2:
     print(0)
 else:
-    print((n - 2) * (m - 2))
+    print((N - 2) * (M - 2))

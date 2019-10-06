@@ -1,15 +1,17 @@
-import sys
-s = input()
-k = int(input())
-alphabets = list(sorted(set(s)))
-if k == 1:
-    print(alphabets[0])
-    sys.exit()
+from sys import exit
 
 
 def l2s(list, alphabets):
     return ''.join(alphabets[i] for i in list)
 
+
+s = input()
+K = int(input())
+
+alphabets = list(sorted(set(s)))
+if K == 1:
+    print(alphabets[0])
+    exit()
 
 j = 1
 list = [0, 0]
@@ -17,9 +19,9 @@ while True:
     t = l2s(list, alphabets)
     if s.find(t) != -1:
         j += 1
-        if k == j:
+        if K == j:
             print(t)
-            sys.exit()
+            exit()
         list.append(0)
     else:
         list[-1] += 1

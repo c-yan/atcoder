@@ -1,12 +1,14 @@
-n = int(input())
-s = [input() for _ in range(n)]
-s = [t[0] for t in s if t[0] in 'MARCH']
+N = int(input())
+S = [input() for _ in range(N)]
+
+s = [t[0] for t in S if t[0] in 'MARCH']
 d = {}
 for t in s:
     if t in d:
         d[t] += 1
     else:
         d[t] = 1
+
 l = list(d.keys())
 result = 0
 for i in range(len(l) - 2):

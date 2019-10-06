@@ -1,11 +1,14 @@
-import sys
-n = int(input())
-if n == 0:
+from sys import exit
+
+N = int(input())
+
+if N == 0:
     print('0')
-    sys.exit()
+    exit()
+
 t = []
-while n != 0:
-    r = n % 2
+while N != 0:
+    r = N % 2
     t.append(str(r))
-    n = (n - r) // -2
+    n = (N - r) // -2
 print(''.join(t[::-1]))

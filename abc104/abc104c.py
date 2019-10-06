@@ -1,12 +1,3 @@
-INF = float('inf')
-d, g = map(int, input().split())
-data = []
-calced = set()
-for i in range(d):
-    p, c = map(int, input().split())
-    data.append([p, c, (i + 1) * 100, (i + 1) * 100 * p + c])
-
-
 def f(data, total, targets):
     if total <= 0:
         return 0
@@ -26,4 +17,14 @@ def f(data, total, targets):
     return result
 
 
-print(f(data, g, tuple(range(len(data)))))
+INF = float('inf')
+
+D, G = map(int, input().split())
+
+data = []
+calced = set()
+for i in range(D):
+    p, c = map(int, input().split())
+    data.append([p, c, (i + 1) * 100, (i + 1) * 100 * p + c])
+
+print(f(data, G, tuple(range(len(data)))))

@@ -1,21 +1,22 @@
-a, b, c, x, y = map(int, input().split())
+A, B, C, X, Y = map(int, input().split())
+
 result = 0
-if a + b > 2 * c:
-    t = min(x, y)
-    result += t * 2 * c
-    x, y = x - t, y - t
+if A + B > 2 * C:
+    t = min(X, Y)
+    result += t * 2 * C
+    X, Y = X - t, Y - t
 else:
-    t = min(x, y)
-    result += t * a + t * b
-    x, y = x - t, y - t
-if x > 0:
-    if a > 2 * c:
-        result += x * 2 * c
+    t = min(X, Y)
+    result += t * A + t * B
+    X, Y = X - t, Y - t
+if X > 0:
+    if A > 2 * C:
+        result += X * 2 * C
     else:
-        result += x * a
+        result += X * A
 else:
-    if b > 2 * c:
-        result += y * 2 * c
+    if B > 2 * C:
+        result += Y * 2 * C
     else:
-        result += y * b
+        result += Y * B
 print(result)

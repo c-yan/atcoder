@@ -1,7 +1,8 @@
-n = int(input())
+N = int(input())
 a = list(map(int, input().split()))
+
 result = 0
-for i in range(n):
+for i in range(N):
     while True:
         if a[i] % 2 == 1:
             break
