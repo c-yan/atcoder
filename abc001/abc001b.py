@@ -1,4 +1,5 @@
 m = int(input())
+
 if m < 100:
     print('00')
 elif 100 <= m <= 5000:
