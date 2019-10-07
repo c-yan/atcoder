@@ -1,13 +1,14 @@
-n = int(input())
-a = list(map(int, input().split()))
+N = int(input())
+A = list(map(int, input().split()))
+
 while True:
-    a.sort()
-    t = sum(a)
-    for i in range(1, len(a)):
-        if a[i] % a[0] == 0:
-            a[i] = a[0]
+    A.sort()
+    t = sum(A)
+    for i in range(1, N):
+        if A[i] % A[0] == 0:
+            A[i] = A[0]
         else:
-            a[i] = a[i] % a[0]
-    if sum(a) == t:
+            A[i] = A[i] % A[0]
+    if sum(A) == t:
         break
-print(a[0])
+print(A[0])
