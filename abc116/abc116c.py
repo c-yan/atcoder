@@ -1,17 +1,18 @@
-n = int(input())
+N = int(input())
 h = list(map(int, input().split()))
+
 result = 0
 while True:
-    start = n
-    for i in range(n):
+    start = N
+    for i in range(N):
         if h[i] != 0:
             start = i
             break
-    if start == n:
+    if start == N:
         break
-    end = n - 1
-    count = 101
-    for i in range(start, n):
+    end = N - 1
+    count = float('inf')
+    for i in range(start, N):
         if h[i] == 0:
             end = i - 1
             break
