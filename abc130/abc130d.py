@@ -1,22 +1,23 @@
 # しゃくとり法
-n, k = [int(e) for e in input().split()]
-data = [int(e) for e in input().split()]
+N, K = map(int, input().split())
+a = list(map(int, input().split()))
+
 result = 0
 i = 0
 j = 0
 v = 0
 while True:
-    v += data[j]
-    if v < k:
+    v += a[j]
+    if v < K:
         j += 1
     else:
-        result += len(data) - j
-        v -= data[i]
+        result += N - j
+        v -= a[i]
         if j > i:
-            v -= data[j]
+            v -= a[j]
         i += 1
         if j < i:
             j += 1
-    if j == len(data):
+    if j == N:
         print(result)
         break
