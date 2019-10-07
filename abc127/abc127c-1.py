@@ -1,8 +1,9 @@
-n, m = map(int, input().split())
+N, M = map(int, input().split())
+
 x = 0
-y = n - 1
-for _ in range(m):
-    l, r = map(int, input().split())
-    x = max(x, l - 1)
-    y = min(y, r - 1)
+y = N - 1
+for _ in range(M):
+    L, R = map(int, input().split())
+    x = max(x, L - 1)
+    y = min(y, R - 1)
 print(max(y - x + 1, 0))

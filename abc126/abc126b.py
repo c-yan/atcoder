@@ -1,11 +1,10 @@
-s = input()
-h = int(s[:2])
-l = int(s[2:])
-
-
 def mmok(i):
     return 1 <= i <= 12
 
+
+S = input()
+h = int(S[:2])
+l = int(S[2:])
 
 if mmok(h):
     if mmok(l):

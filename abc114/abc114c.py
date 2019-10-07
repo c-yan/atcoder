@@ -1,9 +1,10 @@
-n = int(input())
+N = int(input())
+
 result = 0
 q = list('753')
 while q:
     s = q.pop()
-    if int(s) > n:
+    if int(s) > N:
         continue
     if all(s.count(c) > 0 for c in '753'):
         result += 1

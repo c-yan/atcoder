@@ -1,7 +1,8 @@
-a, b = map(int, input().split())
-if a >= 13:
-    print(b)
-elif 6 <= a <= 12:
-    print(b // 2)
+A, B = map(int, input().split())
+
+if A >= 13:
+    print(B)
+elif 6 <= A <= 12:
+    print(B // 2)
 else:
     print(0)

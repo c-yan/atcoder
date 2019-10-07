@@ -1,2 +1,3 @@
-p, q, r = map(int, input().split())
-print(min(p + q, p + r, q + r))
+P, Q, R = map(int, input().split())
+
+print(min(P + Q, P + R, Q + R))

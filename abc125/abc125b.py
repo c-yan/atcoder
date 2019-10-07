@@ -1,8 +1,9 @@
-n = int(input())
-v = [int(e) for e in input().split()]
-c = [int(e) for e in input().split()]
+N = int(input())
+V = list(map(int, input().split()))
+C = list(map(int, input().split()))
+
 result = 0
-for i in range(n):
-    if v[i] > c[i]:
-        result += v[i] - c[i]
+for i in range(N):
+    if V[i] > C[i]:
+        result += V[i] - C[i]
 print(result)
