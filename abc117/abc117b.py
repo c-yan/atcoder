@@ -1,6 +1,7 @@
-n = int(input())
-l = [int(e) for e in input().split()]
-if max(l) < sum(l) - max(l):
+N = int(input())
+L = list(map(int, input().split()))
+
+if max(L) < sum(L) - max(L):
     print('Yes')
 else:
     print('No')

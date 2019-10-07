@@ -1,8 +1,9 @@
-n, l = [int(e) for e in input().split()]
-if l < 0 and n + l - 1 > 0:
-    print(sum(range(l, n + l)))
+N, L = map(int, input().split())
+
+if L < 0 and N + L - 1 > 0:
+    print(sum(range(L, N + L)))
 else:
-    if abs(l) > abs(n + l - 1):
-        print(sum(range(l, n + l)) - (n + l - 1))
+    if abs(L) > abs(N + L - 1):
+        print(sum(range(L, N + L)) - (N + L - 1))
     else:
-        print(sum(range(l, n + l)) - l)
+        print(sum(range(L, N + L)) - L)

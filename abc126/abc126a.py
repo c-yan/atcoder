@@ -1,3 +1,4 @@
-n, k = [int(e) for e in input().split()]
-s = input()
-print(s[:k - 1] + s[k - 1].lower() + s[k:])
+N, K = map(int, input().split())
+S = input()
+
+print(S[:K - 1] + S[K - 1].lower() + S[K:])
