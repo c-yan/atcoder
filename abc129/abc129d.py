@@ -1,19 +1,20 @@
-from sys import stdin
-
-
 def main():
+    from sys import stdin
     from builtins import range
+
     readline = stdin.readline
-    h, w = map(int, readline().split())
-    s = [readline().rstrip('\r\n') + '#' for _ in range(h)]
-    s.append('#' * w)
+
+    H, W = map(int, readline().split())
+    S = [readline()[:-1] + '#' for _ in range(H)]
+
+    S.append('#' * W)
     ft = [[i] * i for i in range(100)]
-    yoko = [[0] * w for _ in range(h)]
-    for i in range(h):
+    yoko = [[0] * W for _ in range(H)]
+    for i in range(H):
         start = -1
-        si = s[i]
+        si = S[i]
         yokoi = yoko[i]
-        for j in range(w + 1):
+        for j in range(W + 1):
             if si[j] == '#':
                 if start != -1:
                     t = j - start
@@ -25,11 +26,12 @@ def main():
             else:
                 if start == -1:
                     start = j
+
     result = 0
-    for i in range(w):
+    for i in range(W):
         start = -1
-        for j in range(h + 1):
-            if s[j][i] == '#':
+        for j in range(H + 1):
+            if S[j][i] == '#':
                 if start != -1:
                     t = yoko_max + j - start - 1
                     if t > result:
