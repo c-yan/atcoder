@@ -1,7 +1,9 @@
-import sys
-s = input()
-for i in range(len(s) - 1):
-    if s[i] == s[i + 1]:
+from sys import exit
+
+S = input()
+
+for i in range(len(S) - 1):
+    if S[i] == S[i + 1]:
         print('Bad')
-        sys.exit()
+        exit()
 print('Good')
