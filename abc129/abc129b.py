@@ -1,7 +1,9 @@
-n = int(input())
-w = [int(e) for e in input().split()]
+N = int(input())
+W = list(map(int, input().split()))
+
 result = float('inf')
-for t in range(n - 1):
-    sd = abs(sum(w[0:t + 1]) - sum(w[t + 1:]))
-    result = min(sd, result)
+for T in range(N - 1):
+    sd = abs(sum(W[0:T + 1]) - sum(W[T + 1:]))
+    if sd < result:
+        result = sd
 print(result)
