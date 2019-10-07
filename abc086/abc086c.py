@@ -1,18 +1,14 @@
 from sys import exit
 
 N = int(input())
-data = [list(map(int, input().split())) for _ in range(N)]
 
-t = 0
-x = 0
-y = 0
-for d in data:
-    duration = d[0] - t
-    distance = abs(x - d[1]) + abs(y - d[2])
+pt, px, py = 0, 0, 0
+for _ in range(N):
+    t, x, y = map(int, input().split())
+    duration = t - pt
+    distance = abs(px - x) + abs(py - y)
     if (distance > duration) or ((duration - distance) % 2 == 1):
         print('No')
         exit()
-    t = d[0]
-    x = d[1]
-    y = d[2]
+    pt, px, py = t, x, y
 print('Yes')
