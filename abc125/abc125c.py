@@ -1,5 +1,6 @@
 # 累積和(gcd)
 from fractions import gcd
+
 N = int(input())
 A = list(map(int, input().split()))
 
