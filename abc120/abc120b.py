@@ -1,10 +1,10 @@
-a, b, k = map(int, input().split())
-c = 0
+A, B, K = map(int, input().split())
+
 result = 0
 for i in range(100, 0, -1):
-    if a % i == 0 and b % i == 0:
+    if A % i == 0 and B % i == 0:
         result = i
-        c += 1
-        if c == k:
+        K -= 1
+        if K == 0:
             break
 print(result)
