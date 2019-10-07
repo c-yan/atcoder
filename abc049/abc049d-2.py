@@ -1,19 +1,16 @@
 # DFS(深さ優先探索)
-from sys import stdin
-
-
-def create_links(n, k):
-    links = [[] for _ in range(n)]
-    for _ in range(k):
-        p, q = map(int, stdin.readline().split())
+def create_links(N, K):
+    links = [[] for _ in range(N)]
+    for _ in range(K):
+        p, q = map(int, input().split())
         links[p - 1].append(q - 1)
         links[q - 1].append(p - 1)
     return links
 
 
-def create_groups(n, links):
-    groups = list(range(n))
-    for i in range(n):
+def create_groups(N, links):
+    groups = list(range(N))
+    for i in range(N):
         if groups[i] != i:
             continue
         q = [i]
