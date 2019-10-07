@@ -1,7 +1,7 @@
 # imos 法
 N, M = map(int, input().split())
 
-cs = [0] * N
+cs = [0] * N  # cs はIDカードで通れるゲートの数
 for _ in range(M):
     L, R = map(int, input().split())
     cs[L - 1] += 1
