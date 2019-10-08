@@ -1,2 +1,3 @@
-a = int(input())
-print(3 * a * a)
+r = int(input())
+
+print(3 * r * r)
