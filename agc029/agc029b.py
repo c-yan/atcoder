@@ -1,10 +1,13 @@
-n = int(input())
+N = int(input())
+A = list(map(int, input().split()))
+
 d = {}
-for a in map(int, input().split()):
+for a in A:
     if a in d:
         d[a] += 1
     else:
         d[a] = 1
+
 result = 0
 for a in list(sorted(d.keys(), reverse=True)):
     if a not in d:
