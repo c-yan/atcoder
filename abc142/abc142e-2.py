@@ -1,3 +1,4 @@
+# DP(配るDP)
 def read_key():
     a, _ = map(int, input().split())
     m = 0
