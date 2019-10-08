@@ -1,4 +1,5 @@
 N, K, Q = map(int, input().split())
+
 score = [K - Q] * (N + 1)
 for _ in range(Q):
     score[int(input())] += 1

@@ -20,4 +20,5 @@ def prime_factorize(n):
 
 
 A, B = map(int, input().split())
+
 print(len(prime_factorize(gcd(A, B))) + 1)
