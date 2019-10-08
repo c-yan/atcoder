@@ -1,5 +1,6 @@
 def main():
-    s = input()[::-1]
+    S = input()[::-1]
+
     multiplier = 1
     divisor = 10 ** 9 + 7
     list10 = list(range(10))
@@ -8,9 +9,9 @@ def main():
     np = [0] * 13
     rt = [i % 13 for i in range(121)]
     p[0] = 1
-    for i in range(len(s)):
-        if s[i] != '?':
-            r = rt[int(s[i]) * multiplier]
+    for i in range(len(S)):
+        if S[i] != '?':
+            r = rt[int(S[i]) * multiplier]
             for j in list13:
                 np[rt[j + r]] = p[j]
         else:

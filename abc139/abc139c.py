@@ -1,9 +1,10 @@
-n = int(input())
-h = list(map(int, input().split()))
+N = int(input())
+H = list(map(int, input().split()))
+
 t = 0
 result = 0
-for i in range(n - 1):
-    if h[i + 1] <= h[i]:
+for i in range(N - 1):
+    if H[i + 1] <= H[i]:
         t += 1
     else:
         result = max(t, result)

@@ -1,11 +1,13 @@
-n = int(input())
-s = [input() for _ in range(n)]
-for i in range(n):
-    s[i] = ''.join(sorted(s[i]))
+N = int(input())
+S = [input() for _ in range(N)]
+
+for i in range(N):
+    S[i] = ''.join(sorted(S[i]))
+
 t = {}
-for i in range(n):
-    if s[i] in t:
-        t[s[i]] += 1
+for i in range(N):
+    if S[i] in t:
+        t[S[i]] += 1
     else:
-        t[s[i]] = 1
+        t[S[i]] = 1
 print(sum(t[k] * (t[k] - 1) // 2 for k in t))
