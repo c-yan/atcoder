@@ -1,4 +1,5 @@
 x, y = map(int, input().split())
+
 if abs(y) > abs(x):
     result = abs(y) - abs(x)
     if x < 0:

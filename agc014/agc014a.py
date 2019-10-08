@@ -1,4 +1,5 @@
 A, B, C = map(int, input().split())
+
 result = 0
 while True:
     if A % 2 == 1 or B % 2 == 1 or C % 2 == 1:
