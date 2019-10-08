@@ -1,10 +1,11 @@
-s = input()
-n = len(s)
-result = [0 for _ in range(n)]
+S = input()
+
+n = len(S)
+result = [0] * n
 start = 0
 c = 'R'
 for i in range(1, n):
-    if s[i] != c:
+    if S[i] != c:
         if c == 'R':
             result[i - 1] += (i - start) // 2 + (i - start) % 2
             result[i] += (i - start) // 2
