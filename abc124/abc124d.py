@@ -1,4 +1,4 @@
-# しゃくとり法
+# Sliding Window
 N, K = map(int, input().split())
 S = list(map(int, input()))
 
