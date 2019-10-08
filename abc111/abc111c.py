@@ -22,7 +22,8 @@ def count_rewrite(v):
 
 
 n = int(input())
-v = [int(e) for e in input().split()]
+v = list(map(int, input().split()))
+
 r1 = count_rewrite(v[::2])
 r2 = count_rewrite(v[1::2])
 if r1[0] != r2[0]:
