@@ -1,12 +1,13 @@
-import sys
-from functools import cmp_to_key
-n = int(input())
-data = [[int(j) for j in input().split()] for i in range(n)]
+from sys import exit
+
+M = int(input())
+AB = [list(map(int, input().split())) for _ in range(M)]
+
 t = 0
-data.sort(key=cmp_to_key(lambda x, y: x[1] - y[1]))
-for d in data:
-    t += d[0]
-    if t > d[1]:
+AB.sort(key=lambda x: x[1])
+for A, B in AB:
+    t += A
+    if t > B:
         print('No')
-        sys.exit()
+        exit()
 print('Yes')
