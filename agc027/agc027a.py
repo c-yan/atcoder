@@ -1,12 +1,13 @@
-n, x = map(int, input().split())
-a = [int(e) for e in input().split()]
+N, x = map(int, input().split())
+a = list(map(int, input().split()))
+
 a.sort()
 result = 0
-for i in a:
-    x -= i
+for v in a:
+    x -= v
     if x < 0:
         break
     result += 1
-if x != 0 and result == n:
+if x != 0 and result == N:
     result -= 1
 print(result)
