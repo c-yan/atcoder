@@ -1,5 +1,6 @@
-n, a, b = [int(e) for e in input().split()]
-if a * n <= b:
-    print(a * n)
+N, A, B = map(int, input().split())
+
+if A * N <= B:
+    print(A * N)
 else:
-    print(b)
+    print(B)

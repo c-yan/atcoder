@@ -1,7 +1,8 @@
-n = int(input())
-p = [int(e) for e in input().split()]
+N = int(input())
+p = list(map(int, input().split()))
+
 z = 0
-for i in range(n):
+for i in range(N):
     if p[i] != i + 1:
         z += 1
 if z <= 2:

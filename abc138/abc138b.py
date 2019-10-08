@@ -1,6 +1,7 @@
-n = int(input())
-a = [int(e) for e in input().split()]
+N = int(input())
+A = list(map(int, input().split()))
+
 v = 0
-for i in range(n):
-    v += 1 / a[i]
+for i in range(N):
+    v += 1 / A[i]
 print(1 / v)

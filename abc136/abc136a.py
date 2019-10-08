@@ -1,5 +1,6 @@
-a, b, c = [int(e) for e in input().split()]
-if a - b > c:
+A, B, C = map(int, input().split())
+
+if A - B > C:
     print(0)
 else:
-    print(c - (a - b))
+    print(C - (A - B))
