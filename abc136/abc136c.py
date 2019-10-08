@@ -1,10 +1,13 @@
-import sys
-n = int(input())
-h = [int(e) for e in input().split()]
-for i in range(n - 2, 0, -1):
-    if h[i] > h[i + 1]:
-        h[i] -= 1
-    if h[i] > h[i + 1]:
+from sys import exit
+
+N = int(input())
+H = list(map(int, input().split()))
+
+for i in range(N - 2, 0, -1):
+    if H[i] <= H[i + 1]:
+        continue
+    H[i] -= 1
+    if H[i] > H[i + 1]:
         print('No')
-        sys.exit()
+        exit()
 print('Yes')
