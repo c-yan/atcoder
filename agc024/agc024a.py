@@ -1,8 +1,9 @@
-a, b, c, k = map(int, input().split())
-if k % 2 == 0:
-    t = a - b
+A, B, C, K = map(int, input().split())
+
+if K % 2 == 0:
+    t = A - B
 else:
-    t = b - a
+    t = B - A
 if t > 10 ** 18:
     print('Unfair')
 else:

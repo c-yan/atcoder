@@ -1,2 +1,3 @@
-a, b, c = map(int, input().split())
-print(b + min(c, b + a + 1))
+A, B, C = map(int, input().split())
+
+print(B + min(C, B + A + 1))
