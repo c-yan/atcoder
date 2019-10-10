@@ -7,10 +7,10 @@ def main():
     for _ in range(N):
         w, v = map(int, input().split())
         for i in range(W - w, -1, -1):
-            dpi = dp[i]
-            if dpi != -1:
-                if dp[i + w] < dpi + v:
-                    dp[i + w] = dpi + v
+            if dp[i] == -1:
+                continue
+            if dp[i + w] < dp[i] + v:
+                dp[i + w] = dp[i] + v
     print(max(dp))
 
 
