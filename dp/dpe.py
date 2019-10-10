@@ -1,25 +1,18 @@
-from sys import stdin
+# DP
+N, W = map(int, input().split())
 
+M = 100000
+dp = [-1] * (M + 1)
+dp[0] = W
+for _ in range(N):
+    w, v = map(int, input().split())
+    for i in range(M + 1, -1, -1):
+        if dp[i] == -1:
+            continue
+        if dp[i + v] < dp[i] - w:
+            dp[i + v] = dp[i] - w
 
-def main():
-    from builtins import int, range
-    readline = stdin.readline
-    n, w = map(int, readline().split())
-    maxv = 10 ** 3 * n + 1
-    t = [-1] * maxv
-    t[0] = w
-    cmaxv = 0
-    for _ in range(n):
-        nw, nv = map(int, readline().split())
-        for i in range(cmaxv, -1, -1):
-            ti = t[i]
-            if ti == -1:
-                continue
-            if t[i + nv] < ti - nw:
-                t[i + nv] = ti - nw
-                if cmaxv < i + nv:
-                    cmaxv = i + nv
-    print(cmaxv)
-
-
-main()
+for i in range(M + 1, -1, -1):
+    if dp[i] != -1:
+        print(i)
+        break
