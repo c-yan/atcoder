@@ -1,25 +1,25 @@
-# 貰うDP
-def main():
-    divisor = 10 ** 9 + 7
-    h, w = map(int, input().split())
-    a = [input() for _ in range(h)]
-    dp = [[0] * w for _ in range(h)]
-    dp[0][0] = 1
-    dp0 = dp[0]
-    a0 = a[0]
-    for j in range(1, w):
-        if a0[j] != '#':
-            dp0[j] = dp0[j - 1]
-    for i in range(1, h):
-        dpi = dp[i]
-        dpi1 = dp[i - 1]
-        ai = a[i]
-        if ai[0] != '#':
-            dpi[0] = dpi1[0]
-        for j in range(1, w):
-            if ai[j] != '#':
-                dpi[j] = (dpi1[j] + dpi[j - 1]) % divisor
-    print(dp[h - 1][w - 1])
+# 配るDP
+H, W = map(int, input().split())
+a = [input() for _ in range(H)]
 
+dp = [[0] * W for _ in range(H)]
+dp[0][0] = 1
+for h in range(H - 1):
+    for w in range(W - 1):
+        if a[h][w] == '#':
+            continue
+        if a[h][w + 1] != '#':
+            dp[h][w + 1] = (dp[h][w + 1] + dp[h][w]) % 1000000007
+        if a[h + 1][w] != '#':
+            dp[h + 1][w] = (dp[h + 1][w] + dp[h][w]) % 1000000007
+    if a[h][W - 1] == '#':
+        continue
+    if a[h + 1][W - 1] != '#':
+        dp[h + 1][W - 1] = (dp[h + 1][W - 1] + dp[h][W - 1]) % 1000000007
+for w in range(W - 1):
+    if a[H - 1][w] == '#':
+        continue
+    if a[H - 1][w + 1] != '#':
+        dp[H - 1][w + 1] = (dp[H - 1][w + 1] + dp[H - 1][w]) % 1000000007
 
-main()
+print(dp[H - 1][W - 1])
