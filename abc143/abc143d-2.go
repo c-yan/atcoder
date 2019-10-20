@@ -19,7 +19,7 @@ func main() {
 	result := 0
 	for i := 0; i < N-2; i++ {
 		for j := i + 1; j < N-1; j++ {
-			result += sort.SearchInts(L, L[i]+L[j]) - j - 1
+			result += sort.SearchInts(L[j+1:], L[i]+L[j])
 		}
 	}
 	fmt.Println(result)
