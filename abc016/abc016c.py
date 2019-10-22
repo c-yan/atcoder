@@ -1,3 +1,4 @@
+# ワーシャルフロイド
 def warshall_floyd(n, d):
     for i in range(n):
         for j in range(n):
