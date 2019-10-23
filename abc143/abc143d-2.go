@@ -15,7 +15,7 @@ func main() {
 		L[i] = readInt()
 	}
 
-	sort.Sort(sort.IntSlice(L))
+	sort.Ints(L)
 	result := 0
 	for i := 0; i < N-2; i++ {
 		for j := i + 1; j < N-1; j++ {
