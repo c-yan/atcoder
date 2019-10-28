@@ -10,10 +10,7 @@ import (
 
 func main() {
 	N := readInt()
-	L := make([]int, N)
-	for i := 0; i < N; i++ {
-		L[i] = readInt()
-	}
+	L := readInts(N)
 
 	sort.Ints(L)
 	result := 0
@@ -45,6 +42,14 @@ func readInt() int {
 	result, err := strconv.Atoi(readString())
 	if err != nil {
 		panic(err)
+	}
+	return result
+}
+
+func readInts(n int) []int {
+	result := make([]int, n)
+	for i := 0; i < n; i++ {
+		result[i] = readInt()
 	}
 	return result
 }

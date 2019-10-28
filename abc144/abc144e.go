@@ -11,14 +11,8 @@ import (
 func main() {
 	N := readInt()
 	K := readInt()
-	A := make([]int, N)
-	for i := 0; i < N; i++ {
-		A[i] = readInt()
-	}
-	F := make([]int, N)
-	for i := 0; i < N; i++ {
-		F[i] = readInt()
-	}
+	A := readInts(N)
+	F := readInts(N)
 
 	sort.Ints(A)
 	sort.Sort(sort.Reverse(sort.IntSlice(F)))
@@ -66,6 +60,14 @@ func readInt() int {
 	result, err := strconv.Atoi(readString())
 	if err != nil {
 		panic(err)
+	}
+	return result
+}
+
+func readInts(n int) []int {
+	result := make([]int, n)
+	for i := 0; i < n; i++ {
+		result[i] = readInt()
 	}
 	return result
 }
