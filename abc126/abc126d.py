@@ -6,12 +6,13 @@ for _ in range(N - 1):
     link[u - 1].append((v - 1, w))
     link[v - 1].append((u - 1, w))
 
-d = [0] * N
+d = [-1] * N
+d[0] = 0
 q = [0]
 while q:
     p = q.pop()
     for n, w in link[p]:
-        if d[n] == 0:
+        if d[n] == -1:
             d[n] = d[p] + w
             q.append(n)
 
