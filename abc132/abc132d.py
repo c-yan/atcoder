@@ -11,11 +11,8 @@ def main():
         for j in range(1, i + 1):
             ci[j] = (ci1[j - 1] + ci1[j]) % 1000000007
 
-    def f(n, k):
-        return c[n+k-1][k-1]
-
     for i in range(1, K + 1):
-        print((f(K-i, i) * f(N-K-(i-1), i+1)) % 1000000007)
+        print(c[K-1][i-1] * c[N-K+1][i] % 1000000007)
 
 
 main()
