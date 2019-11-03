@@ -12,14 +12,12 @@ N = 10
 d = [None] * N
 for i in range(N):
     d[i] = list(map(int, input().split()))
-
 warshall_floyd(N, d)
 
-c = {i: 0 for i in range(N)}
-for i in range(H):
-    for j in map(int, input().split()):
-        if j == -1:
+result = 0
+for _ in range(H):
+    for i in map(int, input().split()):
+        if i == -1:
             continue
-        c[j] += 1
-
-print(sum(c[i] * d[i][1] for i in range(N)))
+        result += d[i][1]
+print(result)
