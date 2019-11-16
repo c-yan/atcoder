@@ -8,10 +8,6 @@ import (
 )
 
 func pow(base int, exponent int) int {
-	if exponent == 0 {
-		return 1
-	}
-
 	result := 1
 	for exponent > 0 {
 		if exponent%2 == 1 {
