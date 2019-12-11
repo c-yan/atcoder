@@ -19,9 +19,9 @@ func main() {
 	result := 0
 	a := make([]int, N)
 	bs := make([]int, N)
-	for b := 0; b < 60; b++ {
+	for bit := 0; bit < 60; bit++ {
 		for i := 0; i < N; i++ {
-			a[i] = (A[i] >> uint(b)) & 1
+			a[i] = (A[i] >> uint(bit)) & 1
 		}
 
 		bs[N-1] = a[N-1]
@@ -39,7 +39,7 @@ func main() {
 		}
 		t %= m
 
-		v := (1 << uint(b)) % m
+		v := (1 << uint(bit)) % m
 		result += (t * v) % m
 		result %= m
 	}

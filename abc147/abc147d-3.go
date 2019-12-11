@@ -18,19 +18,18 @@ func main() {
 
 	result := 0
 	for bit := 0; bit < 60; bit++ {
-		t := 0
-		bitSum := (A[N-1] >> uint(bit)) & 1
-		for i := N - 2; i > -1; i-- {
-			if (A[i]>>uint(bit))&1 == 0 {
-				t += bitSum
-			} else {
-				t += (N - (i + 1)) - bitSum
-				bitSum++
-			}
+		bitSum := 0
+		for i := 0; i < N; i++ {
+			bitSum += A[i] & 1 // bitSum <= 3 * 10^5
+			A[i] >>= 1
 		}
+
+		t := bitSum * (N - bitSum) // t <= 2.25 * 10^10
 		t %= m
-		v := (1 << uint(bit)) % m
-		result += (t * v) % m
+		t *= (1 << uint(bit)) % m
+		t %= m
+
+		result += t
 		result %= m
 	}
 	fmt.Println(result)
