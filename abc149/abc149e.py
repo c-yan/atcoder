@@ -1,3 +1,4 @@
+# 二分探索, 累積和
 N, M = map(int, input().split())
 A = list(map(int, input().split()))
 

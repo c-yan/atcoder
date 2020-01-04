@@ -1,3 +1,4 @@
+# 深さ優先探索
 from sys import setrecursionlimit
 
 

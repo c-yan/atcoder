@@ -1,3 +1,4 @@
+// 二分探索
 import java.util.Scanner;
 
 public class Main {

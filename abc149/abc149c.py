@@ -1,3 +1,4 @@
+# エラトステネスの篩
 from math import sqrt
 
 N = 10 ** 6

@@ -1,3 +1,4 @@
+// しゃくとり法
 package main
 
 import (

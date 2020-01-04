@@ -1,3 +1,4 @@
+# bit 全探索
 N = int(input())
 
 evidences = [[] for _ in range(N)]

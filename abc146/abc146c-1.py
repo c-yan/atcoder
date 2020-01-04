@@ -1,3 +1,4 @@
+# 二分探索
 A, B, X = map(int, input().split())
 
 
