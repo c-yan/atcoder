@@ -44,6 +44,4 @@ for c in sorted(citizen, reverse=True):
         unite(parent, find(parent, bridges[t][1]), find(parent, bridges[t][2]))
         t += 1
     results[c[2]] = -parent[find(parent, c[1])]
-
-for r in results:
-    print(r)
+print(*results, sep='\n')
