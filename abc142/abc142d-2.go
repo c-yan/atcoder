@@ -8,11 +8,14 @@ import (
 	"strconv"
 )
 
-func gcd(x, y int) int {
-	if y == 0 {
-		return x
+func gcd(a, b int) int {
+	if a < b {
+		a, b = b, a
 	}
-	return gcd(y, x%y)
+	for b > 0 {
+		a, b = b, a%b
+	}
+	return a
 }
 
 func primeFactorize(n int) [][2]int {
