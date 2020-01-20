@@ -31,9 +31,7 @@ for i in range(N):
     t = []
     a = A[i]
     while a != 1:
-        if len(t) == 0:
-            t.append([sieve[a], 1])
-        elif t[-1][0] == sieve[a]:
+        if len(t) != 0 and t[-1][0] == sieve[a]:
             t[-1][1] += 1
         else:
             t.append([sieve[a], 1])
