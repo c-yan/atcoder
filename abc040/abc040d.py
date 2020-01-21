@@ -23,10 +23,10 @@ def unite(parent, i, j):
 setrecursionlimit(10 ** 5)
 
 N, M = map(int, input().split())
-bridges = []
+roads = []
 for _ in range(M):
     a, b, y = map(int, input().split())
-    bridges.append((y, a - 1, b - 1))
+    roads.append((y, a - 1, b - 1))
 Q = int(input())
 citizen = []
 for i in range(Q):
@@ -35,13 +35,13 @@ for i in range(Q):
 
 parent = [-1] * N
 
-bridges.sort(reverse=True)
+roads.sort(reverse=True)
 
 results = [None] * Q
 t = 0
 for c in sorted(citizen, reverse=True):
-    while t < M and bridges[t][0] > c[0]:
-        unite(parent, find(parent, bridges[t][1]), find(parent, bridges[t][2]))
+    while t < M and roads[t][0] > c[0]:
+        unite(parent, find(parent, roads[t][1]), find(parent, roads[t][2]))
         t += 1
     results[c[2]] = -parent[find(parent, c[1])]
 print(*results, sep='\n')
