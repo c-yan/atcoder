@@ -1,3 +1,4 @@
+# エラトステネスの篩, フェルマーの小定理
 def mpow(x, n):
     result = 1
     while n != 0:

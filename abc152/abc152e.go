@@ -1,3 +1,4 @@
+// エラトステネスの篩, フェルマーの小定理
 package main
 
 import (
