@@ -2,19 +2,15 @@ A, B, C, D, E, F = map(int, input().split())
 
 w = set()
 for i in range(F // (100 * A) + 1):
-    for j in range(F // (100 * B) + 1):
-        a = (A * i + B * j) * 100
-        if a < F:
-            w.add(a)
+    for j in range((F - 100 * A * i) // (100 * B) + 1):
+        w.add((A * i + B * j) * 100)
 w.remove(0)
 
 s = set()
 t = E * F // 100
 for i in range(t // C + 1):
-    for j in range(t // D + 1):
-        b = C * i + D * j
-        if b < t:
-            s.add(b)
+    for j in range((t - C * i) // D + 1):
+        s.add(C * i + D * j)
 
 best_concentration = -1
 best_a = -1
