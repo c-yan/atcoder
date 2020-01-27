@@ -8,12 +8,11 @@ import (
 )
 
 const (
-	M = 1000000007
+	p = 1000000007
 )
 
 var (
-	fac  []int
-	ifac []int
+	fac []int
 )
 
 func min(x, y int) int {
@@ -24,43 +23,41 @@ func min(x, y int) int {
 }
 
 func mpow(x int, n int) int {
-	ans := 1
+	result := 1
 	for n != 0 {
 		if n&1 == 1 {
-			ans = ans * x % M
+			result = result * x % p
 		}
-		x = x * x % M
-		n = n >> 1
+		x = x * x % p
+		n >>= 1
 	}
-	return ans
+	return result
 }
 
-func comb(a int, b int) int {
-	if a == 0 && b == 0 {
+func mcomb(n int, k int) int {
+	if n == 0 && k == 0 {
 		return 1
 	}
-	if a < b || a < 0 {
+	if n < k || k < 0 {
 		return 0
 	}
-	tmp := ifac[a-b] * ifac[b] % M
-	return tmp * fac[a] % M
+	return (fac[n] * mpow(fac[n-k], p-2) % p) * mpow(fac[k], p-2) % p
 }
 
 func main() {
 	W := readInt()
 	H := readInt()
 
-	fac = make([]int, 200001)
-	ifac = make([]int, 200001)
+	n := W + H - 2
+	k := min(W - 1, H - 1)
 
+	fac = make([]int, n+1)
 	fac[0] = 1
-	ifac[0] = 1
-	for i := 0; i < 200000; i++ {
-		fac[i+1] = fac[i] * (i + 1) % M
-		ifac[i+1] = ifac[i] * mpow(i+1, M-2) % M
+	for i := 0; i < n; i++ {
+		fac[i+1] = fac[i] * (i + 1) % p
 	}
 
-	fmt.Println(comb(W + H - 2, min(W - 1, H - 1)) % M)
+	fmt.Println(mcomb(n, k))
 }
 
 const (
