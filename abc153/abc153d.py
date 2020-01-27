@@ -9,7 +9,7 @@ def f(n):
     if n == 1:
         return 1
     else:
-        return 1 + (n // 2) * 2
+        return 1 + f(n // 2) * 2
 
 
 print(f(H))
