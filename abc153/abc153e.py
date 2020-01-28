@@ -1,3 +1,4 @@
+# DP(配るDP)
 def main():
     from sys import stdin
     readline = stdin.readline
@@ -11,10 +12,11 @@ def main():
     for i in range(H):
         if dp[i] == inf:
             continue
+        t1 = dp[i]
         for a, b in AB:
-            t = dp[i] + b
-            if t < dp[i + a]:
-                dp[i + a] = t
+            t2 = t1 + b
+            if t2 < dp[i + a]:
+                dp[i + a] = t2
     print(min(dp[H:]))
 
 

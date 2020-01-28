@@ -1,3 +1,4 @@
+// DP(配るDP)
 package main
 
 import (
@@ -9,43 +10,28 @@ import (
 )
 
 func main() {
-	AMax := 10000
-
 	H := readInt()
 	N := readInt()
-	AB := make([]struct{ A, B int }, N)
-	for i := 0; i < N; i++ {
-		AB[i].A = readInt()
-		AB[i].B = readInt()
-	}
 
-	dpLen := H + AMax + 1
-	dp := make([]int, dpLen)
-	for i := 0; i < dpLen; i++ {
-		dp[i] = math.MaxInt64
-	}
+	dp := make([]int, H+1)
+	fill(dp, math.MaxInt64)
 
 	dp[0] = 0
-	for i := 0; i < H; i++ {
-		if dp[i] == math.MaxInt64 {
-			continue
-		}
-		for j := 0; j < N; j++ {
-			a := AB[j].A
-			b := AB[j].B
-			if dp[i]+b < dp[i+a] {
-				dp[i+a] = dp[i] + b
+	for i := 0; i < N; i++ {
+		A := readInt()
+		B := readInt()
+		for j := 0; j < H; j++ {
+			if dp[j] == math.MaxInt64 {
+				continue
+			}
+			t := min(j+A, H)
+			if dp[j]+B < dp[t] {
+				dp[t] = dp[j] + B
 			}
 		}
 	}
 
-	result := math.MaxInt64
-	for i := H; i < dpLen; i++ {
-		if dp[i] < result {
-			result = dp[i]
-		}
-	}
-	fmt.Println(result)
+	fmt.Println(dp[H])
 }
 
 const (
@@ -70,4 +56,17 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }
