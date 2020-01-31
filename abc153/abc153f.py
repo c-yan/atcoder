@@ -12,7 +12,7 @@ for x, h in XH:
         t -= q[0][1]
         q.pop(0)
     h -= t
-    if h < 0:
+    if h <= 0:
         continue
     c = (h + A - 1) // A
     result += c

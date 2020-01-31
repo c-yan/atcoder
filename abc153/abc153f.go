@@ -37,7 +37,7 @@ func main() {
 			cs[i] += cs[i-1]
 		}
 		h -= cs[i]
-		if h < 0 {
+		if h <= 0 {
 			continue
 		}
 		result += h
