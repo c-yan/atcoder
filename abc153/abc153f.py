@@ -1,8 +1,10 @@
+from collections import deque
+
 N, D, A = map(int, input().split())
 XH = [list(map(int, input().split())) for _ in range(N)]
 
 XH.sort()
-q = []
+q = deque()
 t = 0
 result = 0
 for x, h in XH:
@@ -10,7 +12,7 @@ for x, h in XH:
         if x <= q[0][0]:
             break
         t -= q[0][1]
-        q.pop(0)
+        q.popleft()
     h -= t
     if h <= 0:
         continue
