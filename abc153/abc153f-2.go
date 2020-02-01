@@ -8,24 +8,25 @@ import (
 	"strconv"
 )
 
-type bit []int
+// BIT stands for binary indexed tree.
+type BIT []int
 
-func newBIT(n int) bit {
-	return make([]int, n+1)
+func newBIT(n int) BIT {
+	return make([]int, n)
 }
 
-func (b *bit) add(i, x int) {
-	for i++; i <= len(*b)-1; i += i & -i {
-		(*b)[i] += x
+func (bit *BIT) add(i, x int) {
+	for i++; i <= len(*bit); i += i & -i {
+		(*bit)[i-1] += x
 	}
 }
 
-func (b *bit) sum(i int) int {
-	x := 0
-	for i++; i != 0; i -= i & -i {
-		x += (*b)[i]
+func (bit *BIT) sum(i int) int {
+	result := 0
+	for i++; i > 0; i -= i & -i {
+		result += (*bit)[i-1]
 	}
-	return x
+	return result
 }
 
 type t struct {
@@ -50,15 +51,15 @@ func main() {
 
 	sort.Sort(byX(XH))
 	result := 0
-	b := newBIT(N + 1)
+	bit := newBIT(N + 1)
 	for i := 0; i < N; i++ {
 		x, h := XH[i].X, XH[i].H
-		h -= b.sum(i)
+		h -= bit.sum(i)
 		if h <= 0 {
 			continue
 		}
 		result += h
-		b.add(i, h)
+		bit.add(i, h)
 
 		ok := i
 		ng := N
@@ -70,7 +71,7 @@ func main() {
 				ng = m
 			}
 		}
-		b.add(ng, -h)
+		bit.add(ng, -h)
 	}
 	fmt.Println(result)
 }
