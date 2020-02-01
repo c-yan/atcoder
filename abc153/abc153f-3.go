@@ -1,4 +1,4 @@
-// 二分探索, BIT
+// 二分探索
 package main
 
 import (
@@ -8,27 +8,6 @@ import (
 	"sort"
 	"strconv"
 )
-
-// BIT stands for binary indexed tree.
-type BIT []int
-
-func newBIT(n int) BIT {
-	return make([]int, n)
-}
-
-func (bit *BIT) add(i, x int) {
-	for i++; i <= len(*bit); i += i & -i {
-		(*bit)[i-1] += x
-	}
-}
-
-func (bit *BIT) sum(i int) int {
-	result := 0
-	for i++; i > 0; i -= i & -i {
-		result += (*bit)[i-1]
-	}
-	return result
-}
 
 type t struct {
 	X int
@@ -52,15 +31,18 @@ func main() {
 
 	sort.Sort(byX(XH))
 	result := 0
-	bit := newBIT(N + 1)
+	cs := make([]int, N+1)
 	for i := 0; i < N; i++ {
 		x, h := XH[i].X, XH[i].H
-		h -= bit.sum(i)
+		if i != 0 {
+			cs[i] += cs[i-1]
+		}
+		h -= cs[i]
 		if h <= 0 {
 			continue
 		}
 		result += h
-		bit.add(i, h)
+		cs[i] += h
 
 		ok := i
 		ng := N
@@ -72,7 +54,7 @@ func main() {
 				ng = m
 			}
 		}
-		bit.add(ng, -h)
+		cs[ng] -= h
 	}
 	fmt.Println(result)
 }

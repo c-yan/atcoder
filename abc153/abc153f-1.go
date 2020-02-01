@@ -30,30 +30,24 @@ func main() {
 
 	sort.Sort(byX(XH))
 	result := 0
-	cs := make([]int, N+1)
+	damage := 0
+	q := make([]t, 0)
 	for i := 0; i < N; i++ {
 		x, h := XH[i].X, XH[i].H
-		if i != 0 {
-			cs[i] += cs[i-1]
+		for len(q) != 0 {
+			if x <= q[0].X {
+				break
+			}
+			damage -= q[0].H
+			q = q[1:]
 		}
-		h -= cs[i]
+		h -= damage
 		if h <= 0 {
 			continue
 		}
 		result += h
-		cs[i] += h
-
-		ok := i
-		ng := N
-		for ng-ok != 1 {
-			m := ok + (ng-ok)/2
-			if XH[m].X <= x+2*D {
-				ok = m
-			} else {
-				ng = m
-			}
-		}
-		cs[ng] -= h
+		damage += h
+		q = append(q, t{x + 2*D, h})
 	}
 	fmt.Println(result)
 }
