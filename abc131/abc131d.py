@@ -1,5 +1,3 @@
-from sys import exit
-
 M = int(input())
 AB = [list(map(int, input().split())) for _ in range(M)]
 

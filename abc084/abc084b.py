@@ -1,5 +1,3 @@
-from sys import exit
-
 A, B = map(int, input().split())
 S = input()
 

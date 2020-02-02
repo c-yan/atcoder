@@ -1,6 +1,3 @@
-from sys import exit
-
-
 def l2s(list, alphabets):
     return ''.join(alphabets[i] for i in list)
 

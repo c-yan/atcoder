@@ -1,5 +1,3 @@
-from sys import exit
-
 a = int(input())
 b = int(input())
 c = int(input())

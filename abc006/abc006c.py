@@ -1,4 +1,3 @@
-from sys import exit
 N, M = map(int, input().split())
 if M > 4 * N or M < 2 * N:
     print("-1 -1 -1")

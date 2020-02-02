@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 
 for i in range(N // 7 + 1):

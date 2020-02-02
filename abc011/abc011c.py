@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 NG1 = int(input())
 NG2 = int(input())

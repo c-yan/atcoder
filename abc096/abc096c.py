@@ -1,5 +1,3 @@
-from sys import exit
-
 H, W = map(int, input().split())
 s = [input() for _ in range(H)]
 

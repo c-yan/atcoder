@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 
 pt, px, py = 0, 0, 0

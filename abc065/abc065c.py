@@ -1,5 +1,3 @@
-from sys import exit
-
 divisor = 1000000007
 
 N, M = map(int, input().split())

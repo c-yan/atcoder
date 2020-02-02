@@ -1,5 +1,3 @@
-from sys import exit
-
 S = input()
 
 for i in range(len(S) - 1):

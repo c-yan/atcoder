@@ -1,6 +1,4 @@
 # 深さ優先探索
-from sys import exit
-
 H, W = map(int, input().split())
 c = [input() for _ in range(H)]
 for i in range(H):

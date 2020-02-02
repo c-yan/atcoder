@@ -1,4 +1,4 @@
-from sys import exit, setrecursionlimit
+from sys import setrecursionlimit
 
 
 def get_node_id(i, j, node_id_db):

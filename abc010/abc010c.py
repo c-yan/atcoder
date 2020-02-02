@@ -1,4 +1,3 @@
-from sys import exit
 from math import sqrt
 
 txa, tya, txb, tyb, T, V = map(int, input().split())

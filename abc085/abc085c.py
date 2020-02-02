@@ -1,5 +1,3 @@
-from sys import exit
-
 N, Y = map(int, input().split())
 
 for i in range(N + 1):

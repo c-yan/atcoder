@@ -1,6 +1,3 @@
-from sys import exit
-
-
 def mpow(x, n):
     result = 1
     while n != 0:

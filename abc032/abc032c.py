@@ -1,6 +1,4 @@
 # しゃくとり法
-from sys import exit
-
 N, K = map(int, input().split())
 s = [int(input()) for _ in range(N)]
 

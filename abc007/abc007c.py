@@ -1,4 +1,3 @@
-from sys import exit
 R, C = map(int, input().split())
 sy, sx = map(int, input().split())
 gy, gx = map(int, input().split())

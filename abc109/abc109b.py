@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 
 prev = input()

@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 D = list(map(int, input().split()))
 

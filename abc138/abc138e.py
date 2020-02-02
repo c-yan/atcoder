@@ -1,5 +1,3 @@
-from sys import exit
-
 s = input()
 t = input()
 

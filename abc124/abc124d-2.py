@@ -1,6 +1,4 @@
 # 累積和
-from sys import exit
-
 N, K = map(int, input().split())
 S = input()
 

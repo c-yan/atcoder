@@ -1,4 +1,3 @@
-from sys import exit
 T = int(input())
 N = int(input())
 A = list(map(int, input().split()))

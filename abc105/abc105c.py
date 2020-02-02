@@ -1,5 +1,3 @@
-from sys import exit
-
 N = int(input())
 
 if N == 0:
