@@ -16,16 +16,16 @@ func newBIT(n int) BIT {
 	return make([]int, n)
 }
 
-func (bit *BIT) add(i, x int) {
-	for i++; i <= len(*bit); i += i & -i {
-		(*bit)[i-1] += x
+func (bit BIT) add(i, v int) {
+	for i++; i <= len(bit); i += i & -i {
+		bit[i-1] += v
 	}
 }
 
-func (bit *BIT) sum(i int) int {
+func (bit BIT) sum(i int) int {
 	result := 0
 	for i++; i > 0; i -= i & -i {
-		result += (*bit)[i-1]
+		result += bit[i-1]
 	}
 	return result
 }
