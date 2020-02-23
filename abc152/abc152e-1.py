@@ -1,16 +1,4 @@
 # エラトステネスの篩, フェルマーの小定理
-def mpow(x, n):
-    result = 1
-    while n != 0:
-        if n & 1 == 1:
-            result *= x
-            result %= 1000000007
-        x *= x
-        x %= 1000000007
-        n >>= 1
-    return result
-
-
 max_A = 1000000
 
 N = int(input())
@@ -49,6 +37,6 @@ for k in lcm_factors:
 
 result = 0
 for i in range(N):
-    result += lcm * mpow(A[i], 1000000007-2)
+    result += lcm * pow(A[i], 1000000007-2, 1000000007)
     result %= 1000000007
 print(result)

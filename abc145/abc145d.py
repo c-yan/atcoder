@@ -1,15 +1,3 @@
-def mpow(x, n):
-    result = 1
-    while n != 0:
-        if n & 1 == 1:
-            result *= x
-            result %= 1000000007
-        x *= x
-        x %= 1000000007
-        n >>= 1
-    return result
-
-
 def mcomb(n, k):
     if n == 0 and k == 0:
         return 1
@@ -20,7 +8,7 @@ def mcomb(n, k):
     fac[0] = 1
     for i in range(n):
         fac[i + 1] = fac[i] * (i + 1) % p
-    return fac[n] * mpow(fac[n - k], p - 2) * mpow(fac[k], p - 2) % p
+    return fac[n] * pow(fac[n - k], p - 2, p) * pow(fac[k], p - 2, p) % p
 
 
 p = 1000000007
