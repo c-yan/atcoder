@@ -28,6 +28,5 @@ for i in range(N - K + 1):
     t %= 1000000007
 
 result -= t
-result += 1000000007
 result %= 1000000007
 print(result)
