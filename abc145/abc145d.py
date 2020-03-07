@@ -1,3 +1,4 @@
+# フェルマーの小定理
 def mcomb(n, k):
     if n == 0 and k == 0:
         return 1

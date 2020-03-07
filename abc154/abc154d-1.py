@@ -1,3 +1,4 @@
+# Sliding Window
 N, K = map(int, input().split())
 p = list(map(int, input().split()))
 

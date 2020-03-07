@@ -1,3 +1,4 @@
+// フェルマーの小定理
 package main
 
 import (
