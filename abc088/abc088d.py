@@ -1,3 +1,4 @@
+# 幅優先探索
 H, W = map(int, input().split())
 s = [input() for _ in range(H)]
 
