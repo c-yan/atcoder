@@ -1,3 +1,4 @@
+# 桁DP
 N = input()
 K = int(input())
 

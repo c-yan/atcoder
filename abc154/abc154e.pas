@@ -1,3 +1,4 @@
+{ 桁DP }
 var
   N: string;
   K: Integer;
