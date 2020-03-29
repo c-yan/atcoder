@@ -40,13 +40,10 @@ func main() {
 	sort.Sort(sort.Reverse(sort.IntSlice(q[1:])))
 	sort.Sort(sort.Reverse(sort.IntSlice(r[1:])))
 
-	p = p[:X+1]
-	q = q[:Y+1]
-
-	for i := 1; i < X; i++ {
+	for i := 1; i < A; i++ {
 		p[i+1] += p[i]
 	}
-	for i := 1; i < Y; i++ {
+	for i := 1; i < B; i++ {
 		q[i+1] += q[i]
 	}
 	for i := 1; i < C; i++ {
