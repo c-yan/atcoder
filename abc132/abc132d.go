@@ -11,12 +11,12 @@ func main() {
 	N := readInt()
 	K := readInt()
 
-	c := make([][]int, 4000)
-	for i := 0; i < 4000; i++ {
-		c[i] = make([]int, 4000)
+	c := make([][]int, 2000+1)
+	for i := 0; i < 2000+1; i++ {
+		c[i] = make([]int, 2000+1)
 	}
 	c[0][0] = 1
-	for i := 0; i < 4000; i++ {
+	for i := 0; i < 2000+1; i++ {
 		c[i][0] = 1
 		for j := 1; j < i+1; j++ {
 			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % 1000000007
