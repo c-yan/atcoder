@@ -1,3 +1,4 @@
+// 二分探索
 package main
 
 import (
