@@ -23,20 +23,20 @@ func main() {
 
 	lut := make([][]int, 26)
 	s2 := []byte(s + s)
-	for b, _ := range available {
-		if !available[b] {
+	for i := range available {
+		if !available[i] {
 			continue
 		}
-		lut[b] = make([]int, len(s))
+		lut[i] = make([]int, len(s))
 		j := 0
-		for i := len(s2) - 1; i >= 0; i-- {
-			if int(s2[i]) == b+'a' {
+		for k := len(s2) - 1; k >= 0; k-- {
+			if int(s2[k]) == i+'a' {
 				j = 0
 			} else {
 				j++
 			}
 			if i < len(s) {
-				lut[b][i] = j
+				lut[i][k] = j
 			}
 		}
 	}
