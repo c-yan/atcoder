@@ -9,6 +9,8 @@ import (
 )
 
 func main() {
+	defer flush()
+
 	N := readInt()
 
 	root := -1
@@ -40,7 +42,7 @@ func main() {
 	}
 
 	depth := make([]int, N+1)
-	q := [][2]int{[2]int{root, 0}}
+	q := [][2]int{{root, 0}}
 	for len(q) != 0 {
 		e := q[0]
 		q = q[1:]
@@ -56,7 +58,7 @@ func main() {
 		a := readInt()
 		b := readInt()
 		if depth[a] <= depth[b] {
-			fmt.Println("No")
+			println("No")
 			continue
 		}
 		for depth[a] != depth[b] {
@@ -64,9 +66,9 @@ func main() {
 			a = parent[t][a]
 		}
 		if a == b {
-			fmt.Println("Yes")
+			println("Yes")
 		} else {
-			fmt.Println("No")
+			println("No")
 		}
 	}
 }
@@ -101,4 +103,18 @@ func readInts(n int) []int {
 		result[i] = readInt()
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
