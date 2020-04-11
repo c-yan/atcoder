@@ -16,6 +16,8 @@ func genid(a, b int) int {
 }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 
 	ab := make([][2]int, N-1)
@@ -55,10 +57,10 @@ func main() {
 			K = t
 		}
 	}
-	fmt.Println(K)
+	println(K)
 
 	for i := 0; i < N-1; i++ {
-		fmt.Println(colors[genid(ab[i][0], ab[i][1])])
+		println(colors[genid(ab[i][0], ab[i][1])])
 	}
 }
 
@@ -84,4 +86,18 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

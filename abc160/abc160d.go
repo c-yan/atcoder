@@ -22,6 +22,8 @@ func abs(a int) int {
 }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 	X := readInt()
 	Y := readInt()
@@ -35,7 +37,7 @@ func main() {
 	}
 
 	for i := 1; i < N; i++ {
-		fmt.Println(t[i])
+		println(t[i])
 	}
 }
 
@@ -61,4 +63,18 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

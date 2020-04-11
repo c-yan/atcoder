@@ -34,6 +34,8 @@ func dfs(current, usedColor, from int) {
 }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 
 	edges = make([][]edge, N)
@@ -53,10 +55,10 @@ func main() {
 			K = color
 		}
 	}
-	fmt.Println(K)
+	println(K)
 
 	for i := 0; i < N-1; i++ {
-		fmt.Println(colors[i])
+		println(colors[i])
 	}
 }
 
@@ -82,4 +84,18 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

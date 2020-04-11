@@ -42,6 +42,8 @@ func (a byW) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a byW) Less(i, j int) bool { return a[i].w > a[j].w }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 	M := readInt()
 	roads := make([]aby, M)
@@ -77,7 +79,7 @@ func main() {
 		result[c.i] = -parent[find(parent, c.v)]
 	}
 	for i := 0; i < Q; i++ {
-		fmt.Println(result[i])
+		println(result[i])
 	}
 }
 
@@ -103,4 +105,18 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

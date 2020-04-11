@@ -79,6 +79,8 @@ func bitCount(a int) int {
 }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 	S := readString()
 
@@ -100,7 +102,7 @@ func main() {
 		} else if t == "2" {
 			l := toInt(readString())
 			r := toInt(readString())
-			fmt.Println(bitCount(st.query(l-1, r)))
+			println(bitCount(st.query(l-1, r)))
 		}
 	}
 }
@@ -135,4 +137,18 @@ func readInts(n int) []int {
 		result[i] = readInt()
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

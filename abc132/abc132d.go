@@ -8,6 +8,8 @@ import (
 )
 
 func main() {
+	defer flush()
+
 	N := readInt()
 	K := readInt()
 
@@ -28,7 +30,7 @@ func main() {
 	}
 
 	for i := 1; i <= K; i++ {
-		fmt.Println(f(K-i, i) * f(N-K-(i-1), i+1) % 1000000007)
+		println(f(K-i, i) * f(N-K-(i-1), i+1) % 1000000007)
 	}
 }
 
@@ -54,4 +56,18 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func printf(f string, args ...interface{}) (int, error) {
+	return fmt.Fprintf(stdoutWriter, f, args...)
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
