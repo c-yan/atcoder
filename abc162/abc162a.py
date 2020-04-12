@@ -1,6 +1,6 @@
-N = int(input())
+N = input()
 
-if str(N).count('7') > 0:
+if '7' in N:
     print('Yes')
 else:
     print('No')
