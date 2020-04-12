@@ -41,7 +41,6 @@ func main() {
 			}
 		} else {
 			right[-n] = i
-			i++
 		}
 	}
 
@@ -49,7 +48,7 @@ func main() {
 	for i := 0; i < Q; i++ {
 		a := readInt()
 		b := readInt()
-		if left[b] <= left[a] && left[a] <= right[b] {
+		if left[b] < left[a] && left[a] < right[b] {
 			println("Yes")
 		} else {
 			println("No")
