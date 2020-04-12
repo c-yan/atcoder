@@ -46,13 +46,11 @@ func main() {
 			}
 		}
 	}
-	for j := maxW; j >= 0; j-- {
-		if dp[j] == math.MaxInt64 {
-			continue
-		}
-		fmt.Println(j)
-		break
+	i := maxW
+	for dp[i] == math.MaxInt64 {
+		i--
 	}
+	fmt.Println(i)
 }
 
 const (
