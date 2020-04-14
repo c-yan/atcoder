@@ -5,11 +5,11 @@ def main():
     dp = [-1] * (T + 3000)
     dp[0] = 0
     for a, b in sorted(AB):
-        for j in range(T - 1, -1, -1):
-            if dp[j] == -1:
+        for i in range(T - 1, -1, -1):
+            if dp[i] == -1:
                 continue
-            if dp[j] + b > dp[j + a]:
-                dp[j + a] = dp[j] + b
+            if dp[i + a] < dp[i] + b:
+                dp[i + a] = dp[i] + b
     print(max(dp))
 
 
