@@ -7,18 +7,18 @@ def f(s):
         return s
 
     result = s[:i]
-    s = s[i:]
-    i = 1
+    s = s[i + 1:]
     n = 1
-    while n != 0:
+    for i in range(len(s)):
         if s[i] == '(':
             n += 1
         elif s[i] == ')':
             n -= 1
-        i += 1
-    t = f(s[1:i - 1])
+        if n == 0:
+            break
+    t = f(s[:i])
     result += t + t[::-1]
-    result += f(s[i:])
+    result += f(s[i + 1:])
     return result
 
 
