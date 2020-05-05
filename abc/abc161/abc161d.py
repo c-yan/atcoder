@@ -9,7 +9,7 @@ def is_lunlun(i):
             continue
         if n[j] < n[j + 1]:
             for k in range(j + 1, len(n)):
-                n[k] = 0
+                n[k] = max(n[k - 1] - 1, 0)
             result = int(''.join(str(k) for k in n))
             result += 10 ** (len(n) - (j + 1))
         else:

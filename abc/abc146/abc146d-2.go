@@ -18,21 +18,6 @@ var (
 	colors []int
 )
 
-func dfs(current, usedColor, from int) {
-	color := 1
-	for _, e := range edges[current] {
-		if e.To == from {
-			continue
-		}
-		if color == usedColor {
-			color++
-		}
-		colors[e.ID] = color
-		dfs(e.To, color, current)
-		color++
-	}
-}
-
 func main() {
 	defer flush()
 
@@ -47,7 +32,24 @@ func main() {
 	}
 
 	colors = make([]int, N)
-	dfs(0, -1, -1)
+	q := make([][3]int, 1, N)
+	q = append(q, [3]int{0, -1, -1})
+	for len(q) != 0 {
+		current, usedColor, from := q[len(q)-1][0], q[len(q)-1][1], q[len(q)-1][2]
+		q = q[:len(q)-1]
+		color := 1
+		for _, e := range edges[current] {
+			if e.To == from {
+				continue
+			}
+			if color == usedColor {
+				color++
+			}
+			colors[e.ID] = color
+			q = append(q, [3]int{e.To, color, current})
+			color++
+		}
+	}
 
 	K := -1
 	for _, color := range colors {
