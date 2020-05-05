@@ -40,7 +40,7 @@ class SegmentTree():
 N, K, D = map(int, input().split())
 A = list(map(int, input().split()))
 
-if K + (D - 1) * (K - 1) > N:
+if 1 + (K - 1) * D > N:
     print(-1)
     exit()
 
@@ -48,15 +48,11 @@ st = SegmentTree(N)
 st.update_all(A)
 
 result = []
-k = K - 1
 i = 0
-while k != -1:
+for k in range(K - 1, -1, -1):
     m = st.query(i, N - k * D)
     result.append(m)
-    for j in range(i, N):
-        if A[j] != m:
-            continue
-        i = j + D
-        break
-    k -= 1
+    while A[i] != m:
+        i += 1
+    i += D
 print(*result)

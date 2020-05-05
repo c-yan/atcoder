@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
@@ -15,55 +14,43 @@ func min(a, b int) int {
 	return b
 }
 
-type segmentTree struct {
-	data   []int
-	offset int
+type sparseTable struct {
+	data   [][]int
+	lookup []int
+	f      func(a, b int) int
 }
 
-func newSegmentTree(n int) segmentTree {
-	var result segmentTree
-	t := 1
-	for t < n {
-		t *= 2
+func newSparseTable(a []int) sparseTable {
+	f := min
+	b := 0
+	for (1 << b) <= len(a) {
+		b++
 	}
-	result.offset = t - 1
-	result.data = make([]int, 2*t-1)
+	data := make([][]int, b)
+	for i := 0; i < b; i++ {
+		data[i] = make([]int, 1<<b)
+	}
+	copy(data[0][:len(a)], a)
+	for i := 1; i < b; i++ {
+		for j := 0; j+(1<<i) <= (1 << b); j++ {
+			data[i][j] = f(data[i-1][j], data[i-1][j+(1<<(i-1))])
+		}
+	}
+	lookup := make([]int, len(a)+1)
+	for i := 2; i < len(lookup); i++ {
+		lookup[i] = lookup[i>>1] + 1
+	}
+
+	var result sparseTable
+	result.f = f
+	result.data = data
+	result.lookup = lookup
 	return result
 }
 
-func (st segmentTree) updateAll(a []int) {
-	for i, v := range a {
-		st.data[st.offset+i] = v
-	}
-	for i := st.offset - 1; i > -1; i-- {
-		st.data[i] = min(st.data[i*2+1], st.data[i*2+2])
-	}
-}
-
-func (st segmentTree) update(index, value int) {
-	i := st.offset + index
-	st.data[i] = value
-	for i >= 1 {
-		i = (i - 1) / 2
-		st.data[i] = min(st.data[i*2+1], st.data[i*2+2])
-	}
-}
-
-func (st segmentTree) query(start, stop int) int {
-	result := math.MaxInt64
-	l := start + st.offset
-	r := stop + st.offset
-	for l < r {
-		if l&1 == 0 {
-			result = min(result, st.data[l])
-		}
-		if r&1 == 0 {
-			result = min(result, st.data[r-1])
-		}
-		l = l / 2
-		r = (r - 1) / 2
-	}
-	return result
+func (st sparseTable) query(start, stop int) int {
+	b := st.lookup[stop-start]
+	return st.f(st.data[b][start], st.data[b][stop-(1<<b)])
 }
 
 func main() {
@@ -77,28 +64,22 @@ func main() {
 		A[i] = readInt()
 	}
 
-	if K+(D-1)*(K-1) > N {
+	if 1+(K-1)*D > N {
 		println(-1)
 		return
 	}
 
-	st := newSegmentTree(N)
-	st.updateAll(A)
+	st := newSparseTable(A)
 
-	result := make([]int, 0)
-	k := K - 1
+	result := make([]int, 0, K)
 	i := 0
-	for k != -1 {
+	for k := K - 1; k >= 0; k-- {
 		m := st.query(i, N-k*D)
 		result = append(result, m)
-		for j := i; j < N; j++ {
-			if A[j] != m {
-				continue
-			}
-			i = j + D
-			break
+		for A[i] != m {
+			i++
 		}
-		k--
+		i += D
 	}
 	printIntln(result...)
 }
