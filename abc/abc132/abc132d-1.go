@@ -1,3 +1,4 @@
+// パスカルの三角形
 package main
 
 import (
@@ -7,30 +8,38 @@ import (
 	"strconv"
 )
 
+const (
+	p = 1000000007
+)
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
 func main() {
 	defer flush()
 
 	N := readInt()
 	K := readInt()
 
-	c := make([][]int, 2000+1)
-	for i := 0; i < 2000+1; i++ {
-		c[i] = make([]int, 2000+1)
+	n := max(K, N-K+1)
+	c := make([][]int, n+1)
+	for i := 0; i < n+1; i++ {
+		c[i] = make([]int, n+1)
 	}
 	c[0][0] = 1
-	for i := 0; i < 2000+1; i++ {
+	for i := 0; i < n+1; i++ {
 		c[i][0] = 1
 		for j := 1; j < i+1; j++ {
-			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % 1000000007
+			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % p
 		}
 	}
 
-	f := func(n, k int) int {
-		return c[n+k-1][k-1]
-	}
-
 	for i := 1; i <= K; i++ {
-		println(f(K-i, i) * f(N-K-(i-1), i+1) % 1000000007)
+		println(c[K-1][i-1] * c[N-K+1][i] % p)
 	}
 }
 
