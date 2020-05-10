@@ -18,68 +18,68 @@ func xorshift() uint {
 	return y
 }
 
-type node struct {
+type treapNode struct {
 	value    int
 	priority uint
 	count    int
-	left     *node
-	right    *node
+	left     *treapNode
+	right    *treapNode
 }
 
-func newNode(x int) *node {
-	return &node{x, xorshift(), 1, nil, nil}
+func newTreapNode(v int) *treapNode {
+	return &treapNode{v, xorshift(), 1, nil, nil}
 }
 
-func rotateRight(n *node) *node {
+func treapRotateRight(n *treapNode) *treapNode {
 	l := n.left
 	n.left = l.right
 	l.right = n
 	return l
 }
 
-func rotateLeft(n *node) *node {
+func treapRotateLeft(n *treapNode) *treapNode {
 	r := n.right
 	n.right = r.left
 	r.left = n
 	return r
 }
 
-func insert(n *node, x int) *node {
+func treapInsert(n *treapNode, v int) *treapNode {
 	if n == nil {
-		return newNode(x)
+		return newTreapNode(v)
 	}
-	if x == n.value {
+	if n.value == v {
 		n.count++
 		return n
 	}
-	if x < n.value {
-		n.left = insert(n.left, x)
+	if n.value > v {
+		n.left = treapInsert(n.left, v)
 		if n.priority > n.left.priority {
-			n = rotateRight(n)
+			n = treapRotateRight(n)
 		}
 	} else {
-		n.right = insert(n.right, x)
+		n.right = treapInsert(n.right, v)
 		if n.priority > n.right.priority {
-			n = rotateLeft(n)
+			n = treapRotateLeft(n)
 		}
 	}
 	return n
 }
 
-func delete(n *node, x int) *node {
+func treapDelete(n *treapNode, v int) *treapNode {
 	if n == nil {
 		return nil
 	}
-	if n.value > x {
-		n.left = delete(n.left, x)
+	if n.value > v {
+		n.left = treapDelete(n.left, v)
 		return n
 	}
-	if n.value < x {
-		n.right = delete(n.right, x)
+	if n.value < v {
+		n.right = treapDelete(n.right, v)
 		return n
 	}
 
-	// n.value == x
+	// n.value == v
 	if n.count > 1 {
 		n.count--
 		return n
@@ -90,62 +90,86 @@ func delete(n *node, x int) *node {
 	}
 
 	if n.left == nil {
-		n = rotateLeft(n)
+		n = treapRotateLeft(n)
 	} else if n.right == nil {
-		n = rotateRight(n)
+		n = treapRotateRight(n)
 	} else {
 		// n.left != nil && n.right != nil
 		if n.left.priority < n.right.priority {
-			n = rotateRight(n)
+			n = treapRotateRight(n)
 		} else {
-			n = rotateLeft(n)
+			n = treapRotateLeft(n)
 		}
 	}
-	return delete(n, x)
+	return treapDelete(n, v)
 }
 
-func size(n *node) int {
+func treapCount(n *treapNode) int {
 	if n == nil {
 		return 0
 	}
-	return n.count + size(n.left) + size(n.right)
+	return n.count + treapCount(n.left) + treapCount(n.right)
 }
 
-func str(n *node) string {
+func treapString(n *treapNode) string {
 	if n == nil {
 		return ""
 	}
 	result := make([]string, 0)
 	if n.left != nil {
-		result = append(result, str(n.left))
+		result = append(result, treapString(n.left))
 	}
 	result = append(result, fmt.Sprintf("%d:%d", n.value, n.count))
 	if n.right != nil {
-		result = append(result, str(n.right))
+		result = append(result, treapString(n.right))
 	}
 	return strings.Join(result, " ")
 }
 
-// x 未満で最大のノードを検索する. n 未満のノードがなければ nil を返す
-func search(n *node, x int) *node {
+// v 未満で最大のノードを検索する. v 未満のノードがなければ nil を返す
+func treapSearch(n *treapNode, v int) *treapNode {
 	if n == nil {
 		return nil
 	}
-	if n.value >= x {
+	if n.value >= v {
 		if n.left == nil {
 			return nil
 		}
-		return search(n.left, x)
+		return treapSearch(n.left, v)
 	}
-	// n.value < x
+	// n.value < v
 	if n.right == nil {
 		return n
 	}
-	r := search(n.right, x)
+	r := treapSearch(n.right, v)
 	if r == nil {
 		return n
 	}
 	return r
+}
+
+type treap struct {
+	root *treapNode
+}
+
+func (t *treap) Insert(v int) {
+	t.root = treapInsert(t.root, v)
+}
+
+func (t *treap) Delete(v int) {
+	t.root = treapDelete(t.root, v)
+}
+
+func (t *treap) String() string {
+	return treapString(t.root)
+}
+
+func (t *treap) Count() int {
+	return treapCount(t.root)
+}
+
+func (t *treap) Search(v int) *treapNode {
+	return treapSearch(t.root, v)
 }
 
 func main() {
@@ -157,19 +181,19 @@ func main() {
 		A[i] = readInt()
 	}
 
-	var n *node
+	t := &treap{}
 	for i := 0; i < N; i++ {
 		a := A[i]
-		t := search(n, a)
-		if t != nil {
-			//printf("delete: %d\n", t.value)
-			n = delete(n, t.value)
+		n := t.Search(a)
+		if n != nil {
+			//printf("delete: %d\n", n.value)
+			t.Delete(n.value)
 		}
 		//printf("insert: %d\n", a)
-		n = insert(n, a)
-		//printf("result: %s\n", str(n))
+		t.Insert(a)
+		//printf("result: %s\n", t)
 	}
-	println(size(n))
+	println(t.Count())
 }
 
 const (
