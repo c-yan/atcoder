@@ -40,29 +40,21 @@ func warshallFloyd(n int, d [][]int) {
 	}
 }
 
-func dfs(p []int) int {
-	if len(p) == R {
-		result := 0
-		for i := 0; i < R-1; i++ {
-			result += d[p[i]][p[i+1]]
-		}
-		return result
+func permtationsImpl(a []int, i int, f func(a []int)) {
+	if i == len(a)-1 {
+		f(a)
+		return
 	}
+	permtationsImpl(a, i+1, f)
+	for j := i + 1; j < len(a); j++ {
+		a[i], a[j] = a[j], a[i]
+		permtationsImpl(a, i+1, f)
+		a[i], a[j] = a[j], a[i]
+	}
+}
 
-	result := math.MaxInt64
-	for i := 0; i < R; i++ {
-		used := false
-		for j := 0; j < len(p); j++ {
-			if r[i] == p[j] {
-				used = true
-				break
-			}
-		}
-		if !used {
-			result = min(result, dfs(append(p, r[i])))
-		}
-	}
-	return result
+func permtations(a []int, f func(a []int)) {
+	permtationsImpl(a, 0, f)
 }
 
 func main() {
@@ -92,7 +84,15 @@ func main() {
 	}
 	warshallFloyd(N+1, d)
 
-	println(dfs(make([]int, 0)))
+	result := math.MaxInt64
+	permtations(r, func(a []int) {
+		t := 0
+		for i := 0; i < R-1; i++ {
+			t += d[a[i]][a[i+1]]
+		}
+		result = min(result, t)
+	})
+	println(result)
 }
 
 const (
