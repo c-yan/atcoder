@@ -6,9 +6,8 @@ A = [int(input()) for _ in range(N)]
 
 t = deque([A[0]])
 for a in A[1:]:
-    i = bisect_left(t, a) - 1
-    if i == -1:
+    if a <= t[0]:
         t.appendleft(a)
     else:
-        t[i] = a
+        t[bisect_left(t, a) - 1] = a
 print(len(t))
