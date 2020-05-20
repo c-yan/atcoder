@@ -7,10 +7,8 @@ if D[0] != 0:
 
 c = {}
 for i in D:
-    if i in c:
-        c[i] += 1
-    else:
-        c[i] = 1
+    c.setdefault(i, 0)
+    c[i] += 1
 
 if c[0] != 1:
     print(0)
@@ -21,5 +19,6 @@ for i in range(1, max(D) + 1):
     if i not in c:
         print(0)
         exit()
-    result = result * (c[i - 1] ** c[i]) % 998244353
+    result *= pow(c[i - 1], c[i], 998244353)
+    result %= 998244353
 print(result)
