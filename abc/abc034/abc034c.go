@@ -1,3 +1,4 @@
+// フェルマーの小定理
 package main
 
 import (
@@ -49,7 +50,7 @@ func main() {
 	H := readInt()
 
 	n := W + H - 2
-	k := min(W - 1, H - 1)
+	k := min(W-1, H-1)
 
 	fac = make([]int, n+1)
 	fac[0] = 1
