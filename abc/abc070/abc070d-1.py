@@ -1,13 +1,12 @@
+# ダイクストラ法
 from heapq import heappop, heappush
 
 N = int(input())
-costs = {}
+links = [[] for _ in range(N + 1)]
 for _ in range(N - 1):
     a, b, c = map(int, input().split())
-    costs.setdefault(a, {})
-    costs[a][b] = c
-    costs.setdefault(b, {})
-    costs[b][a] = c
+    links[a].append((b, c))
+    links[b].append((a, c))
 
 Q, K = map(int, input().split())
 
@@ -17,8 +16,8 @@ d[K] = 0
 q = [(0, K)]
 while q:
     _, u = heappop(q)
-    for v in costs[u]:
-        alt = d[u] + costs[u][v]
+    for v, c in links[u]:
+        alt = d[u] + c
         if d[v] > alt:
             d[v] = alt
             #prev[v] = u
