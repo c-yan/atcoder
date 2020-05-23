@@ -1,3 +1,4 @@
+# 幅優先探索
 from collections import deque
 
 N, M = map(int, input().split())

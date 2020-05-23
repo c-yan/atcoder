@@ -1,3 +1,4 @@
+# DP(配るDP)
 def main():
     N, T = map(int, input().split())
     AB = [list(map(int, input().split())) for _ in range(N)]

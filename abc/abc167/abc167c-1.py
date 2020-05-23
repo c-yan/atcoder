@@ -1,3 +1,4 @@
+# ビット全探索
 N, M, X = map(int, input().split())
 
 C = []
