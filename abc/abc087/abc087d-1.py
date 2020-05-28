@@ -1,3 +1,4 @@
+# 深さ優先探索
 N, M = map(int, input().split())
 
 links = [[] for _ in range(N + 1)]
