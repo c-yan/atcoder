@@ -1,9 +1,11 @@
 # 深さ優先探索
-N, M = map(int, input().split())
+from sys import stdin
+
+N, M = map(int, stdin.readline().split())
 
 links = [[] for _ in range(N + 1)]
 for _ in range(M):
-    L, R, D = map(int, input().split())
+    L, R, D = map(int, stdin.readline().split())
     links[L].append((R, D))
     links[R].append((L, -D))
 

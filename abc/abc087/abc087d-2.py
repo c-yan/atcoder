@@ -1,41 +1,48 @@
 # Union Find 木
-from sys import setrecursionlimit
+from sys import setrecursionlimit, stdin
 
 
-def find(parent, i):
+def find(parent, diff_weight, i):
     t = parent[i]
     if t < 0:
         return i
-    t = find(parent, t)
+    t = find(parent, diff_weight, t)
+    diff_weight[i] += diff_weight[parent[i]]
     parent[i] = t
     return t
 
 
-def pos(x, i):
-    j, k = x[i]
+def weight(parent, diff_weight, i):
+    find(parent, diff_weight, i)
+    return diff_weight[i]
+
+
+def unite(parent, diff_weight, i, j, d):
+    d -= weight(parent, diff_weight, j)
+    d += weight(parent, diff_weight, i)
+    i = find(parent, diff_weight, i)
+    j = find(parent, diff_weight, j)
     if i == j:
-        return i, 0
-    l, m = pos(x, j)
-    x[i] = (l, m + k)
-    return x[i]
+        return
+    diff_weight[j] = d
+    parent[i] += parent[j]
+    parent[j] = i
 
 
 setrecursionlimit(10 ** 6)
 
-N, M = map(int, input().split())
-LRD = [tuple(map(int, input().split())) for _ in range(M)]
+N, M = map(int, stdin.readline().split())
+LRD = [tuple(map(int, stdin.readline().split())) for _ in range(M)]
 
 parent = [-1] * (N + 1)
-x = [(i, 0) for i in range(N + 1)]
+diff_weight = [0] * (N + 1)
 for L, R, D in LRD:
-    i = find(parent, L)
-    j = find(parent, R)
+    i = find(parent, diff_weight, L)
+    j = find(parent, diff_weight, R)
     if i != j:
-        x[j] = (i, D - pos(x, R)[1] + pos(x, L)[1])
-        parent[i] += parent[j]
-        parent[j] = i
+        unite(parent, diff_weight, L, R, D)
     else:
-        if pos(x, L)[1] + D != pos(x, R)[1]:
+        if weight(parent, diff_weight, L) + D != weight(parent, diff_weight, R):
             print('No')
             exit()
 print('Yes')
