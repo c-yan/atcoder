@@ -1,10 +1,15 @@
 from fractions import gcd
-from math import sqrt
 
 
 def prime_factorize(n):
     result = []
-    for i in range(2, int(sqrt(n)) + 1):
+    if n % 2 == 0:
+        t = 0
+        while n % 2 == 0:
+            n //= 2
+            t += 1
+        result.append((2, t))
+    for i in range(3, int(n ** 0.5) + 1, 2):
         if n % i != 0:
             continue
         t = 0
