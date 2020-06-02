@@ -1,8 +1,11 @@
-N = int(input())
+from sys import stdin
+readline = stdin.readline
+
+N = int(readline())
 A = [None] * N
 B = [None] * N
 for i in range(N):
-    a, b = map(int, input().split())
+    a, b = map(int, readline().split())
     A[i] = a
     B[i] = b
 
