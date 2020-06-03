@@ -2,7 +2,7 @@ from fractions import gcd
 
 
 def lcm(x, y):
-    return (x * y) // gcd(x, y)
+    return x // gcd(x, y) * y
 
 
 N = int(input())
