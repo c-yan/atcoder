@@ -2,17 +2,22 @@ from functools import reduce
 from fractions import gcd
 
 N, K = map(int, input().split())
-A = list(map(int, input().split()))
+A = set(map(int, input().split()))
+
+if K in A:
+    print('POSSIBLE')
+    exit()
 
 if K > max(A):
     print('IMPOSSIBLE')
     exit()
 
-if A.count(K) != 0:
+g = reduce(gcd, A)
+
+if g == 1:
     print('POSSIBLE')
     exit()
 
-g = reduce(gcd, A)
 for a in A:
     if K > a:
         continue
