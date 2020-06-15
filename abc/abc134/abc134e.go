@@ -68,7 +68,7 @@ func treapInsert(n *treapNode, v int) *treapNode {
 
 func treapDelete(n *treapNode, v int) *treapNode {
 	if n == nil {
-		return nil
+		panic("node is not found!")
 	}
 	if n.value > v {
 		n.left = treapDelete(n.left, v)
@@ -150,14 +150,17 @@ func treapSearch(n *treapNode, v int) *treapNode {
 
 type treap struct {
 	root *treapNode
+	size int
 }
 
 func (t *treap) Insert(v int) {
 	t.root = treapInsert(t.root, v)
+	t.size++
 }
 
 func (t *treap) Delete(v int) {
 	t.root = treapDelete(t.root, v)
+	t.size--
 }
 
 func (t *treap) String() string {
@@ -165,7 +168,7 @@ func (t *treap) String() string {
 }
 
 func (t *treap) Count() int {
-	return treapCount(t.root)
+	return t.size
 }
 
 func (t *treap) Search(v int) *treapNode {

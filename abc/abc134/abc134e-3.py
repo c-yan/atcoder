@@ -50,7 +50,7 @@ def treap_insert(n, v):
 
 def treap_delete(n, v):
     if n is None:
-        return None
+        raise Exception('no nodes')
     if n._value > v:
         n._left = treap_delete(n._left, v)
         return n
@@ -116,15 +116,18 @@ def treap_search(n, v):
 
 class Treap:
     _root = None
+    _size = 0
 
     def insert(self, v):
         self._root = treap_insert(self._root, v)
+        self._size += 1
 
     def delete(self, v):
         self._root = treap_delete(self._root, v)
+        self._size -= 1
 
     def __len__(self):
-        return treap_size(self._root)
+        return self._size
 
     def __str__(self):
         return treap_str(self._root)
