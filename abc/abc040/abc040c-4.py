@@ -8,7 +8,7 @@ def cost(i):
     if i == N - 1:
         result = 0
     elif i == N - 2:
-        result = abs(a[N - 2] - a[N - 1]) + cost(i)
+        result = abs(a[N - 2] - a[N - 1]) + cost(i + 1)
     else:
         result = min(cost(i + 1) + abs(a[i + 1] - a[i]),
                      cost(i + 2) + abs(a[i + 2] - a[i]))
