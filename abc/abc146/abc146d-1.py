@@ -20,7 +20,7 @@ def paint(currentNode, usedColor, parentNode, edges, colors):
         color += 1
 
 
-setrecursionlimit(100000)
+setrecursionlimit(10 ** 6)
 
 N = int(input())
 ab = [list(map(int, input().split())) for _ in range(N - 1)]

@@ -11,7 +11,7 @@ def f(i, links, dp):
     return dp[i]
 
 
-setrecursionlimit(1000000)
+setrecursionlimit(10 ** 6)
 
 N, M = map(int, input().split())
 

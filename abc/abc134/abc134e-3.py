@@ -1,7 +1,7 @@
 from random import random
 from sys import setrecursionlimit
 
-setrecursionlimit(10 ** 5)
+setrecursionlimit(10 ** 6)
 
 
 class TreapNode:

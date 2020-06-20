@@ -10,7 +10,7 @@ def euler_tour(n, i, left, right):
     return i
 
 
-setrecursionlimit(200000)
+setrecursionlimit(10 ** 6)
 
 N = int(input())
 

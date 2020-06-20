@@ -20,7 +20,7 @@ def unite(parent, i, j):
     parent[i] = j
 
 
-setrecursionlimit(10 ** 5)
+setrecursionlimit(10 ** 6)
 
 N, M = map(int, input().split())
 

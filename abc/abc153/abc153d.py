@@ -1,6 +1,6 @@
 from sys import setrecursionlimit
 
-setrecursionlimit(1000000)
+setrecursionlimit(10 ** 6)
 
 H = int(input())
 

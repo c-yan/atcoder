@@ -16,7 +16,7 @@ def cost(i):
     return result
 
 
-setrecursionlimit(1000000)
+setrecursionlimit(10 ** 6)
 
 N = int(input())
 a = list(map(int, input().split()))

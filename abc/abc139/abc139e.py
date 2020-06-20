@@ -53,5 +53,5 @@ def main():
     print(max(dfs(n, edges, dp) for n in start_nodes))
 
 
-setrecursionlimit(1000000)
+setrecursionlimit(10 ** 6)
 main()

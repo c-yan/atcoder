@@ -1,5 +1,5 @@
 from sys import setrecursionlimit
-setrecursionlimit(10000)
+setrecursionlimit(10 ** 6)
 
 A, B = map(int, input().split())
 a = list(map(int, input().split()))
