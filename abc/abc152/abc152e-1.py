@@ -4,6 +4,8 @@ max_A = 1000000
 N = int(input())
 A = list(map(int, input().split()))
 
+m = 1000000007
+
 sieve = [0] * (max_A + 1)
 sieve[0] = -1
 sieve[1] = -1
@@ -33,10 +35,10 @@ lcm = 1
 for k in lcm_factors:
     for i in range(lcm_factors[k]):
         lcm *= k
-        lcm %= 1000000007
+        lcm %= m
 
 result = 0
 for i in range(N):
-    result += lcm * pow(A[i], 1000000007-2, 1000000007)
-    result %= 1000000007
+    result += lcm * pow(A[i], m - 2, m)
+    result %= m
 print(result)

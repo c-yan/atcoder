@@ -1,6 +1,6 @@
-divisor = 1000000007
-
 N, M = map(int, input().split())
+
+m = 1000000007
 
 if abs(N - M) > 1:
     print(0)
@@ -9,10 +9,10 @@ if abs(N - M) > 1:
 k = min(N, M)
 t = 1
 for i in range(2, k + 1):
-    t = t * i % divisor
-t = t * t % divisor
+    t = t * i % m
+t = t * t % m
 
 if N == M:
-    print(2 * t % divisor)
+    print(2 * t % m)
 else:
-    print(t * (k + 1) % divisor)
+    print(t * (k + 1) % m)

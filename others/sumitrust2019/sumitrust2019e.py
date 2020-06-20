@@ -1,6 +1,8 @@
 N = int(input())
 A = list(map(int, input().split()))
 
+m = 1000000007
+
 result = 1
 t = [0, 0, 0]
 for i in range(N):
@@ -13,5 +15,6 @@ for i in range(N):
             if f == -1:
                 t[j] += 1
                 f = j
-    result = (result * k) % 1000000007
+    result *= k
+    result %= m
 print(result)

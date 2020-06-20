@@ -3,6 +3,8 @@ from math import gcd
 N = int(input())
 AB = [map(int, input().split()) for _ in range(N)]
 
+m = 1000000007
+
 t = []
 d = {}
 d[0] = {}
@@ -36,8 +38,8 @@ for a, b in t:
     if b in d and -a in d[b]:
         l = d[b][-a]
         used.add((b, -a))
-    result *= pow(2, i + j, 1000000007) + pow(2, k + l, 1000000007) - 1
-    result %= 1000000007
+    result *= pow(2, i + j, m) + pow(2, k + l, m) - 1
+    result %= m
 result += d[0][0] - 1
-result %= 1000000007
+result %= m
 print(result)

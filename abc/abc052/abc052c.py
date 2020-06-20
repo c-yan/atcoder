@@ -23,6 +23,8 @@ def prime_factorize(n):
 
 N = int(input())
 
+m = 1000000007
+
 t = [0] * (N + 1)
 for i in range(2, N + 1):
     for p, e in prime_factorize(i):
@@ -32,5 +34,5 @@ result = 1
 for i in range(2, N + 1):
     if t[i] == 0:
         continue
-    result = result * (t[i] + 1) % 1000000007
+    result = result * (t[i] + 1) % m
 print(result)

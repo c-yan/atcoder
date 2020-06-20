@@ -1,7 +1,7 @@
 N = int(input())
 S = input()
 
-MOD = 1000000007
+m = 1000000007
 
 d = {}
 for c in S:
@@ -13,8 +13,8 @@ for c in S:
 result = 1
 for x in d.values():
     result *= x + 1
-    result %= MOD
-result += MOD - 1
-result %= MOD
+    result %= m
+result += m - 1
+result %= m
 
 print(result)

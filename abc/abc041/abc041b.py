@@ -1,7 +1,9 @@
 A, B, C = map(int, input().split())
 
+m = 1000000007
+
 result = A * B
-result %= 1000000007
+result %= m
 result *= C
-result %= 1000000007
+result %= m
 print(result)

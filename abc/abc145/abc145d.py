@@ -1,7 +1,7 @@
 # フェルマーの小定理
-p = 1000000007
-
 X, Y = map(int, input().split())
+
+m = 1000000007
 
 if (X + Y) % 3 != 0:
     print(0)
@@ -18,7 +18,7 @@ n = a + b
 fac = [0] * (n + 1)
 fac[0] = 1
 for i in range(n):
-    fac[i + 1] = fac[i] * (i + 1) % p
+    fac[i + 1] = fac[i] * (i + 1) % m
 
 
 def mcomb(n, k):
@@ -26,7 +26,7 @@ def mcomb(n, k):
         return 1
     if n < k or k < 0:
         return 0
-    return fac[n] * pow(fac[n - k], p - 2, p) * pow(fac[k], p - 2, p) % p
+    return fac[n] * pow(fac[n - k], m - 2, m) * pow(fac[k], m - 2, m) % m
 
 
 print(mcomb(n, a))

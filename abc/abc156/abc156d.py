@@ -4,19 +4,19 @@ def mcomb(n, k):
     b = 1
     for i in range(k):
         a *= n - i
-        a %= 1000000007
+        a %= m
         b *= i + 1
-        b %= 1000000007
-    return a * pow(b, 1000000005, 1000000007) % 1000000007
+        b %= m
+    return a * pow(b, m - 2, m) % m
 
 
 n, a, b = map(int, input().split())
 
-result = pow(2, n, 1000000007) - 1
-result -= mcomb(n, a)
-result + 1000000007
-result %= 1000000007
-result -= mcomb(n, b)
-result + 1000000007
-result %= 1000000007
+m = 1000000007
+
+result = pow(2, n, m) - 1
+result += m - mcomb(n, a)
+result %= m
+result += m - mcomb(n, b)
+result %= m
 print(result)
