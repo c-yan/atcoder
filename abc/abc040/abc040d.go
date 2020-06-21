@@ -82,6 +82,7 @@ func main() {
 		}
 		result[c.i] = -parent[find(parent, c.v)]
 	}
+
 	for i := 0; i < Q; i++ {
 		println(result[i])
 	}
