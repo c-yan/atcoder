@@ -145,10 +145,6 @@ func flush() {
 	stdoutWriter.Flush()
 }
 
-func printf(f string, args ...interface{}) (int, error) {
-	return fmt.Fprintf(stdoutWriter, f, args...)
-}
-
 func println(args ...interface{}) (int, error) {
 	return fmt.Fprintln(stdoutWriter, args...)
 }
