@@ -31,6 +31,14 @@ var (
 	fac []int
 )
 
+func initFactorialTable(n int) {
+	fac = make([]int, n+1)
+	fac[0] = 1
+	for i := 0; i < n; i++ {
+		fac[i+1] = fac[i] * (i + 1) % m
+	}
+}
+
 func mcomb(n, k int) int {
 	if n == 0 && k == 0 {
 		return 1
@@ -49,11 +57,7 @@ func main() {
 		A[i] = readInt()
 	}
 
-	fac = make([]int, N+1)
-	fac[0] = 1
-	for i := 0; i < N; i++ {
-		fac[i+1] = fac[i] * (i + 1) % m
-	}
+	initFactorialTable(N - 1)
 
 	sort.Sort(sort.Reverse(sort.IntSlice(A)))
 	maxX := 0

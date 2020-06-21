@@ -30,6 +30,14 @@ var (
 	fac []int
 )
 
+func initFactorialTable(n int) {
+	fac = make([]int, n+1)
+	fac[0] = 1
+	for i := 0; i < n; i++ {
+		fac[i+1] = fac[i] * (i + 1) % m
+	}
+}
+
 func mcomb(n, k int) int {
 	if n == 0 && k == 0 {
 		return 1
@@ -54,11 +62,7 @@ func main() {
 	n := W + H - 2
 	k := min(W-1, H-1)
 
-	fac = make([]int, n+1)
-	fac[0] = 1
-	for i := 0; i < n; i++ {
-		fac[i+1] = fac[i] * (i + 1) % m
-	}
+	initFactorialTable(n)
 
 	fmt.Println(mcomb(n, k))
 }

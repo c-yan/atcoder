@@ -30,6 +30,14 @@ var (
 	fac []int
 )
 
+func initFactorialTable(n int) {
+	fac = make([]int, n+1)
+	fac[0] = 1
+	for i := 0; i < n; i++ {
+		fac[i+1] = fac[i] * (i + 1) % m
+	}
+}
+
 func mcomb(n, k int) int {
 	if n == 0 && k == 0 {
 		return 1
@@ -53,12 +61,7 @@ func main() {
 	N := readInt()
 	K := readInt()
 
-	n := max(K, N-K+1)
-	fac = make([]int, n+1)
-	fac[0] = 1
-	for i := 0; i < n; i++ {
-		fac[i+1] = fac[i] * (i + 1) % m
-	}
+	initFactorialTable(max(K-1, N-K+1))
 
 	for i := 1; i <= K; i++ {
 		println(mcomb(K-1, i-1) * mcomb(N-K+1, i) % m)
