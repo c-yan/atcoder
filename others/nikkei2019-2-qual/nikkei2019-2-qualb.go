@@ -7,16 +7,20 @@ import (
 	"strconv"
 )
 
+const (
+	m = 1000000007
+)
+
 func pow(base int, exponent int) int {
 	result := 1
 	for exponent > 0 {
 		if exponent%2 == 1 {
 			result *= base
-			result %= 998244353
+			result %= m
 		}
 		exponent >>= 1
 		base *= base
-		base %= 998244353
+		base %= m
 	}
 	return result
 }
@@ -51,7 +55,7 @@ func main() {
 			return
 		}
 		result *= pow(c[i-1], c[i])
-		result %= 998244353
+		result %= m
 	}
 	fmt.Println(result)
 }
