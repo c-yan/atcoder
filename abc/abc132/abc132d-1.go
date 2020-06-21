@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	p = 1000000007
+	m = 1000000007
 )
 
 func max(a, b int) int {
@@ -34,12 +34,12 @@ func main() {
 	for i := 0; i < n+1; i++ {
 		c[i][0] = 1
 		for j := 1; j < i+1; j++ {
-			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % p
+			c[i][j] = (c[i-1][j-1] + c[i-1][j]) % m
 		}
 	}
 
 	for i := 1; i <= K; i++ {
-		println(c[K-1][i-1] * c[N-K+1][i] % p)
+		println(c[K-1][i-1] * c[N-K+1][i] % m)
 	}
 }
 

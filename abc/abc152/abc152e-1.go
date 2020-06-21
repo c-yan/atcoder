@@ -8,15 +8,19 @@ import (
 	"strconv"
 )
 
+const (
+	m = 1000000007
+)
+
 func mpow(x int, n int) int {
 	result := 1
 	for n != 0 {
 		if n&1 == 1 {
 			result *= x
-			result %= 1000000007
+			result %= m
 		}
 		x *= x
-		x %= 1000000007
+		x %= m
 		n >>= 1
 	}
 	return result
@@ -65,14 +69,14 @@ func main() {
 	for k, v := range lcmFactors {
 		for i := 0; i < v; i++ {
 			lcm *= k
-			lcm %= 1000000007
+			lcm %= m
 		}
 	}
 
 	result := 0
 	for i := 0; i < N; i++ {
-		result += lcm * mpow(A[i], 1000000007-2)
-		result %= 1000000007
+		result += lcm * mpow(A[i], m-2)
+		result %= m
 	}
 	fmt.Println(result)
 }

@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	p = 1000000007
+	m = 1000000007
 )
 
 var (
@@ -27,9 +27,9 @@ func mpow(x int, n int) int {
 	result := 1
 	for n != 0 {
 		if n&1 == 1 {
-			result = result * x % p
+			result = result * x % m
 		}
-		x = x * x % p
+		x = x * x % m
 		n >>= 1
 	}
 	return result
@@ -42,7 +42,7 @@ func mcomb(n int, k int) int {
 	if n < k || k < 0 {
 		return 0
 	}
-	return (fac[n] * mpow(fac[n-k], p-2) % p) * mpow(fac[k], p-2) % p
+	return (fac[n] * mpow(fac[n-k], m-2) % m) * mpow(fac[k], m-2) % m
 }
 
 func main() {
@@ -68,7 +68,7 @@ func main() {
 	fac = make([]int, n+1)
 	fac[0] = 1
 	for i := 0; i < n; i++ {
-		fac[i+1] = fac[i] * (i + 1) % p
+		fac[i+1] = fac[i] * (i + 1) % m
 	}
 
 	fmt.Println(mcomb(n, k))

@@ -6,6 +6,10 @@ import (
 	"os"
 )
 
+const (
+	m = 1000000007
+)
+
 func main() {
 	L := readString()
 
@@ -14,10 +18,10 @@ func main() {
 	for i := len(L) - 1; i >= 0; i-- {
 		if L[i] == '1' {
 			result = result*2 + t
-			result %= 1000000007
+			result %= m
 		}
 		t *= 3
-		t %= 1000000007
+		t %= m
 	}
 	fmt.Println(result)
 }

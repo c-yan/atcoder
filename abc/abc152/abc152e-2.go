@@ -8,6 +8,10 @@ import (
 	"strconv"
 )
 
+const (
+	m = 1000000007
+)
+
 func main() {
 	N := readInt()
 	A := make([]*big.Int, N)
@@ -28,7 +32,7 @@ func main() {
 	for i := 0; i < N; i++ {
 		result.Add(result, t.Div(lcm, A[i]))
 	}
-	result.Rem(result, big.NewInt(1000000007))
+	result.Rem(result, big.NewInt(m))
 
 	fmt.Println(result)
 }

@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	p = 1000000007
+	m = 1000000007
 )
 
 var (
@@ -22,10 +22,10 @@ func mpow(x int, n int) int {
 	for n != 0 {
 		if n&1 == 1 {
 			result *= x
-			result %= p
+			result %= m
 		}
 		x *= x
-		x %= p
+		x %= m
 		n >>= 1
 	}
 	return result
@@ -38,7 +38,7 @@ func mcomb(n int, k int) int {
 	if n < k || k < 0 {
 		return 0
 	}
-	return (fac[n] * mpow(fac[n-k], p-2) % p) * mpow(fac[k], p-2) % p
+	return (fac[n] * mpow(fac[n-k], m-2) % m) * mpow(fac[k], m-2) % m
 }
 
 func main() {
@@ -52,27 +52,27 @@ func main() {
 	fac = make([]int, N+1)
 	fac[0] = 1
 	for i := 0; i < N; i++ {
-		fac[i+1] = fac[i] * (i + 1) % p
+		fac[i+1] = fac[i] * (i + 1) % m
 	}
 
 	sort.Sort(sort.Reverse(sort.IntSlice(A)))
 	result := 0
 	for i := 0; i < N-K+1; i++ {
 		result += A[i] * mcomb(N-(i+1), K-1)
-		result %= p
+		result %= m
 	}
 
 	sort.Ints(A)
 	t := 0
 	for i := 0; i < N-K+1; i++ {
 		t += A[i] * mcomb(N-(i+1), K-1)
-		t %= p
+		t %= m
 	}
 
 	result -= t
-	result %= p
-	result += p
-	result %= p
+	result %= m
+	result += m
+	result %= m
 	fmt.Println(result)
 }
 

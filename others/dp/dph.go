@@ -7,7 +7,9 @@ import (
 	"strconv"
 )
 
-const divisor = 1000000007
+const (
+	m = 1000000007
+)
 
 func main() {
 	h := readInt()
@@ -22,7 +24,7 @@ func main() {
 	for i := 0; i < h-1; i++ {
 		for j := 0; j < w-1; j++ {
 			if a[0][j+1] != '#' {
-				dp[0][j+1] = (dp[0][j+1] + dp[0][j]) % divisor
+				dp[0][j+1] = (dp[0][j+1] + dp[0][j]) % m
 			}
 			if a[1][j] != '#' {
 				dp[1][j] = dp[0][j]
@@ -39,7 +41,7 @@ func main() {
 	}
 	for j := 0; j < w-1; j++ {
 		if a[0][j+1] != '#' {
-			dp[0][j+1] = (dp[0][j+1] + dp[0][j]) % divisor
+			dp[0][j+1] = (dp[0][j+1] + dp[0][j]) % m
 		}
 	}
 	fmt.Println(dp[0][w-1])

@@ -8,15 +8,19 @@ import (
 	"strconv"
 )
 
+const (
+	m = 1000000007
+)
+
 func mpow(x int, n int) int {
 	result := 1
 	for n != 0 {
 		if n&1 == 1 {
 			result *= x
-			result %= 1000000007
+			result %= m
 		}
 		x *= x
-		x %= 1000000007
+		x %= m
 		n >>= 1
 	}
 	return result
@@ -27,11 +31,11 @@ func mcomb(n int, k int) int {
 	b := 1
 	for i := 0; i < k; i++ {
 		a *= n - i
-		a %= 1000000007
+		a %= m
 		b *= i + 1
-		b %= 1000000007
+		b %= m
 	}
-	return a * mpow(b, 1000000005) % 1000000007
+	return a * mpow(b, m-2) % m
 }
 
 func main() {
@@ -41,11 +45,11 @@ func main() {
 
 	result := mpow(2, n) - 1
 	result -= mcomb(n, a)
-	result += 1000000007
-	result %= 1000000007
+	result += m
+	result %= m
 	result -= mcomb(n, b)
-	result += 1000000007
-	result %= 1000000007
+	result += m
+	result %= m
 	fmt.Println(result)
 }
 
