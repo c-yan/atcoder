@@ -1,4 +1,9 @@
 # フェルマーの小定理
+n, a, b = map(int, input().split())
+
+m = 1000000007
+
+
 def mcomb(n, k):
     a = 1
     b = 1
@@ -9,10 +14,6 @@ def mcomb(n, k):
         b %= m
     return a * pow(b, m - 2, m) % m
 
-
-n, a, b = map(int, input().split())
-
-m = 1000000007
 
 result = pow(2, n, m) - 1
 result += m - mcomb(n, a)
