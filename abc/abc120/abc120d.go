@@ -26,6 +26,12 @@ func unite(parent []int, i, j int) {
 	parent[i] = j
 }
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 func reverseInts(a []int) {
 	l := len(a)
 	for i := 0; i < l/2; i++ {
@@ -43,9 +49,8 @@ func main() {
 	}
 
 	parent := make([]int, N)
-	for i := 0; i < N; i++ {
-		parent[i] = -1
-	}
+	fill(parent, -1)
+
 	inconvenience := N * (N - 1) / 2
 	var result []int
 	for i := M - 1; i > -1; i-- {

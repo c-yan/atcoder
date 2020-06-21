@@ -27,6 +27,12 @@ func unite(parent []int, i, j int) {
 	parent[i] = j
 }
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 type aby struct{ a, b, y int }
 type byY []aby
 
@@ -61,9 +67,7 @@ func main() {
 	}
 
 	parent := make([]int, N)
-	for i := 0; i < N; i++ {
-		parent[i] = -1
-	}
+	fill(parent, -1)
 
 	sort.Sort(byY(roads))
 	sort.Sort(byW(citizen))

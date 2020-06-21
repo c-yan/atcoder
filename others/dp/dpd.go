@@ -7,6 +7,14 @@ import (
 	"strconv"
 )
 
+func reduce(f func(x, y int) int, a []int) int {
+	result := a[0]
+	for i := 1; i < len(a); i++ {
+		result = f(result, a[i])
+	}
+	return result
+}
+
 func max(x, y int) int {
 	if x > y {
 		return x
@@ -14,19 +22,9 @@ func max(x, y int) int {
 	return y
 }
 
-type intSlice []int
-
-func (s intSlice) max() int {
-	result := s[0]
-	for i := 1; i < len(s); i++ {
-		result = max(result, s[i])
-	}
-	return result
-}
-
-func (s intSlice) fill(x int) {
-	for i := 0; i < len(s); i++ {
-		s[i] = x
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
 	}
 }
 
@@ -34,8 +32,8 @@ func main() {
 	N := readInt()
 	W := readInt()
 
-	dp := make(intSlice, W+1)
-	dp.fill(-1)
+	dp := make([]int, W+1)
+	fill(dp, -1)
 	dp[0] = 0
 
 	for i := 0; i < N; i++ {
@@ -48,7 +46,7 @@ func main() {
 			dp[j+w] = max(dp[j+w], dp[j]+v)
 		}
 	}
-	fmt.Println(dp.max())
+	fmt.Println(reduce(max, dp))
 }
 
 const (

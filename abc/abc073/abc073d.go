@@ -24,7 +24,7 @@ func min(x, y int) int {
 	return y
 }
 
-func fillInts(a []int, x int) {
+func fill(a []int, x int) {
 	for i := 0; i < len(a); i++ {
 		a[i] = x
 	}
@@ -71,7 +71,7 @@ func main() {
 	d = make([][]int, N+1)
 	for i := 0; i < N+1; i++ {
 		d[i] = make([]int, N+1)
-		fillInts(d[i], math.MaxInt32)
+		fill(d[i], math.MaxInt32)
 		d[i][i] = 0
 	}
 

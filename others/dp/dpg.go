@@ -14,6 +14,12 @@ func max(a, b int) int {
 	return b
 }
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 func f(i int, links [][]int, dp []int) int {
 	if dp[i] != -1 {
 		return dp[i]
@@ -44,9 +50,7 @@ func main() {
 	}
 
 	dp := make([]int, N)
-	for i := 0; i < N; i++ {
-		dp[i] = -1
-	}
+	fill(dp, -1)
 
 	result := -1
 	for i := 0; i < N; i++ {

@@ -25,17 +25,21 @@ func unite(parent []int, i, j int) {
 	parent[i] = j
 }
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 func main() {
 	n := readInt()
 	k := readInt()
 	l := readInt()
 
 	roads := make([]int, n)
+	fill(roads, -1)
 	rails := make([]int, n)
-	for i := 0; i < n; i++ {
-		roads[i] = -1
-		rails[i] = -1
-	}
+	fill(rails, -1)
 
 	for i := 0; i < k; i++ {
 		p := readInt()

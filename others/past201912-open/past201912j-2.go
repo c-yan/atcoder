@@ -37,13 +37,17 @@ var (
 	A [][]int
 )
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 func costFrom(y1, x1 int) [][]int {
 	dp := make([][]int, H)
 	for i := 0; i < H; i++ {
 		dp[i] = make([]int, W)
-		for j := 0; j < W; j++ {
-			dp[i][j] = math.MaxInt64
-		}
+		fill(dp[i], math.MaxInt64)
 	}
 
 	dp[y1][x1] = 0

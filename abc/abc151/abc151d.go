@@ -16,6 +16,12 @@ func min(x, y int) int {
 	return y
 }
 
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
+	}
+}
+
 func warshallFloyd(n int, d [][]int) {
 	for k := 0; k < n; k++ {
 		for i := 0; i < n; i++ {
@@ -39,7 +45,7 @@ func main() {
 	d := make([][]int, n)
 	for i := 0; i < n; i++ {
 		d[i] = make([]int, n)
-		fillInts(d[i], math.MaxInt32)
+		fill(d[i], math.MaxInt32)
 		d[i][i] = 0
 	}
 
@@ -99,10 +105,4 @@ func readInt() int {
 		panic(err)
 	}
 	return result
-}
-
-func fillInts(a []int, x int) {
-	for i := 0; i < len(a); i++ {
-		a[i] = x
-	}
 }

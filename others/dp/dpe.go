@@ -16,11 +16,9 @@ func min(x, y int) int {
 	return y
 }
 
-type intSlice []int
-
-func (s intSlice) fill(x int) {
-	for i := 0; i < len(s); i++ {
-		s[i] = x
+func fill(a []int, x int) {
+	for i := 0; i < len(a); i++ {
+		a[i] = x
 	}
 }
 
@@ -30,8 +28,8 @@ func main() {
 	N := readInt()
 	W := readInt()
 
-	dp := make(intSlice, maxW+1)
-	dp.fill(math.MaxInt64)
+	dp := make([]int, maxW+1)
+	fill(dp, math.MaxInt64)
 	dp[0] = 0
 
 	for i := 0; i < N; i++ {
