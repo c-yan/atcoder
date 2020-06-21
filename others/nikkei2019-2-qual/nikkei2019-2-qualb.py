@@ -1,6 +1,8 @@
 N = int(input())
 D = list(map(int, input().split()))
 
+m = 998244353
+
 if D[0] != 0:
     print(0)
     exit()
@@ -19,6 +21,6 @@ for i in range(1, max(D) + 1):
     if i not in c:
         print(0)
         exit()
-    result *= pow(c[i - 1], c[i], 998244353)
-    result %= 998244353
+    result *= pow(c[i - 1], c[i], m)
+    result %= m
 print(result)
