@@ -56,24 +56,26 @@ func main() {
 	}
 
 	sort.Sort(sort.Reverse(sort.IntSlice(A)))
-	result := 0
+	maxX := 0
 	for i := 0; i < N-K+1; i++ {
-		result += A[i] * mcomb(N-(i+1), K-1)
-		result %= m
+		maxX += A[i] * mcomb(N-(i+1), K-1)
+		maxX %= m
 	}
 
 	sort.Ints(A)
-	t := 0
+	minX := 0
 	for i := 0; i < N-K+1; i++ {
-		t += A[i] * mcomb(N-(i+1), K-1)
-		t %= m
+		minX += A[i] * mcomb(N-(i+1), K-1)
+		minX %= m
 	}
 
-	result -= t
-	result %= m
-	result += m
-	result %= m
-	fmt.Println(result)
+	// maxX も minX も負の可能性があるので正に揃える
+	maxX += m
+	maxX %= m
+	minX += m
+	minX %= m
+
+	fmt.Println((maxX - minX + m) % m)
 }
 
 const (

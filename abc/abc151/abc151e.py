@@ -19,17 +19,15 @@ def mcomb(n, k):
 
 
 A.sort(reverse=True)
-result = 0
+maxX = 0
 for i in range(N - K + 1):
-    result += A[i] * mcomb(N - (i + 1), K - 1)
-    result %= m
+    maxX += A[i] * mcomb(N - (i + 1), K - 1)
+    maxX %= m
 
 A.sort()
-t = 0
+minX = 0
 for i in range(N - K + 1):
-    t += A[i] * mcomb(N - (i + 1), K - 1)
-    t %= m
+    minX += A[i] * mcomb(N - (i + 1), K - 1)
+    minX %= m
 
-result -= t
-result %= m
-print(result)
+print((maxX - minX) % m)
