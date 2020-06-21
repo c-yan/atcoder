@@ -104,13 +104,3 @@ func flush() {
 func println(args ...interface{}) (int, error) {
 	return fmt.Fprintln(stdoutWriter, args...)
 }
-
-func printIntln(v ...int) {
-	b := make([]byte, 0, 4096)
-	for i := 0; i < len(v)-1; i++ {
-		b = append(b, strconv.Itoa(v[i])...)
-		b = append(b, " "...)
-	}
-	b = append(b, strconv.Itoa(v[len(v)-1])...)
-	println(string(b))
-}

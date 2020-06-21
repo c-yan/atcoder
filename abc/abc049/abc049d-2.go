@@ -56,6 +56,8 @@ func readLinks(n, k int) [][]int {
 }
 
 func main() {
+	defer flush()
+
 	n := readInt()
 	k := readInt()
 	l := readInt()
@@ -71,11 +73,9 @@ func main() {
 		d[2000001*roadGroups[i]+railGroups[i]]++
 	}
 
-	result := make([]int, n)
 	for i := 0; i < n; i++ {
-		result[i] = d[2000001*roadGroups[i]+railGroups[i]]
+		println(d[2000001*roadGroups[i]+railGroups[i]])
 	}
-	printIntln(result...)
 }
 
 const (
@@ -102,12 +102,12 @@ func readInt() int {
 	return result
 }
 
-func printIntln(v ...int) {
-	b := make([]byte, 0, 4096)
-	for i := 0; i < len(v)-1; i++ {
-		b = append(b, strconv.Itoa(v[i])...)
-		b = append(b, " "...)
-	}
-	b = append(b, strconv.Itoa(v[len(v)-1])...)
-	fmt.Println(string(b))
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

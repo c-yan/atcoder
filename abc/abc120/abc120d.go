@@ -40,6 +40,8 @@ func reverseInts(a []int) {
 }
 
 func main() {
+	defer flush()
+
 	N := readInt()
 	M := readInt()
 	AB := make([]struct{ A, B int }, M)
@@ -66,7 +68,9 @@ func main() {
 	}
 
 	reverseInts(result)
-	printIntln(result...)
+	for i := 0; i < len(result); i++ {
+		println(result[i])
+	}
 }
 
 const (
@@ -93,12 +97,12 @@ func readInt() int {
 	return result
 }
 
-func printIntln(v ...int) {
-	b := make([]byte, 0, 4096)
-	for i := 0; i < len(v)-1; i++ {
-		b = append(b, strconv.Itoa(v[i])...)
-		b = append(b, " "...)
-	}
-	b = append(b, strconv.Itoa(v[len(v)-1])...)
-	fmt.Println(string(b))
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

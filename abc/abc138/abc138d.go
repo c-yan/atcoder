@@ -20,10 +20,12 @@ func (queue *intQueue) dequeue() int {
 }
 
 func main() {
+	defer flush()
+
 	n := readInt()
 	q := readInt()
 
-	results := make([]int, n)
+	result := make([]int, n)
 	links := make([][]int, n)
 
 	for i := 0; i < n-1; i++ {
@@ -36,7 +38,7 @@ func main() {
 	for i := 0; i < q; i++ {
 		p := readInt() - 1
 		x := readInt()
-		results[p] += x
+		result[p] += x
 	}
 
 	processed := make([]bool, n)
@@ -49,13 +51,15 @@ func main() {
 			if processed[j] {
 				continue
 			}
-			results[j] += results[i]
+			result[j] += result[i]
 			processed[j] = true
 			queue.enqueue(j)
 		}
 	}
 
-	printIntln(results...)
+	for i := 0; i < len(result); i++ {
+		println(result[i])
+	}
 }
 
 const (
@@ -82,12 +86,12 @@ func readInt() int {
 	return result
 }
 
-func printIntln(v ...int) {
-	b := make([]byte, 0, 4096)
-	for i := 0; i < len(v)-1; i++ {
-		b = append(b, strconv.Itoa(v[i])...)
-		b = append(b, " "...)
-	}
-	b = append(b, strconv.Itoa(v[len(v)-1])...)
-	fmt.Println(string(b))
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
