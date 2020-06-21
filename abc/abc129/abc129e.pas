@@ -1,4 +1,6 @@
 program abc129e;
+const
+  M = 1000000007;
 var
   L: string;
   I, T, Result: Int64;
@@ -12,10 +14,10 @@ begin
     if L[i] = '1' then
     begin
       Result := Result * 2 + t;
-      Result := Result mod 1000000007;
+      Result := Result mod M;
     end;
     T := T * 3;
-    T := T mod 1000000007;
+    T := T mod M;
   end;
   WriteLn(Result);
 end.
