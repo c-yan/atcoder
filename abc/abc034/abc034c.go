@@ -26,26 +26,16 @@ func mpow(x, y int) int {
 	return result
 }
 
-var (
-	fac []int
-)
-
-func initFactorialTable(n int) {
-	fac = make([]int, n+1)
-	fac[0] = 1
-	for i := 0; i < n; i++ {
-		fac[i+1] = fac[i] * (i + 1) % m
-	}
-}
-
 func mcomb(n, k int) int {
-	if n == 0 && k == 0 {
-		return 1
+	a := 1
+	b := 1
+	for i := 0; i < k; i++ {
+		a *= n - i
+		a %= m
+		b *= i + 1
+		b %= m
 	}
-	if n < k || k < 0 {
-		return 0
-	}
-	return (fac[n] * mpow(fac[n-k], m-2) % m) * mpow(fac[k], m-2) % m
+	return a * mpow(b, m-2) % m
 }
 
 func min(x, y int) int {
@@ -59,10 +49,8 @@ func main() {
 	W := readInt()
 	H := readInt()
 
-	n := W + H - 2
+	n := (W - 1) + (H - 1)
 	k := min(W-1, H-1)
-
-	initFactorialTable(n)
 
 	fmt.Println(mcomb(n, k))
 }
