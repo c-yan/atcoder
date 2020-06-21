@@ -8,14 +8,14 @@ import (
 	"strconv"
 )
 
-func gcd(a, b int) int {
-	if a < b {
-		a, b = b, a
+func gcd(x, y int) int {
+	if x < y {
+		x, y = y, x
 	}
-	for b > 0 {
-		a, b = b, a%b
+	for y > 0 {
+		x, y = y, x%y
 	}
-	return a
+	return x
 }
 
 func max(x, y int) int {

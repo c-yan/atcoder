@@ -19,18 +19,18 @@ type xyh struct {
 	h int
 }
 
-func max(a, b int) int {
-	if a > b {
-		return a
+func max(x, y int) int {
+	if x > y {
+		return x
 	}
-	return b
+	return y
 }
 
-func abs(a int) int {
-	if a < 0 {
-		return -a
+func abs(x int) int {
+	if x < 0 {
+		return -x
 	}
-	return a
+	return x
 }
 
 func main() {

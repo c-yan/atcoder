@@ -12,16 +12,16 @@ const (
 	m = 1000000007
 )
 
-func mpow(x int, n int) int {
+func mpow(x, y int) int {
 	result := 1
-	for n != 0 {
-		if n&1 == 1 {
+	for y != 0 {
+		if y&1 == 1 {
 			result *= x
 			result %= m
 		}
 		x *= x
 		x %= m
-		n >>= 1
+		y >>= 1
 	}
 	return result
 }

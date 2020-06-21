@@ -12,30 +12,25 @@ const (
 	m = 1000000007
 )
 
-var (
-	fac []int
-)
-
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
-}
-
-func mpow(x int, n int) int {
+func mpow(x, y int) int {
 	result := 1
-	for n != 0 {
-		if n&1 == 1 {
-			result = result * x % m
+	for y != 0 {
+		if y&1 == 1 {
+			result *= x
+			result %= m
 		}
-		x = x * x % m
-		n >>= 1
+		x *= x
+		x %= m
+		y >>= 1
 	}
 	return result
 }
 
-func mcomb(n int, k int) int {
+var (
+	fac []int
+)
+
+func mcomb(n, k int) int {
 	if n == 0 && k == 0 {
 		return 1
 	}
@@ -43,6 +38,13 @@ func mcomb(n int, k int) int {
 		return 0
 	}
 	return (fac[n] * mpow(fac[n-k], m-2) % m) * mpow(fac[k], m-2) % m
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }
 
 func main() {

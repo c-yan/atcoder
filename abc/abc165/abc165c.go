@@ -16,11 +16,11 @@ var (
 	result     int
 )
 
-func max(a, b int) int {
-	if a >= b {
-		return a
+func max(x, y int) int {
+	if x > y {
+		return x
 	}
-	return b
+	return y
 }
 
 func dfs(A []int) {

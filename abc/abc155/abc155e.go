@@ -6,11 +6,11 @@ import (
 	"os"
 )
 
-func min(a, b int) int {
-	if a < b {
-		return a
+func min(x, y int) int {
+	if x < y {
+		return x
 	}
-	return b
+	return y
 }
 
 func main() {
