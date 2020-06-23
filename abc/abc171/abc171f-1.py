@@ -25,6 +25,6 @@ fac = make_factorial_table(len(S) - 1 + K)
 
 result = 0
 for i in range(K + 1):
-    result += pow(26, i, m) * mcomb(len(S) - 1 + K - i, len(S) - 1) * pow(25, K - i, m)
+    result += pow(26, K - i, m) * mcomb(len(S) - 1 + i, i) * pow(25, i, m)
     result %= m
 print(result)
