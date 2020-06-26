@@ -1,4 +1,4 @@
-# Segment tree
+# Segment tree (Sum)
 class SegmentTree():
     _data = []
     _offset = 0
