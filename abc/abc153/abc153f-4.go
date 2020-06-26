@@ -1,4 +1,4 @@
-// 二分探索, SegmentTree
+// 二分探索, Segment tree (Sum)
 package main
 
 import (

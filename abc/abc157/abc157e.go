@@ -1,4 +1,4 @@
-// Segment tree
+// Segment tree (Bitwise Or)
 package main
 
 import (

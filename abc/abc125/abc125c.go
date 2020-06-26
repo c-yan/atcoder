@@ -1,4 +1,4 @@
-// SegmentTree
+// Segment tree (GCD)
 package main
 
 import (
