@@ -1,3 +1,4 @@
+// Sparse table (Min)
 package main
 
 import (

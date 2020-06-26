@@ -1,3 +1,4 @@
+// Segment tree (Min)
 package main
 
 import (

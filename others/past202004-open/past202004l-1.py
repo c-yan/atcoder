@@ -1,3 +1,4 @@
+# Segment tree (Min)
 class SegmentTree():
     _data = []
     _offset = 0

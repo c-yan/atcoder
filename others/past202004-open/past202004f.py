@@ -1,3 +1,4 @@
+# 優先度付きキュー
 from heapq import heappush, heappop
 
 N = int(input())

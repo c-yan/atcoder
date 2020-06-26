@@ -1,3 +1,4 @@
+# Sparse table (Min)
 class SparseTable():
     _data = None
     _lookup = None
