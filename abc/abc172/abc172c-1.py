@@ -1,6 +1,6 @@
 # 累積和, 二分探索
 from itertools import accumulate
-from bisect import bisect_left
+from bisect import bisect_right
 
 N, M, K = map(int, input().split())
 A = list(map(int, input().split()))
@@ -11,14 +11,8 @@ b = [0] + list(accumulate(B))
 
 result = 0
 for i in range(N + 1):
-    t = K - a[i]
-    if t < 0:
+    if a[i] > K:
         break
-    j = bisect_left(b, t)
-    if j == M + 1:
-        result = max(result, i + M)
-    elif b[j] == t:
-        result = max(result, i + j)
-    else:
-        result = max(result, i + j - 1)
+    j = bisect_right(b, K - a[i])
+    result = max(result, i + j - 1)
 print(result)
