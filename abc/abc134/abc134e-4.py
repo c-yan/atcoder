@@ -1,3 +1,4 @@
+# 二分探索
 from bisect import bisect_right
 
 N = int(input())

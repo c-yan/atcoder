@@ -1,3 +1,4 @@
+# 平衡二分探索木
 from random import random
 from sys import setrecursionlimit
 

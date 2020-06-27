@@ -1,3 +1,4 @@
+# 二分探索
 from collections import deque
 from bisect import bisect_left
 
