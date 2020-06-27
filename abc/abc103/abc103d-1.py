@@ -1,5 +1,8 @@
-N, M = map(int, input().split())
-ab = [list(map(int, input().split())) for _ in range(M)]
+from sys import stdin
+readline = stdin.readline
+
+N, M = map(int, readline().split())
+ab = [list(map(int, readline().split())) for _ in range(M)]
 
 ab.sort(key=lambda x: x[1])
 
