@@ -1,3 +1,4 @@
+# 累積和, 二分探索
 from itertools import accumulate
 from bisect import bisect_left
 
