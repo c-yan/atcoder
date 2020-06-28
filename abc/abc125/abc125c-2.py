@@ -1,51 +1,52 @@
 # Segment tree (GCD)
-from fractions import gcd
+from math import gcd
 
 
-class SegmentTree():
-    _data = []
-    _offset = 0
-    _size = 0
+class SegmentTree:
+    _f = None
+    _size = None
+    _offset = None
+    _data = None
 
-    def __init__(self, size):
-        _size = size
+    def __init__(self, size, f):
+        self._f = f
+        self._size = size
         t = 1
         while t < size:
             t *= 2
         self._offset = t - 1
         self._data = [0] * (t * 2 - 1)
 
-    def update_all(self, iterable):
-        self._data[self._offset:self._offset+self._size] = iterable
+    def build(self, iterable):
+        f = self._f
+        data = self._data
+        data[self._offset:self._offset + self._size] = iterable
         for i in range(self._offset - 1, -1, -1):
-            self._data[i] = gcd(self._data[i * 2 + 1], self._data[i * 2 + 2])
-
-    def update(self, index, value):
-        i = self._offset + index
-        self._data[i] = value
-        while i >= 1:
-            i = (i - 1) // 2
-            self._data[i] = gcd(self._data[i * 2 + 1], self._data[i * 2 + 2])
+            data[i] = f(data[i * 2 + 1], data[i * 2 + 2])
 
     def query(self, start, stop):
-        result = 0
-        l = start + self._offset
-        r = stop + self._offset
-        while l < r:
-            if l & 1 == 0:
-                result = gcd(result, self._data[l])
-            if r & 1 == 0:
-                result = gcd(result, self._data[r - 1])
-            l = l // 2
-            r = (r - 1) // 2
+        def iter_segments(data, l, r):
+            while l < r:
+                if l & 1 == 0:
+                    yield data[l]
+                if r & 1 == 0:
+                    yield data[r - 1]
+                l = l // 2
+                r = (r - 1) // 2
+        f = self._f
+        it = iter_segments(self._data, start + self._offset,
+                           stop + self._offset)
+        result = next(it)
+        for e in it:
+            result = f(result, e)
         return result
 
 
 N = int(input())
 A = list(map(int, input().split()))
 
-st = SegmentTree(N)
-st.update_all(A)
+st = SegmentTree(N, gcd)
+st.build(A)
 
 result = st.query(1, N)
 for i in range(1, N - 1):
