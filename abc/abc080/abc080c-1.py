@@ -1,3 +1,4 @@
+# ビット全探索
 N = int(input())
 F = [list(map(int, input().split())) for _ in range(N)]
 P = [list(map(int, input().split())) for _ in range(N)]
