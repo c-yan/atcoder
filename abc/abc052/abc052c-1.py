@@ -1,3 +1,4 @@
+# 素因数分解
 def prime_factorize(n):
     result = []
     if n % 2 == 0:
