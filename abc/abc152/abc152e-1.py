@@ -1,4 +1,4 @@
-# エラトステネスの篩, フェルマーの小定理
+# エラトステネスの篩, 素因数分解, フェルマーの小定理
 def make_prime_table(n):
     sieve = list(range(n + 1))
     sieve[0] = -1
@@ -12,32 +12,35 @@ def make_prime_table(n):
     return sieve
 
 
+def prime_factorize(n):
+    result = []
+    while n != 1:
+        p = prime_table[n]
+        e = 0
+        while n % p == 0:
+            n //= p
+            e += 1
+        result.append((p, e))
+    return result
+
+
 N = int(input())
 A = list(map(int, input().split()))
 
 m = 1000000007
 
-prime_table = make_prime_table(1000000)
+prime_table = make_prime_table(10 ** 6)
 
 lcm_factors = {}
-for i in range(N):
-    t = []
-    a = A[i]
-    while a != 1:
-        if len(t) != 0 and t[-1][0] == prime_table[a]:
-            t[-1][1] += 1
-        else:
-            t.append([prime_table[a], 1])
-        a //= prime_table[a]
-    for k, v in t:
-        if k not in lcm_factors or lcm_factors[k] < v:
-            lcm_factors[k] = v
+for a in A:
+    for p, e in prime_factorize(a):
+        if p not in lcm_factors or lcm_factors[p] < e:
+            lcm_factors[p] = e
 
 lcm = 1
-for k in lcm_factors:
-    for i in range(lcm_factors[k]):
-        lcm *= k
-        lcm %= m
+for p in lcm_factors:
+    lcm *= pow(p, lcm_factors[p], m)
+    lcm %= m
 
 result = 0
 for i in range(N):

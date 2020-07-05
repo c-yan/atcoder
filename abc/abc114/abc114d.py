@@ -1,4 +1,4 @@
-# エラトステネスの篩
+# エラトステネスの篩, 素因数分解
 def make_prime_table(n):
     sieve = list(range(n + 1))
     sieve[0] = -1
@@ -12,16 +12,26 @@ def make_prime_table(n):
     return sieve
 
 
+def prime_factorize(n):
+    result = []
+    while n != 1:
+        p = prime_table[n]
+        e = 0
+        while n % p == 0:
+            n //= p
+            e += 1
+        result.append((p, e))
+    return result
+
+
 N = int(input())
 
-prime_table = make_prime_table(100)
-
+prime_table = make_prime_table(N)
 d = {}
 for i in range(2, N + 1):
-    while i != 1:
-        d.setdefault(prime_table[i], 0)
-        d[prime_table[i]] += 1
-        i //= prime_table[i]
+    for p, e in prime_factorize(i):
+        d.setdefault(p, 0)
+        d[p] += e
 
 # 75 = 5 * 5 * 3
 #    = 15 * 5
