@@ -1,3 +1,4 @@
+# ビット全探索
 from itertools import product
 
 H, W, K = map(int, input().split())
