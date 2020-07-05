@@ -16,11 +16,11 @@ def prime_factorize(n):
     result = []
     while n != 1:
         p = prime_table[n]
-        c = 0
+        e = 0
         while n % p == 0:
             n //= p
-            c += 1
-        result.append((p, c))
+            e += 1
+        result.append((p, e))
     return result
 
 
