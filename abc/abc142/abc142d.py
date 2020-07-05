@@ -1,3 +1,4 @@
+# 素因数分解
 from fractions import gcd
 
 
