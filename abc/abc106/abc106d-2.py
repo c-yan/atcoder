@@ -15,4 +15,4 @@ result = []
 for _ in range(Q):
     p, q = map(int, input().split())
     result.append(sum(t[i][q] - t[i][i - 1] for i in range(p, q + 1)))
-print('\n'.join(str(v) for v in result))
+print(*result, sep='\n')

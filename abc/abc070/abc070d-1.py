@@ -27,4 +27,4 @@ result = []
 for _ in range(Q):
     x, y = map(int, input().split())
     result.append(d[x] + d[y])
-print('\n'.join(str(v) for v in result))
+print(*result, sep='\n')

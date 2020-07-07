@@ -29,4 +29,4 @@ result = []
 for _ in range(Q):
     l, r = map(int, input().split())
     result.append(cs[r] - cs[l - 1])
-print('\n'.join(str(i) for i in result))
+print(*result, sep='\n')

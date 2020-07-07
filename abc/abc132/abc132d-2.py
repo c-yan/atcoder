@@ -26,4 +26,4 @@ fac = make_factorial_table(n)
 result = []
 for i in range(1, K + 1):
     result.append(mcomb(K - 1, i - 1) * mcomb(N - K + 1, i) % m)
-print('\n'.join(str(i) for i in result))
+print(*result, sep='\n')

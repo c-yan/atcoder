@@ -12,6 +12,6 @@ for _ in range(N):
 R.sort()
 B.sort()
 if R:
-    print('\n'.join(str(r) for r in R))
+    print(*R, sep='\n')
 if B:
-    print('\n'.join(str(b) for b in B))
+    print(*B, sep='\n')

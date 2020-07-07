@@ -35,4 +35,4 @@ while time() - start_time + 0.14 < limit_secs:
         t[d] = old
     else:
         score = new_score
-print('\n'.join(str(e + 1) for e in t))
+print(*[e + 1 for e in t])

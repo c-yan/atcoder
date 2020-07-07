@@ -17,4 +17,4 @@ for i in range(1, M):
     if ok != N:
         t[ok] = a[i]
         eater[i] = ok + 1
-print('\n'.join(str(i) for i in eater))
+print(*eater, sep='\n')

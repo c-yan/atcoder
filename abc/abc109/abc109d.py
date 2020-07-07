@@ -36,4 +36,4 @@ while y < H:
     y += 1
 
 print(len(result))
-print('\n'.join(result))
+print(*result, sep='\n')

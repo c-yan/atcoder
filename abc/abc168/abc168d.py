@@ -18,4 +18,4 @@ while q:
             result[j] = i
             q.append(j)
 print('Yes')
-print('\n'.join(str(i) for i in result[2:]))
+print(*result[2:], sep='\n')

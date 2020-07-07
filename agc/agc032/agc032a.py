@@ -13,6 +13,6 @@ while b:
         break
 
 if not b:
-    print('\n'.join(str(i) for i in result))
+    print(*result, sep='\n')
 else:
     print(-1)

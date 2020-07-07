@@ -40,4 +40,4 @@ for _ in range(Q):
         y = rows[y]
         x = cols[x]
         result.append(N * (y - 1) + x - 1)
-print('\n'.join(str(i) for i in result))
+print(*result, sep='\n')

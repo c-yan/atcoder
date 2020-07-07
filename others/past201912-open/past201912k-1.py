@@ -33,4 +33,4 @@ for _ in range(Q):
         result.append('Yes')
     else:
         result.append('No')
-print('\n'.join(result))
+print(*result, sep='\n')
