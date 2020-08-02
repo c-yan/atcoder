@@ -26,6 +26,27 @@ func mpow(x, y int) int {
 	return result
 }
 
+func makePrimeTable(n int) []int {
+	sieve := make([]int, n+1)
+	sieve[0] = -1
+	sieve[1] = -1
+	for i := 2; i <= n; i += 2 {
+		sieve[i] = 2
+	}
+	for i := 3; i <= n; i += 2 {
+		if sieve[i] != 0 {
+			continue
+		}
+		sieve[i] = i
+		for j := i * i; j <= n; j += i * 2 {
+			if sieve[j] == 0 {
+				sieve[j] = i
+			}
+		}
+	}
+	return sieve
+}
+
 func main() {
 	maxA := 1000000
 
@@ -35,28 +56,15 @@ func main() {
 		A[i] = readInt()
 	}
 
-	sieve := make([]int, maxA+1)
-	sieve[0] = -1
-	sieve[1] = -1
-	for i := 2; i <= maxA; i++ {
-		if sieve[i] != 0 {
-			continue
-		}
-		sieve[i] = i
-		for j := i * i; j <= maxA; j += i {
-			if sieve[j] == 0 {
-				sieve[j] = i
-			}
-		}
-	}
+	primeTable := makePrimeTable(maxA)
 
 	lcmFactors := map[int]int{}
 	for i := 0; i < N; i++ {
 		t := map[int]int{}
 		a := A[i]
 		for a != 1 {
-			t[sieve[a]]++
-			a /= sieve[a]
+			t[primeTable[a]]++
+			a /= primeTable[a]
 		}
 		for k, v := range t {
 			if lcmFactors[k] < v {
