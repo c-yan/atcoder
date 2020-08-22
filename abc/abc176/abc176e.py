@@ -7,20 +7,16 @@ for _ in range(M):
     h, w = map(lambda x: int(x) - 1,input().split())
     hc[h] += 1
     wc[w] += 1
-    d.setdefault(h, {})
-    d[h][w] = 1
+    d[(h, w)] = 1
 
-result = 0
-hm = max(hc)
-wm = max(wc)
-hi = [i for i in range(H) if hc[i] == hm]
-wi = [i for i in range(W) if wc[i] == wm]
+maxh = max(hc)
+maxw = max(wc)
 
-for h in hi:
+result = maxh + maxw - 1
+wi = [i for i in range(W) if wc[i] == maxw]
+for h in [i for i in range(H) if hc[i] == maxh]:
     for w in wi:
-        if h in d and w in d[h]:
-            result = max(result, hm + wm - 1)
-        else:
-            result = max(result, hm + wm)
+        if (h, w) not in d:
+            result = maxh + maxw
             break
 print(result)
