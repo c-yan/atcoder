@@ -8,14 +8,6 @@ import (
 	"strconv"
 )
 
-// S
-var (
-	S []string
-	t [][]int
-	H int
-	W int
-)
-
 func min(x, y int) int {
 	if x < y {
 		return x
@@ -30,91 +22,69 @@ func max(x, y int) int {
 	return y
 }
 
-func printIntln(v ...int) {
-	if len(v) == 0 {
-		return
-	}
-	b := make([]byte, 0, 4096)
-	for i := 0; i < len(v)-1; i++ {
-		b = append(b, strconv.Itoa(v[i])...)
-		b = append(b, " "...)
-	}
-	b = append(b, strconv.Itoa(v[len(v)-1])...)
-	fmt.Println(string(b))
-}
-
-func dfs(q [][2]int) [][2]int {
-	nq := make([][2]int, 0)
-	for len(q) != 0 {
-		h, w := q[0][0], q[0][1]
-		nq = append(nq, [2]int{h, w})
-		q = q[1:]
-		if h-1 >= 0 && S[h-1][w] != '#' && t[h-1][w] == math.MaxInt64 {
-			q = append(q, [2]int{h - 1, w})
-			nq = append(nq, [2]int{h - 1, w})
-			t[h-1][w] = t[h][w]
-		}
-		if h+1 < H && S[h+1][w] != '#' && t[h+1][w] == math.MaxInt64 {
-			q = append(q, [2]int{h + 1, w})
-			nq = append(nq, [2]int{h + 1, w})
-			t[h+1][w] = t[h][w]
-		}
-		if w-1 >= 0 && S[h][w-1] != '#' && t[h][w-1] == math.MaxInt64 {
-			q = append(q, [2]int{h, w - 1})
-			nq = append(nq, [2]int{h, w - 1})
-			t[h][w-1] = t[h][w]
-		}
-		if w+1 < W && S[h][w+1] != '#' && t[h][w+1] == math.MaxInt64 {
-			q = append(q, [2]int{h, w + 1})
-			nq = append(nq, [2]int{h, w + 1})
-			t[h][w+1] = t[h][w]
-		}
-	}
-	return nq
-}
-
 func main() {
 	defer flush()
 
-	H = readInt()
-	W = readInt()
+	H := readInt()
+	W := readInt()
 	Ch := readInt() - 1
 	Cw := readInt() - 1
 	Dh := readInt() - 1
 	Dw := readInt() - 1
-	S = make([]string, H)
+	S := make([]string, H)
 	for i := 0; i < H; i++ {
 		S[i] = readString()
 	}
 
-	t = make([][]int, H)
+	t := make([][]int, H)
 	for i := 0; i < H; i++ {
 		t[i] = make([]int, W)
 		for j := 0; j < W; j++ {
-			t[i][j] = math.MaxInt64
+			if S[i][j] == '#' {
+				t[i][j] = -1
+			} else {
+				t[i][j] = math.MaxInt64
+			}
 		}
 	}
 
 	t[Ch][Cw] = 0
-	q := make([][2]int, 0)
+	q := make([][2]int, 0, 1024)
 	q = append(q, [2]int{Ch, Cw})
-	nq := dfs(q)
-	if t[Dh][Dw] != math.MaxInt64 {
-		println(t[Dh][Dw])
-		return
-	}
 
-	for {
-		q := make([][2]int, 0)
-		for len(nq) != 0 {
-			h, w := nq[0][0], nq[0][1]
-			nq = nq[1:]
+	for len(q) != 0 {
+		warpq := make([][2]int, 0, 1024)
+		for len(q) != 0 {
+			h, w := q[0][0], q[0][1]
+			warpq = append(warpq, [2]int{h, w})
+			q = q[1:]
+			if h-1 >= 0 && t[h-1][w] > t[h][w] {
+				q = append(q, [2]int{h - 1, w})
+				t[h-1][w] = t[h][w]
+			}
+			if h+1 < H && t[h+1][w] > t[h][w] {
+				q = append(q, [2]int{h + 1, w})
+				t[h+1][w] = t[h][w]
+			}
+			if w-1 >= 0 && t[h][w-1] > t[h][w] {
+				q = append(q, [2]int{h, w - 1})
+				t[h][w-1] = t[h][w]
+			}
+			if w+1 < W && t[h][w+1] > t[h][w] {
+				q = append(q, [2]int{h, w + 1})
+				t[h][w+1] = t[h][w]
+			}
+		}
+
+		if t[Dh][Dw] != math.MaxInt64 {
+			break
+		}
+
+		for i := 0; i < len(warpq); i++ {
+			h, w := warpq[i][0], warpq[i][1]
 			for i := max(0, h-2); i <= min(H-1, h+2); i++ {
 				for j := max(0, w-2); j <= min(W-1, w+2); j++ {
-					if S[i][j] == '#' {
-						continue
-					}
-					if t[i][j] != math.MaxInt64 {
+					if t[i][j] <= t[h][w]+1 {
 						continue
 					}
 					t[i][j] = t[h][w] + 1
@@ -122,17 +92,6 @@ func main() {
 				}
 			}
 		}
-		if len(q) == 0 {
-			break
-		}
-		nq = dfs(q)
-		if t[Dh][Dw] != math.MaxInt64 {
-			break
-		}
-	}
-
-	for h := 0; h < H; h++ {
-		//printIntln(t[h]...)
 	}
 
 	if t[Dh][Dw] == math.MaxInt64 {
