@@ -24,36 +24,37 @@ def main():
 
     t[Ch][Cw] = 0
     q = deque([(Ch, Cw)])
-    a = 0
+    warp_count = 0
+    warpq = []
     while q:
-        warpq = []
         while q:
+            warpq.append(q[0])
             h, w = q.popleft()
-            warpq.append((h, w))
-            if h - 1 >= 0 and t[h - 1][w] > a:
+            if h - 1 >= 0 and t[h - 1][w] > warp_count:
                 q.append((h - 1, w))
-                t[h - 1][w] = a
-            if h + 1 < H and t[h + 1][w] > a:
+                t[h - 1][w] = warp_count
+            if h + 1 < H and t[h + 1][w] > warp_count:
                 q.append((h + 1, w))
-                t[h + 1][w] = a
-            if w - 1 >= 0 and t[h][w - 1] > a:
+                t[h + 1][w] = warp_count
+            if w - 1 >= 0 and t[h][w - 1] > warp_count:
                 q.append((h, w - 1))
-                t[h][w - 1] = a
-            if w + 1 < W and t[h][w + 1] > a:
+                t[h][w - 1] = warp_count
+            if w + 1 < W and t[h][w + 1] > warp_count:
                 q.append((h, w + 1))
-                t[h][w + 1] = a
+                t[h][w + 1] = warp_count
 
         if t[Dh][Dw] != INF:
             break
 
-        a += 1
+        warp_count += 1
         for h, w in warpq:
             for i in range(max(0, h - 2), min(H, h + 3)):
                 ti = t[i]
                 for j in range(max(0, w - 2), min(W, w + 3)):
-                    if ti[j] > a:
-                        ti[j] = a
+                    if ti[j] > warp_count:
+                        ti[j] = warp_count
                         q.append((i, j))
+        warpq.clear()
 
     if t[Dh][Dw] == INF:
         print(-1)
