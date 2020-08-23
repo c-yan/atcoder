@@ -1,22 +1,33 @@
 H, W, M = map(int, input().split())
 
-hc = [0] * H
-wc = [0] * W
-d = {}
+rows = [0] * H
+cols = [0] * W
+s = set()
 for _ in range(M):
     h, w = map(lambda x: int(x) - 1,input().split())
-    hc[h] += 1
-    wc[w] += 1
-    d[(h, w)] = 1
+    rows[h] += 1
+    cols[w] += 1
+    s.add((h, w))
 
-maxh = max(hc)
-maxw = max(wc)
+max_rows = max(rows)
+max_cols = max(cols)
 
-result = maxh + maxw - 1
-wi = [i for i in range(W) if wc[i] == maxw]
-for h in [i for i in range(H) if hc[i] == maxh]:
-    for w in wi:
-        if (h, w) not in d:
-            result = maxh + maxw
+max_rows_indexes = [i for i in range(H) if rows[i] == max_rows]
+max_cols_indexes = [i for i in range(W) if cols[i] == max_cols]
+
+duplicate = True
+if M >= len(max_rows_indexes) * len(max_cols_indexes):
+    for h in max_rows_indexes:
+        for w in max_cols_indexes:
+            if (h, w) not in s:
+                duplicate = False
+                break
+        if not duplicate:
             break
-print(result)
+else:
+    duplicate = False
+
+if duplicate:
+    print(max_rows + max_cols - 1)
+else:
+    print(max_rows + max_cols)
