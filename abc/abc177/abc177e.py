@@ -29,7 +29,7 @@ def prime_factorize(n):
     return result
 
 
-def f():
+def is_pairwise_coprime():
     s = set()
     for i in range(N - 1, -1, -1):
         t = prime_factorize(A[i])
@@ -43,7 +43,7 @@ def f():
 N, *A = map(int, open(0).read().split())
 
 prime_table = make_prime_table(10 ** 6)
-if f():
+if is_pairwise_coprime():
     print('pairwise coprime')
 elif reduce(gcd, A) == 1:
     print('setwise coprime')
