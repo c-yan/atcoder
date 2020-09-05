@@ -1,7 +1,6 @@
 # PyPy なら通る
 # DP(配るDP)
-N, K = map(int, input().split())
-h = list(map(int, input().split()))
+N, K, *h = map(int, open(0).read().split())
 
 dp = [float('inf')] * N
 dp[0] = 0
