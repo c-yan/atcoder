@@ -1,13 +1,15 @@
-S = input()[::-1]
+S = input()
 
-while True:
-    if S == '':
-        print('YES')
-        exit()
-    for w in ['maerd', 'remaerd', 'esare', 'resare']:
-        if S.startswith(w):
-            S = S[len(w):]
+S = S[::-1]
+candidates = [s[::-1] for s in ['dream', 'dreamer', 'erase', 'eraser']]
+
+i = 0
+while i < len(S):
+    for c in candidates:
+        if S.startswith(c, i):
+            i += len(c)
             break
     else:
         print('NO')
         exit()
+print('YES')
