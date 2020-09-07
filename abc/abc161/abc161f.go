@@ -3,22 +3,48 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
 
+func isqrt(n int) int {
+	if n < 0 {
+		panic("isqrt argument must be nonnegative")
+	}
+
+	if n <= 1 {
+		return n
+	}
+
+	ok := 0
+	ng := 3037000500 // 3037000499 * 3037000499 < math.MaxInt64 < 3037000500 * 3037000500
+	if n < ng {
+		ng = n
+	}
+	for ng-ok > 1 {
+		m := ok + (ng-ok)/2
+		if m*m <= n {
+			ok = m
+		} else {
+			ng = m
+		}
+	}
+	return ok
+}
+
 func main() {
+	defer flush()
+
 	N := readInt()
 
 	if N == 2 {
 		// K = 2
-		fmt.Println(1)
+		println(1)
 		return
 	}
 
 	result := 2 // K = N - 1, N
-	for K := 2; K <= int(math.Sqrt(float64(N))); K++ {
+	for K := 2; K <= isqrt(N); K++ {
 		t := N
 		for t >= K && t%K == 0 {
 			t /= K
@@ -31,7 +57,7 @@ func main() {
 			result++
 		}
 	}
-	fmt.Println(result)
+	println(result)
 }
 
 const (
@@ -58,10 +84,12 @@ func readInt() int {
 	return result
 }
 
-func readInts(n int) []int {
-	result := make([]int, n)
-	for i := 0; i < n; i++ {
-		result[i] = readInt()
-	}
-	return result
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

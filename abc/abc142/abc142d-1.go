@@ -3,10 +3,34 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
+
+func isqrt(n int) int {
+	if n < 0 {
+		panic("isqrt argument must be nonnegative")
+	}
+
+	if n <= 1 {
+		return n
+	}
+
+	ok := 0
+	ng := 3037000500 // 3037000499 * 3037000499 < math.MaxInt64 < 3037000500 * 3037000500
+	if n < ng {
+		ng = n
+	}
+	for ng-ok > 1 {
+		m := ok + (ng-ok)/2
+		if m*m <= n {
+			ok = m
+		} else {
+			ng = m
+		}
+	}
+	return ok
+}
 
 func gcd(x, y int) int {
 	if x < y {
@@ -19,18 +43,19 @@ func gcd(x, y int) int {
 }
 
 func main() {
+	defer flush()
+
 	A := readInt()
 	B := readInt()
 
 	N := gcd(A, B)
 	if N == 1 {
-		fmt.Println(1)
+		println(1)
 		return
 	}
 
 	result := 1
-	r := int(math.Sqrt(float64(N)))
-	for x := 2; x < r+1; x++ {
+	for x := 2; x < isqrt(N)+1; x++ {
 		if N%x == 0 {
 			result++
 			for N%x == 0 {
@@ -44,7 +69,7 @@ func main() {
 	if N != 1 {
 		result++
 	}
-	fmt.Println(result)
+	println(result)
 }
 
 const (
@@ -69,4 +94,14 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }

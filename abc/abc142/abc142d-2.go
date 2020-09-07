@@ -3,10 +3,34 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
+
+func isqrt(n int) int {
+	if n < 0 {
+		panic("isqrt argument must be nonnegative")
+	}
+
+	if n <= 1 {
+		return n
+	}
+
+	ok := 0
+	ng := 3037000500 // 3037000499 * 3037000499 < math.MaxInt64 < 3037000500 * 3037000500
+	if n < ng {
+		ng = n
+	}
+	for ng-ok > 1 {
+		m := ok + (ng-ok)/2
+		if m*m <= n {
+			ok = m
+		} else {
+			ng = m
+		}
+	}
+	return ok
+}
 
 func gcd(x, y int) int {
 	if x < y {
@@ -20,8 +44,7 @@ func gcd(x, y int) int {
 
 func primeFactorize(n int) [][2]int {
 	var result [][2]int
-	rn := int(math.Sqrt(float64(n)))
-	for i := 2; i < rn+1; i++ {
+	for i := 2; i < isqrt(n)+1; i++ {
 		if n%i != 0 {
 			continue
 		}
@@ -39,10 +62,12 @@ func primeFactorize(n int) [][2]int {
 }
 
 func main() {
+	defer flush()
+
 	A := readInt()
 	B := readInt()
 
-	fmt.Println(len(primeFactorize(gcd(A, B))) + 1)
+	println(len(primeFactorize(gcd(A, B))) + 1)
 }
 
 const (
@@ -67,4 +92,14 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
