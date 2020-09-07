@@ -14,6 +14,7 @@ func max(x, y int) int {
 	}
 	return y
 }
+
 func main() {
 	defer flush()
 
