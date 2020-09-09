@@ -13,34 +13,25 @@ for _ in range(N - 1):
 
 for i in range(4):
     vs[i].sort(reverse=True)
-    vs[i] = list(accumulate(vs[i]))
+    vs[i] = [0] + list(accumulate(vs[i]))
 
 result = 0
-for i in range(len(vs[0]) + 1):
+for i in range(len(vs[0])):
     a = W - w1 * i
     if a < 0:
         break
-    for j in range(len(vs[1]) + 1):
+    for j in range(len(vs[1])):
         b = a - (w1 + 1) * j
         if b < 0:
             break
-        for k in range(len(vs[2]) + 1):
+        for k in range(len(vs[2])):
             c = b - (w1 + 2) * k
             if c < 0:
                 break
-            t = 0
-            if i != 0:
-              t += vs[0][i - 1]
-            if j != 0:
-              t += vs[1][j - 1]
-            if k != 0:
-              t += vs[2][k - 1]
-            for l in range(len(vs[3]) + 1):
+            t = vs[0][i] + vs[1][j] + vs[2][k]
+            for l in range(len(vs[3])):
                 d = c - (w1 + 3) * l
                 if d < 0:
                     break
-                if l == 0:
-                    result = max(result, t)
-                else:
-                    result = max(result, t + vs[3][l -1])
+                result = max(result, t + vs[3][l])
 print(result)
