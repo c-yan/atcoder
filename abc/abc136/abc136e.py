@@ -13,7 +13,7 @@ def calc_min_ops(r, d):
         i += 1
     i -= 1
     a, b = 0, 0
-    while j-i != 1:
+    while j - i != 1:
         if a <= b:
             i += 1
             a += r[i]
