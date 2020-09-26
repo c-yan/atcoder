@@ -1,9 +1,5 @@
-# Segment tree (Min)
-class SegmentTree():
-    _data = None
-    _index = None
-    _offset = None
-
+# Segment tree
+class SegmentTree:
     def __init__(self, data):
         size = len(data)
         t = 1

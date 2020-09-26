@@ -2,12 +2,6 @@ from sys import stdin
 
 
 class SegmentTree:
-    _op = None
-    _e = None
-    _size = None
-    _offset = None
-    _data = None
-
     def __init__(self, size, op, e):
         self._op = op
         self._e = e
@@ -16,22 +10,25 @@ class SegmentTree:
         while t < size:
             t *= 2
         self._offset = t - 1
-        self._data = [0] * (t * 2 - 1)
+        self._data = [e] * (t * 2 - 1)
+
+    def __getitem__(self, key):
+        return self._data[self._offset + key]
+
+    def __setitem__(self, key, value):
+        op = self._op
+        data = self._data
+        i = self._offset + key
+        data[i] = value
+        while i >= 1:
+            i = (i - 1) // 2
+            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
 
     def build(self, iterable):
         op = self._op
         data = self._data
         data[self._offset:self._offset + self._size] = iterable
         for i in range(self._offset - 1, -1, -1):
-            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
-
-    def update(self, index, value):
-        op = self._op
-        data = self._data
-        i = self._offset + index
-        data[i] = value
-        while i >= 1:
-            i = (i - 1) // 2
             data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
 
     def query(self, start, stop):
@@ -66,7 +63,7 @@ for _ in range(Q):
     if q[0] in '13':
         T, X, V = map(int, q.split())
         if T == 1:
-            st.update(X - 1, V)
+            st[X - 1] = V
         elif T == 3:
             ok = N + 1
             ng = X - 1

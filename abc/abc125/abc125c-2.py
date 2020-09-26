@@ -3,26 +3,34 @@ from math import gcd
 
 
 class SegmentTree:
-    _f = None
-    _size = None
-    _offset = None
-    _data = None
-
-    def __init__(self, size, f):
-        self._f = f
+    def __init__(self, size, op, e):
+        self._op = op
+        self._e = e
         self._size = size
         t = 1
         while t < size:
             t *= 2
         self._offset = t - 1
-        self._data = [0] * (t * 2 - 1)
+        self._data = [e] * (t * 2 - 1)
+
+    def __getitem__(self, key):
+        return self._data[self._offset + key]
+
+    def __setitem__(self, key, value):
+        op = self._op
+        data = self._data
+        i = self._offset + key
+        data[i] = value
+        while i >= 1:
+            i = (i - 1) // 2
+            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
 
     def build(self, iterable):
-        f = self._f
+        op = self._op
         data = self._data
         data[self._offset:self._offset + self._size] = iterable
         for i in range(self._offset - 1, -1, -1):
-            data[i] = f(data[i * 2 + 1], data[i * 2 + 2])
+            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
 
     def query(self, start, stop):
         def iter_segments(data, l, r):
@@ -33,19 +41,19 @@ class SegmentTree:
                     yield data[r - 1]
                 l = l // 2
                 r = (r - 1) // 2
-        f = self._f
+        op = self._op
         it = iter_segments(self._data, start + self._offset,
                            stop + self._offset)
-        result = next(it)
-        for e in it:
-            result = f(result, e)
+        result = self._e
+        for v in it:
+            result = op(result, v)
         return result
 
 
 N = int(input())
 A = list(map(int, input().split()))
 
-st = SegmentTree(N, gcd)
+st = SegmentTree(N, gcd, 0)
 st.build(A)
 
 result = st.query(1, N)

@@ -9,20 +9,23 @@ class SegmentTree:
         self._offset = t - 1
         self._data = [e] * (t * 2 - 1)
 
+    def __getitem__(self, key):
+        return self._data[self._offset + key]
+
+    def __setitem__(self, key, value):
+        op = self._op
+        data = self._data
+        i = self._offset + key
+        data[i] = value
+        while i >= 1:
+            i = (i - 1) // 2
+            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
+
     def build(self, iterable):
         op = self._op
         data = self._data
         data[self._offset:self._offset + self._size] = iterable
         for i in range(self._offset - 1, -1, -1):
-            data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
-
-    def update(self, index, value):
-        op = self._op
-        data = self._data
-        i = self._offset + index
-        data[i] = value
-        while i >= 1:
-            i = (i - 1) // 2
             data[i] = op(data[i * 2 + 1], data[i * 2 + 2])
 
     def query(self, start, stop):
@@ -49,6 +52,6 @@ N, K, *A = map(int, open(0).read().split())
 
 st = SegmentTree(max_A + 1, max, 0)
 for a in A:
-    st.update(a, st.query(max(a - K, 0), min(a + K + 1, max_A + 1)) + 1)
+    st[a] = st.query(max(a - K, 0), min(a + K + 1, max_A + 1)) + 1
 
 print(st.query(0, max_A + 1))
