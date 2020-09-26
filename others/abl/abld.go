@@ -83,19 +83,23 @@ func (st segmentTree) query(start, stop int) int {
 	return result
 }
 
+const (
+	maxA = 300000
+)
+
 func main() {
 	defer flush()
 
 	N := readInt()
 	K := readInt()
 
-	st := newSegmentTree(300000+1, max, 0)
+	st := newSegmentTree(maxA+1, max, 0)
 	for i := 0; i < N; i++ {
 		A := readInt()
-		st.update(A, st.query(max(A-K, 0), min(A+K+1, 300000+1))+1)
+		st.update(A, st.query(max(A-K, 0), min(A+K+1, maxA+1))+1)
 	}
 
-	println(st.query(0, 300000+1))
+	println(st.query(0, maxA+1))
 }
 
 const (

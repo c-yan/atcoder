@@ -43,10 +43,12 @@ class SegmentTree:
         return result
 
 
+max_A = 300000
+
 N, K, *A = map(int, open(0).read().split())
 
-st = SegmentTree(300000 + 1, max, 0)
+st = SegmentTree(max_A + 1, max, 0)
 for a in A:
-    st.update(a, st.query(max(a - K, 0), min(a + K + 1, 300000 + 1)) + 1)
+    st.update(a, st.query(max(a - K, 0), min(a + K + 1, max_A + 1)) + 1)
 
-print(st.query(0, 300000 + 1))
+print(st.query(0, max_A + 1))
