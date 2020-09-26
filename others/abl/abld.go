@@ -89,21 +89,13 @@ func main() {
 	N := readInt()
 	K := readInt()
 
-	A := make([]int, N)
-	for i := 0; i < N; i++ {
-		A[i] = readInt()
-	}
-
 	st := newSegmentTree(300000+1, max, 0)
-
-	t := make([]int, N)
-	result := 0
 	for i := 0; i < N; i++ {
-		t[i] = st.query(max(A[i]-K, 0), min(A[i]+K+1, 300000+1)) + 1
-		result = max(result, t[i])
-		st.update(A[i], t[i])
+		A := readInt()
+		st.update(A, st.query(max(A-K, 0), min(A+K+1, 300000+1))+1)
 	}
-	println(result)
+
+	println(st.query(0, 300000+1))
 }
 
 const (
