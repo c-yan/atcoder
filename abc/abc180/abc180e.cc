@@ -4,14 +4,11 @@ using ll = long long;
 using namespace std;
 
 #define MAX_N 17
-#define INF 4294967295
+#define INF 2147483647
 
 ll N;
 ll dp[1 << MAX_N][MAX_N];
 ll d[MAX_N][MAX_N];
-ll X[MAX_N];
-ll Y[MAX_N];
-ll Z[MAX_N];
 
 void solve() {
     rep(i, 1 << N) rep(j, N) dp[i][j] = INF;
@@ -34,12 +31,9 @@ int main() {
 
     cin >> N;
 
+    vector<ll> X(N), Y(N), Z(N);
     rep(i, N) {
-      	ll x, y, z;
-        cin >> x >> y >> z;
-        X[i] = x;
-        Y[i] = y;
-        Z[i] = z;
+        cin >> X[i] >> Y[i] >> Z[i];
     }
 
     rep(i, N) {
