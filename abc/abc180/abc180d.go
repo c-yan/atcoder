@@ -16,14 +16,11 @@ func main() {
 	B := readInt()
 
 	result := 0
-
-	for X <= (Y-1)/A && X*(A-1) < B {
+	for X <= (Y-1)/A && X*A < X+B {
 		X *= A
 		result++
 	}
-
 	result += ((Y - 1) - X) / B
-
 	println(result)
 }
 
