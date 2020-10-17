@@ -1,16 +1,10 @@
 X, Y, A, B = map(int, input().split())
 
 result = 0
-t = X
-
-while t * (A - 1) < B:
-    if t * A >= Y:
-        break
-    t *= A
+while X <= (Y - 1) // A and X * (A - 1) < B:
+    X *= A
     result += 1
 
-n = ((Y - 1) - t) // B
-t += B * n
-result += n
+result += ((Y - 1) - X) // B
 
 print(result)
