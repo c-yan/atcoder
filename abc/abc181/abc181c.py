@@ -1,21 +1,13 @@
 N = int(input())
 xy = [tuple(map(int, input().split())) for _ in range(N)]
 
-for i in range(N - 1):
+for i in range(2, N):
     xi, yi = xy[i]
-    for j in range(i + 1, N):
+    for j in range(1, i):
         xj, yj = xy[j]
-        for k in range(j + 1, N):
+        for k in range(j):
             x, y = xy[k]
-            if xj == xi:
-                if x == xi:
-                    print('Yes')
-                    exit()
-            elif yj == yi:
-                if y == yi:
-                    print('Yes')
-                    exit()
-            elif abs(y - (yj - yi) / (xj - xi) * (x - xi) - yi) < 0.000001:
+            if y * (xj - xi) == (yj - yi) * (x - xi) + yi * (xj - xi):
                 print('Yes')
                 exit()
 print('No')
