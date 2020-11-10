@@ -7,4 +7,4 @@ for a in A:
         d[a] += 1
     else:
         d[a] = 1
-print(sum(list(sorted(d[k] for k in d))[:-K]))
+print(sum(sorted(d.values())[:-K]))

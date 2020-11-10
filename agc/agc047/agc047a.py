@@ -26,7 +26,7 @@ for a in A:
     d[t] += 1
 
 result = 0
-xs = list(d.keys())
+xs = list(d)
 for i in range(len(xs)):
     x, y = xs[i]
     t = d[xs[i]]

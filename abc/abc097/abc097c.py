@@ -5,7 +5,7 @@ def l2s(list, alphabets):
 s = input()
 K = int(input())
 
-alphabets = list(sorted(set(s)))
+alphabets = sorted(set(s))
 if K == 1:
     print(alphabets[0])
     exit()

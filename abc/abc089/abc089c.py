@@ -9,7 +9,7 @@ for t in s:
     else:
         d[t] = 1
 
-l = list(d.keys())
+l = list(d)
 result = 0
 for i in range(len(l) - 2):
     for j in range(i + 1, len(l) - 1):

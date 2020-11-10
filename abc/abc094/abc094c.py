@@ -1,7 +1,7 @@
 N = int(input())
 X = list(map(int, input().split()))
 
-y = list(sorted(X))
+y = sorted(X)
 a = y[N // 2 - 1]
 b = y[N // 2]
 for i in range(N):

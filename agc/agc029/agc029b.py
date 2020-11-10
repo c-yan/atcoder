@@ -9,7 +9,7 @@ for a in A:
         d[a] = 1
 
 result = 0
-for a in list(sorted(d.keys(), reverse=True)):
+for a in sorted(d, reverse=True):
     if a not in d:
         continue
     t = (1 << a.bit_length()) - a
