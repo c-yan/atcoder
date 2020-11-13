@@ -9,5 +9,4 @@ for x in w:
         t.append(x)
     else:
         t[i] = x
-    t.sort()
 print(len(t))
