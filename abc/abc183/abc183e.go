@@ -22,7 +22,7 @@ func main() {
 	}
 
 	au := make([]int, W)
-	aul := make([]int, H+W+1)
+	aul := make([]int, H+W-1)
 	t := 0
 	for h := 0; h < H; h++ {
 		al := 0
