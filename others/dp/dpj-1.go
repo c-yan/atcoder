@@ -7,23 +7,23 @@ import (
 	"strconv"
 )
 
+const (
+	M = 301
+)
+
 var (
-	dp map[int]float64
+	dp []float64
 	N  int
 )
 
-func spread(a int) (int, int, int) {
-	return a >> 18, (a >> 9) & 255, a & 255
-}
-
 func despread(x, y, z int) int {
-	return (x << 18) | (y << 9) | z
+	return x*M*M + y*M + z
 }
 
 func f(x, y, z int) float64 {
 	a := despread(x, y, z)
-	if v, ok := dp[a]; ok {
-		return v
+	if dp[a] != -1.0 {
+		return dp[a]
 	}
 	if a == 0 {
 		return 0
@@ -57,7 +57,10 @@ func main() {
 		t[a[i]]++
 	}
 
-	dp = make(map[int]float64, 10000000)
+	dp = make([]float64, M*M*M)
+	for i := 0; i < M*M*M; i++ {
+		dp[i] = -1.0
+	}
 	println(f(t[3], t[2], t[1]))
 }
 
