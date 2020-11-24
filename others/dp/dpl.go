@@ -7,48 +7,64 @@ import (
 	"strconv"
 )
 
-var (
-	a      []int
-	dp     [][][2]int
-	calced [][]bool
+//
+const (
+	M   = 3001
+	INF = M * 1000000000
 )
 
-func f(u, l, r int) [2]int {
+//
+var (
+	N  int
+	a  []int
+	dp []int
+)
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
+}
+
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+func f(l, r, t int) int {
 	if l > r {
-		return [2]int{0, 0}
+		return 0
 	}
-	if calced[l][r] {
-		return dp[l][r]
+	i := l*M + r
+	if dp[i] != INF {
+		return dp[i]
 	}
-	calced[l][r] = true
-	t0 := f(u^1, l+1, r)
-	t0[u] += a[l]
-	t1 := f(u^1, l, r-1)
-	t1[u] += a[r]
-	if t0[u]-t0[u^1] > t1[u]-t1[u^1] {
-		dp[l][r] = t0
+
+	if t == 0 {
+		dp[i] = max(f(l+1, r, t^1)+a[l], f(l, r-1, t^1)+a[r])
 	} else {
-		dp[l][r] = t1
+		dp[i] = min(f(l+1, r, t^1)-a[l], f(l, r-1, t^1)-a[r])
 	}
-	return dp[l][r]
+	return dp[i]
 }
 
 func main() {
-	N := readInt()
+	defer flush()
+
+	N = readInt()
 	a = make([]int, N)
 	for i := 0; i < N; i++ {
 		a[i] = readInt()
 	}
 
-	dp = make([][][2]int, N)
-	calced = make([][]bool, N)
-	for i := 0; i < N; i++ {
-		dp[i] = make([][2]int, N)
-		calced[i] = make([]bool, N)
+	dp = make([]int, M*M)
+	for i := 0; i < M*M; i++ {
+		dp[i] = INF
 	}
-
-	t := f(0, 0, N-1)
-	fmt.Println(t[0] - t[1])
+	println(f(0, N-1, 0))
 }
 
 const (
@@ -73,4 +89,14 @@ func readInt() int {
 		panic(err)
 	}
 	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
