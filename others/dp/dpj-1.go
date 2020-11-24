@@ -7,10 +7,12 @@ import (
 	"strconv"
 )
 
+//
 const (
 	M = 301
 )
 
+//
 var (
 	dp []float64
 	N  int
