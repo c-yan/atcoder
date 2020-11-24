@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -18,23 +19,23 @@ func reverseString(s string) string {
 }
 
 func main() {
-	s := reverseString(readString())
+	defer flush()
 
-	for {
-	next:
-		if s == "" {
-			fmt.Println("YES")
-			return
-		}
-		for _, w := range words {
-			if strings.HasPrefix(s, w) {
-				s = s[len(w):]
-				goto next
-			}
-		}
-		fmt.Println("NO")
+	S := readString()
+
+	s := reverseString(S)
+next:
+	if s == "" {
+		println("YES")
 		return
 	}
+	for _, w := range words {
+		if strings.HasPrefix(s, w) {
+			s = s[len(w):]
+			goto next
+		}
+	}
+	println("NO")
 }
 
 const (
@@ -51,4 +52,22 @@ var stdinScanner = func() *bufio.Scanner {
 func readString() string {
 	stdinScanner.Scan()
 	return stdinScanner.Text()
+}
+
+func readInt() int {
+	result, err := strconv.Atoi(readString())
+	if err != nil {
+		panic(err)
+	}
+	return result
+}
+
+var stdoutWriter = bufio.NewWriter(os.Stdout)
+
+func flush() {
+	stdoutWriter.Flush()
+}
+
+func println(args ...interface{}) (int, error) {
+	return fmt.Fprintln(stdoutWriter, args...)
 }
