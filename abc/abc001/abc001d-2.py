@@ -5,7 +5,7 @@ readline = stdin.readline
 
 N = int(readline())
 
-t = [0] * 24 * 60 + 1
+t = [0] * (24 * 60 + 1)
 for _ in range(N):
     S, E = readline()[:-1].split('-')
     h = int(S[:2])
@@ -26,6 +26,7 @@ result = []
 for i in range(24 * 60 + 1):
     if t[i] == 0 and s != -1:
         result.append('%02d%02d-%02d%02d' % (s // 60, s % 60, i // 60, i % 60))
+        s = -1
     elif t[i] != 0 and s == -1:
         s = i
 print(*result, sep='\n')
