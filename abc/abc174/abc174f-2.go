@@ -42,7 +42,7 @@ func main() {
 
 	c := make([]int, N)
 	for i := 0; i < N; i++ {
-		c[i] = readInt()
+		c[i] = readInt() - 1
 	}
 
 	lr := make([][3]int, Q)
@@ -55,11 +55,14 @@ func main() {
 
 	result := make([]int, Q)
 	bit := newBIT(N)
-	mr := map[int]int{}
+	mr := make([]int, N)
+	for i := 0; i < N; i++ {
+		mr[i] = -1
+	}
 	k := 0
 	for i := 0; i < N; i++ {
-		if j, ok := mr[c[i]]; ok {
-			bit.add(j, -1)
+		if mr[c[i]] != -1 {
+			bit.add(mr[c[i]], -1)
 		}
 		bit.add(i, 1)
 		mr[c[i]] = i
