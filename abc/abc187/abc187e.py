@@ -11,7 +11,7 @@ for a, b in ab:
     links[a].append(b)
     links[b].append(a)
 
-parent = [-1] * (N)
+parent = [-1] * N
 parent[0] = 0
 q = deque([0])
 while q:
@@ -21,7 +21,6 @@ while q:
             continue
         parent[j] = i
         q.append(j)
-parent[0] = -1
 
 c = [0] * N
 Q = int(readline())
