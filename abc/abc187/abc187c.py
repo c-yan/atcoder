@@ -1,5 +1,9 @@
-N = int(input())
-S = [input() for _ in range(N)]
+from sys import stdin
+
+readline = stdin.readline
+
+N = int(readline())
+S = [readline()[:-1] for _ in range(N)]
 
 t = set()
 for s in S:
