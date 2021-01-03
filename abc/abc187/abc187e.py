@@ -27,18 +27,13 @@ Q = int(readline())
 for _ in range(Q):
     t, e, x = map(int, readline().split())
     a, b = ab[e - 1]
-    if t == 1:
-        if a == 0 or parent[b] == a:
-            c[0] += x
-            c[b] -= x
-        else:
-            c[a] += x
-    elif t == 2:
-        if b == 0 or parent[a] == b:
-            c[0] += x
-            c[a] -= x
-        else:
-            c[b] += x
+    if t == 2:
+        a, b = b, a
+    if a == parent[b]:
+        c[0] += x
+        c[b] -= x
+    else:
+        c[a] += x
 
 q = deque([0])
 while q:
