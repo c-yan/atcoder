@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 def make_factorial_table(n):
     result = [0] * (n + 1)
     result[0] = 1
@@ -15,6 +16,7 @@ def mcomb(n, k):
         return 0
     return fac[n] * pow(fac[n - k], m - 2, m) * pow(fac[k], m - 2, m) % m
 
+
 m = 1000000007
 
 n, *a = map(int, open(0).read().split())
@@ -26,7 +28,7 @@ r = a.index(b, l + 1)
 fac = make_factorial_table(n + 1)
 result = []
 for k in range(1, n + 2):
-    t = mcomb(n + 1, k) - mcomb(n - (r - l),k - 1)
+    t = mcomb(n + 1, k) - mcomb(n - (r - l), k - 1)
     t %= m
     result.append(t)
 print(*result, sep='\n')
