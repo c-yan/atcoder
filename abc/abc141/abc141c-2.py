@@ -1,25 +1,20 @@
 # imos 法
-N, K, Q = map(int, input().split())
+from itertools import accumulate
 
-score = [0] * N
-score[0] = K
-for _ in range(Q):
-    A = int(input())
-    if A == 1:
-        score[1] -= 1
-    elif A == N:
-        score[0] -= 1
-        score[N - 1] += 1
+N, K, Q, *A = map(int, open(0).read().split())
+
+t = [0] * N
+t[0] = K
+for a in A:
+    t[0] -= 1
+    t[a - 1] += 1
+    if a < N:
+        t[a] += 1
+
+result = []
+for x in accumulate(t):
+    if x > 0:
+        result.append('Yes')
     else:
-        score[0] -= 1
-        score[A - 1] += 1
-        score[A] -= 1
-
-for i in range(1, N):
-    score[i] += score[i - 1]
-
-for v in score:
-    if v > 0:
-        print('Yes')
-    else:
-        print('No')
+        result.append('No')
+print(*result, sep='\n')

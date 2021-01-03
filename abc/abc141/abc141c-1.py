@@ -1,10 +1,13 @@
-N, K, Q = map(int, input().split())
+N, K, Q, *A = map(int, open(0).read().split())
 
-score = [K - Q] * (N + 1)
-for _ in range(Q):
-    score[int(input())] += 1
-for i in range(1, N + 1):
+score = [K - Q] * N
+for a in A:
+    score[a - 1] += 1
+
+result = []
+for i in range(N):
     if score[i] > 0:
-        print('Yes')
+        result.append('Yes')
     else:
-        print('No')
+        result.append('No')
+print(*result, sep='\n')
