@@ -1,14 +1,14 @@
 # imos 法
-N, M = map(int, input().split())
+from sys import stdin
+from itertools import accumulate
 
-cs = [0] * N  # cs はIDカードで通れるゲートの数
+readlie = stdin.readline
+
+N, M = map(int, readlie().split())
+
+t = [0] * (N + 1)  # t はIDカードで通れるゲートの数
 for _ in range(M):
-    L, R = map(int, input().split())
-    cs[L - 1] += 1
-    if R != N:
-        cs[R] -= 1
-
-for i in range(1, N):
-    cs[i] += cs[i - 1]
-
-print(cs.count(M))
+    L, R = map(int, readlie().split())
+    t[L - 1] += 1
+    t[R] -= 1
+print(list(accumulate(t[:-1])).count(M))

@@ -1,11 +1,14 @@
 # imos 法
-N, Q = map(int, input().split())
-cs = [0] * N
+from sys import stdin
+from itertools import accumulate
+
+readline = stdin.readline
+
+N, Q = map(int, readline().split())
+
+t = [0] * (N + 1)
 for _ in range(Q):
-    l, r = map(int, input().split())
-    cs[l - 1] += 1
-    if r != N:
-        cs[r] -= 1
-for i in range(1, N):
-    cs[i] += cs[i - 1]
-print(''.join(str(i % 2) for i in cs))
+    l, r = map(int, readline().split())
+    t[l - 1] += 1
+    t[r] -= 1
+print(''.join(str(x % 2) for x in accumulate(t[:-1])))

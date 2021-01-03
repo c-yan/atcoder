@@ -1,8 +1,7 @@
-N = int(input())
-a = list(map(int, input().split()))
+N, *a = map(int, open(0).read().split())
 
-t = [0] * (10 ** 5 + 3)  # t[X + 1] は ai = X となる i の個数
+t = [0] * (10 ** 5 + 2)  # t[X + 1] は操作により ai = X となりうる i の個数
 for x in a:
-    for i in range(x - 1, x + 2):
+    for i in range(x, x + 3):
         t[i] += 1
 print(max(t))

@@ -1,11 +1,14 @@
 # imos 法
-n = int(input())
-cs = [0] * (1000000 + 1)
+from sys import stdin
+from itertools import accumulate
+
+readline = stdin.readline
+
+n = int(readline())
+
+t = [0] * (1000000 + 2)
 for _ in range(n):
-    a, b = map(int, input().split())
-    cs[a] += 1
-    if b != 1000000:
-        cs[b + 1] -= 1
-for i in range(1, 1000000 + 1):
-    cs[i] += cs[i - 1]
-print(max(cs))
+    a, b = map(int, readline().split())
+    t[a] += 1
+    t[b + 1] -= 1
+print(max(accumulate(t[:-1])))

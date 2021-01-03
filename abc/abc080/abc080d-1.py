@@ -1,8 +1,12 @@
-N, C = map(int, input().split())
+from sys import stdin
+
+readline = stdin.readline
+
+N, C = map(int, readline().split())
 
 tt = [[0] * (10 ** 5 + 1) for _ in range(C)]
 for _ in range(N):
-    s, t, c = map(int, input().split())
+    s, t, c = map(int, readline().split())
     for i in range(s - 1, t):
         tt[c - 1][i] = 1
 
