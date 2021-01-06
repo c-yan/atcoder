@@ -1,18 +1,22 @@
 # 幅優先探索
+from sys import stdin
 from collections import deque
 
-N = int(input())
-links = [[] for _ in range(N + 1)]
+readline = stdin.readline
+INF = 10 ** 20
+
+N = int(readline())
+links = [[] for _ in range(N)]
 for _ in range(N - 1):
-    a, b, c = map(int, input().split())
-    links[a].append((b, c))
-    links[b].append((a, c))
+    a, b, c = map(int, readline().split())
+    links[a - 1].append((b - 1, c))
+    links[b - 1].append((a - 1, c))
 
-Q, K = map(int, input().split())
+Q, K = map(int, readline().split())
 
-d = [float('inf')] * (N + 1)
-d[K] = 0
-q = deque([K])
+d = [INF] * N
+d[K - 1] = 0
+q = deque([K - 1])
 while q:
     i = q.popleft()
     for j, c in links[i]:
@@ -22,6 +26,6 @@ while q:
 
 result = []
 for _ in range(Q):
-    x, y = map(int, input().split())
-    result.append(d[x] + d[y])
+    x, y = map(int, readline().split())
+    result.append(d[x - 1] + d[y - 1])
 print(*result, sep='\n')

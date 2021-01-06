@@ -1,30 +1,36 @@
 # ダイクストラ法
+from sys import stdin
 from heapq import heappop, heappush
 
-N = int(input())
-links = [[] for _ in range(N + 1)]
+readline = stdin.readline
+INF = 10 ** 20
+
+N = int(readline())
+links = [[] for _ in range(N)]
 for _ in range(N - 1):
-    a, b, c = map(int, input().split())
-    links[a].append((b, c))
-    links[b].append((a, c))
+    a, b, c = map(int, readline().split())
+    links[a - 1].append((b - 1, c))
+    links[b - 1].append((a - 1, c))
 
-Q, K = map(int, input().split())
+Q, K = map(int, readline().split())
 
-d = [float('inf')] * (N + 1)
-d[K] = 0
-#prev = [None] * (N + 1)
-q = [(0, K)]
+d = [INF] * N
+d[K - 1] = 0
+#prev = [None] * N
+q = [(0, K - 1)]
 while q:
-    _, u = heappop(q)
-    for v, c in links[u]:
-        alt = d[u] + c
-        if d[v] > alt:
-            d[v] = alt
-            #prev[v] = u
-            heappush(q, (alt, v))
+    c, a = heappop(q)
+    if d[a] != c:
+        continue
+    for b, c in links[a]:
+        nc = d[a] + c
+        if d[b] > nc:
+            d[b] = nc
+            #prev[b] = a
+            heappush(q, (nc, b))
 
 result = []
 for _ in range(Q):
-    x, y = map(int, input().split())
-    result.append(d[x] + d[y])
+    x, y = map(int, readline().split())
+    result.append(d[x - 1] + d[y - 1])
 print(*result, sep='\n')
