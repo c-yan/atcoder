@@ -1,6 +1,5 @@
-# 幅優先探索
+# 深さ優先探索
 from sys import stdin
-from collections import deque
 
 readline = stdin.readline
 INF = 10 ** 20
@@ -16,9 +15,9 @@ Q, K = map(int, readline().split())
 
 d = [INF] * N
 d[K - 1] = 0
-q = deque([K - 1])
+q = [K - 1]
 while q:
-    i = q.popleft()
+    i = q.pop()
     for j, c in links[i]:
         if d[i] + c < d[j]:
             d[j] = d[i] + c

@@ -1,6 +1,6 @@
-# ダイクストラ法
+# 幅優先探索
 from sys import stdin
-from heapq import heappop, heappush
+from collections import deque
 
 readline = stdin.readline
 INF = 10 ** 20
@@ -16,18 +16,13 @@ Q, K = map(int, readline().split())
 
 d = [INF] * N
 d[K - 1] = 0
-#prev = [None] * N
-q = [(0, K - 1)]
+q = deque([K - 1])
 while q:
-    c, a = heappop(q)
-    if d[a] != c:
-        continue
-    for b, c in links[a]:
-        nc = d[a] + c
-        if d[b] > nc:
-            d[b] = nc
-            #prev[b] = a
-            heappush(q, (nc, b))
+    i = q.popleft()
+    for j, c in links[i]:
+        if d[i] + c < d[j]:
+            d[j] = d[i] + c
+            q.append(j)
 
 result = []
 for _ in range(Q):
