@@ -12,6 +12,6 @@ for i in range(K, 0, -1):
 
 result = 0
 for i in range(1, K + 1):
-    result += c[K // i] * i
+    result += c[i] * i
     result %= MOD
 print(result)
