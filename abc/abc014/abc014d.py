@@ -21,13 +21,13 @@ while q:
         depth[j] = d + 1
         q.append(j)
 
-a = [None] * N
-a[0] = 0
+parent = [None] * N
+parent[0] = 0
 for i in range(1, N):
     d = depth[i]
     for j in links[i]:
         if depth[j] < d:
-            a[i] = j
+            parent[i] = j
             break
 
 
@@ -40,6 +40,9 @@ def do_doubling(a, n):
         result[x] = a
         x *= 2
     return result
+
+
+ansestor = do_doubling(parent, max(depth))
 
 
 # get_nth_ancestor
@@ -70,8 +73,6 @@ def get_lca(a, b):
             ng = m
     return get_na(a, ok)
 
-
-ansestor = do_doubling(a, max(depth))
 
 result = []
 Q = int(readline())
