@@ -1,5 +1,6 @@
 from sys import stdin
 from collections import deque
+from functools import lru_cache
 
 readline = stdin.readline
 m = 1000000007
@@ -26,14 +27,11 @@ while q:
         dist[y] = dist[x] + 1
         q.append(y)
 
-cache = {}
 
-
+@lru_cache(maxsize=None)
 def f(p):
     if p == a:
         return 1
-    if p in cache:
-        return cache[p]
     d = dist[p]
     result = 0
     for x in links[p]:
@@ -41,7 +39,6 @@ def f(p):
             continue
         result += f(x)
         result %= m
-    cache[p] = result
     return result
 
 
