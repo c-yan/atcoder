@@ -9,7 +9,6 @@ N = int(readline())
 root = -1
 children = [[] for _ in range(N + 1)]
 parent = [[-1] * (N + 1) for _ in range(18)]
-
 for i in range(1, N + 1):
     p = int(readline())
     parent[0][i] = p

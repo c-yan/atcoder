@@ -1,17 +1,20 @@
-N = int(input())
+from sys import stdin
+
+readline = stdin.readline
+
+N = int(readline())
 
 root = -1
 children = [[] for _ in range(N + 1)]
-left = [0] * (N + 1)
-right = [0] * (N + 1)
-
 for i in range(1, N + 1):
-    p = int(input())
+    p = int(readline())
     if p == -1:
         root = i
     else:
         children[p].append(i)
 
+left = [0] * (N + 1)
+right = [0] * (N + 1)
 i = 0
 s = [root]
 while s:
@@ -25,10 +28,10 @@ while s:
     else:
         right[-n] = i
 
-Q = int(input())
+Q = int(readline())
 result = []
 for _ in range(Q):
-    a, b = map(int, input().split())
+    a, b = map(int, readline().split())
     if left[b] < left[a] < right[b]:
         result.append('Yes')
     else:
