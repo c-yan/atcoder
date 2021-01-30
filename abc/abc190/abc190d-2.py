@@ -14,6 +14,5 @@ N = int(input())
 a = N
 while a % 2 == 0:
     a //= 2
-a *= 2
 
-print(len(list(enumerate_divisors(a))))
+print(2 * len(list(enumerate_divisors(a))))

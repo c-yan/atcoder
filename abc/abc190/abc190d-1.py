@@ -26,9 +26,9 @@ N = int(input())
 a = N
 while a % 2 == 0:
     a //= 2
-a *= 2
 
 result = 1
 for p, e in prime_factorize(a):
     result *= e + 1
+result *= 2
 print(result)
