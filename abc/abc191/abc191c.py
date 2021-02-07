@@ -2,8 +2,8 @@ H, W = map(int, input().split())
 S = [input() for _ in range(H)]
 
 result = 0
-for y in range(H):
-    for x in range(W):
+for y in range(H - 1):
+    for x in range(W - 1):
         t = 0
         if S[y][x] == '#':
             t += 1
