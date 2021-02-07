@@ -18,8 +18,8 @@ for y in range((Y - R) // m * m, (Y + R) // m * m + 1, m):
     d = b * b - 4 * a * c
     if d < 0:
         continue
-    x0 = int((-b - sqrt(d)) / 2 * a) // m * m
-    x1 = int((-b + sqrt(d)) / 2 * a) // m * m
+    x0 = int((-b - sqrt(d)) / (2 * a)) // m * m
+    x1 = int((-b + sqrt(d)) / (2 * a)) // m * m
     for x in range(x0 - m, x0 + m + 1, m):
         if not is_inside_circle(x, y):
             continue
