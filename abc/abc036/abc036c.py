@@ -1,5 +1,4 @@
-N = int(input())
-a = [int(input()) for _ in range(N)]
+N, *a = map(int, open(0).read().split())
 
 d = {}
 for i, j in enumerate(sorted(set(a))):
