@@ -11,6 +11,6 @@ b = int(N)
 result = 0
 for i in range(1, int(a) + 1):
     if int(str(i) * 2) > b:
-        continue
+        break
     result += 1
 print(result)
