@@ -9,7 +9,7 @@ def main():
     p = [list(map(int, input().split())) for _ in range(50)]
 
     def is_time_ok():
-        return time() - start < 1.9
+        return time() - start < 1.95
 
     best_scores = [[-1] * 50 for _ in range(50)]
     best_score = 0
@@ -33,7 +33,7 @@ def main():
             nresult = result + s
             nused = used | set([t[ni][nj]])
             heappush(q, (ni, nj, nscore, nresult, nused))
-    print(result)
+    print(best_result)
 
 
 main()
