@@ -2,10 +2,9 @@ S = input()
 
 result = 0
 i = 0
-while i != -1:
-    i = S.find('ZONe', i)
-    if i == -1:
-        continue
+while True:
+    i = S.find('ZONe', i) + 1
+    if i == 0:
+        break
     result += 1
-    i += 1
 print(result)
