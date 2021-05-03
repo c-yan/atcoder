@@ -9,14 +9,17 @@ for c in S:
     if c == 'R':
         is_reversed = not is_reversed
         continue
+    if len(T) == 0:
+        T.append(c)
+        continue
 
     if is_reversed:
-        if len(T) != 0 and T[0] == c:
+        if T[0] == c:
             T.popleft()
         else:
             T.appendleft(c)
     else:
-        if len(T) != 0 and T[-1] == c:
+        if T[-1] == c:
             T.pop()
         else:
             T.append(c)
