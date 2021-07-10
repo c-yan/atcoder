@@ -27,7 +27,7 @@ while q:
 result = []
 for _ in range(Q):
     c, d = map(lambda x: int(x) - 1, readline().split())
-    if abs(dp[c] - dp[d]) % 2 == 0:
+    if (dp[c] + dp[d]) % 2 == 0:
         result.append('Town')
     else:
         result.append('Road')
