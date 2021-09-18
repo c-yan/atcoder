@@ -12,7 +12,7 @@ def deconv(n):
     return n // 301, n % 301
 
 
-dp = [INF] * 10 ** 5
+dp = [INF] * (301 * 301)
 dp[0] = 0
 m = 0
 for _ in range(N):

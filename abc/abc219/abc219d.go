@@ -37,8 +37,8 @@ func main() {
 	X := readInt()
 	Y := readInt()
 
-	dp := make([]int, 100000)
-	for i := 0; i < 100000; i++ {
+	dp := make([]int, 301*301)
+	for i := 0; i < 301*301; i++ {
 		dp[i] = math.MaxInt64
 	}
 	dp[0] = 0
