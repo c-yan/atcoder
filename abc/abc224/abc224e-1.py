@@ -20,8 +20,7 @@ for i in sorted(range(N), key=lambda x: rca[x][2], reverse=True):
             dpx[x] = max(dpx[x], t)
         qy.clear()
         qx.clear()
-    t = dpy[r] + 1
-    t = max(dpx[c] + 1, t)
+    t = max(dpy[r] + 1, dpx[c] + 1)
     result[i] = t
     if t != 0:
         qy.append((r, t))
